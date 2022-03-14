@@ -1,0 +1,24 @@
+% Setup
+\graphicspath{./figures}
+
+\chapter{Introduction}
+\label{chap:introduction}
+
+% Introduction
+
+A \gls{sm} is a dedicated layer of infrastructure that sits between services and aims to provide several distributed systems best practices in a uniform manner. The terminology was introduced in the last decade, and several implementations have seen the light of day since. The premise of introducing additional observability in the system, increasing the reliability of it while also adding security best practices to little or no additional lines of application code made this technology a hot topic in the field. However, this technology does not come in the form of a zero cost offering. Most of the service mesh designs work by introducing additional network proxies and an additional control plane. By introducing these components into the system, an increase in system resources is to be expected. More importantly, the introduction of a proxy between each service leads to additional latencies in every service-to-service communication. 
+
+The introduction of additional latencies in service-to-service communications or the increase in system resources can be a make or break scenario in many aspects. Companies and organizations for example can have \gls{kpi} based on the end-to-end response times of the services they provide. These \gls{qos} based metrics are important and drive their business decisions. Can the introduction of the benefits provided by a \gls{sm} outweigh the additional latency introduced, or more importantly, how much latency will be introduced at all? Another scenario that comes to mind comes in the form of resource constrained environments, which can often occur in \gls{iot} or \gls{edge-computing} topologies. 
+
+Although the technology has been in the spotlight in the last decade and the technology has seen a steady increase in adoption \cite{cncf-survey-2020, rh-survey} and implementations have seen to matured, there has been a lack of performance studies that evaluate these systems in depth. Previous works have established the groundwork by introducing simple benchmarking instruments \cite{kinvolk-bench} and their preliminary results \cite{bench-istio-linkerd-2019, bench-istio-linkerd-2021}. These benchmarks and instruments, however, do not capture the unique characteristics of a \gls{sm} well enough.
+
+\todo{Fix intro last p (END)}
+In this thesis, we present x, an automated service mesh evaluation benchmark that makes it easy to conduct reproducible real world experiments on different \gls{sm} implementations. With this instrument, we conduct experiments on existing \gls{sm} implementation to compare them on key performance characteristics.
+
+% Sections 
+\input{1_introduction/sections/context}
+\input{1_introduction/sections/problem-statement}
+\input{1_introduction/sections/research-questions}
+\input{1_introduction/sections/approach}
+\input{1_introduction/sections/contributions}
+\input{1_introduction/sections/reading-guide}

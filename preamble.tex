@@ -1,0 +1,73 @@
+% VU Page layout settings
+\textwidth 15cm
+\textheight 22cm
+\parindent 10pt
+\oddsidemargin 0.85cm
+\evensidemargin 0.37cm
+
+% VU overflow settings
+% https://www.overleaf.com/learn/latex/%5Chbadness?
+% https://www.overleaf.com/learn/latex/%5Chfuzz
+\hbadness=10000
+\hfuzz=50pt
+
+% VU line spacing settings
+% https://www.overleaf.com/learn/latex/Paragraph_formatting#Line_spacing
+\renewcommand\baselinestretch{1.2}
+\baselineskip=18pt plus1pt
+
+
+% VU font encoding default
+% https://www.overleaf.com/learn/latex/Font_typefaces
+\usepackage[T1]{fontenc}
+
+% UTF8 File Encoding
+% https://www.overleaf.com/learn/how-to/What_file_encodings_and_line_endings_should_I_use%3F
+\usepackage[utf8]{inputenc}
+
+% Makes text pretty
+\usepackage[
+    activate={true,nocompatibility},
+    final,
+    tracking=false,
+    kerning=true,
+    spacing=false,
+    factor=1100,
+    stretch=10,
+    shrink=10,
+]{microtype}
+
+% Defines acronyms used throughout the thesis
+% See: glossaries.tex
+\usepackage[abbreviations]{glossaries-extra}
+\setabbreviationstyle[acronym]{long-short}
+
+\input{glossaries}
+
+\usepackage{amsmath, amsthm, amssymb} % American Math Society packages
+\usepackage{pifont} % Symbols etc.
+\usepackage{pdfpages} % Insert PDF pages into latex documents
+\usepackage{tikz} % Package for creating graphics
+\usepackage{booktabs} % Nicer tables
+\usepackage{xcolor} % Enables coloured text
+\usepackage{minted} % Code listings
+\usepackage[noabbrev, capitalise]{cleveref} % Uniform (smart) references
+\usepackage{todonotes} % Enables visual todonotes
+\usepackage{enumitem} % Spacing in enumerations
+\usepackage{url} % Clickable and formatted urls
+\usepackage{listings} % Source code printer
+
+% Checkmark and X
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+
+
+\setuptodonotes{
+    inline,
+    color=red!40,
+}
+
+
+
+
+

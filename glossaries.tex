@@ -1,0 +1,199 @@
+% GLOSSARY ENTRIES
+% Defines acronyms and descriptions for frequently used
+% terminology present in this thesis.
+% http://tug.ctan.org/macros/latex/contrib/glossaries/glossariesbegin.pdf
+
+% Define a term like this:
+% \newglossaryentry{⟨label⟩}
+% {
+%     name={⟨name⟩},
+%     description={⟨description⟩},
+%     ⟨other options⟩
+% }
+
+% Acronym Example
+% \newabbreviation{svm}{svm}{support vector machine}
+
+
+% --------------------------------------------------------------------------
+
+\makeglossaries
+
+
+% --------------------------- ABBREVIATIONS --------------------------------
+
+\newabbreviation{soa}{SOA}{Service Oriented Architecture}
+\newabbreviation{iot}{IoT}{Internet of Things}
+\newabbreviation{qos}{QoS}{Quality of Service}
+\newabbreviation{kpi}{KPI}{Key Performance Indicator}
+\newabbreviation{json}{JSON}{JavaScript Object Notation}
+\newabbreviation{aip}{AIP}{Article Information Parser}
+
+
+
+
+%-------------------------- END ABBREVIATIONS ------------------------------
+
+
+
+
+% ----------------------------- GLOSSARIES ---------------------------------
+
+\newglossaryentry{sm}
+{
+    name={Service Mesh},
+    plural={Service Meshes},
+    description={A service mesh is a dedicated infrastructure layer that that abstracts the network layer between (micro)-services, to introduce distributed systems' best practices such as observability, traffic management, and security in a uniform way.}
+}
+
+\newglossaryentry{edge-computing}
+{
+    name={edge eomputing},
+    description={A distributed computing paradigm that brings computation and data storage closer to the sources of data.}
+}
+
+\newglossaryentry{smi}
+{
+    name={Service Mesh Interface},
+    description={A standard interface for service meshes on Kubernetes, which covers the most common service mesh capabilities such as traffic policies, traffic telemetry and traffic management.}
+}
+
+\newglossaryentry{smp}
+{
+    name={Service Mesh Performance},
+    description={A common format to capture and describe configurations and results of service mesh performance experiments.}
+}
+
+
+
+\newglossaryentry{nfr}
+{
+    name={Non-Functiona Requirement},
+    description={A a requirement that specifies criteria that can be used to judge the operation of a system, rather than specific behaviors.}
+}
+
+\newglossaryentry{cncf}
+{
+    name={Cloud Native Computing Foundation},
+    description={A Linux Foundation project that was founded in 2015 to help advance container technology and align the tech industry around its evolution in a vendor neutral fashion.}
+}
+
+\newglossaryentry{pl}
+{
+    name={Primary Literature},
+    description={The immediate results of research activities by scientists.}
+}
+
+\newglossaryentry{gl}
+{
+    name={Grey Literature},
+    description={The materials and research produced by organizations outside of the traditional commercial or academic publishing.}
+}
+
+\newglossaryentry{slr}
+{
+    name={Systematic Literature Review},
+    description={A type of literature review that uses repeatable analytical methods to collect and analyze data.}
+}
+
+\newglossaryentry{mlr}
+{
+    name={Multivocal Literature Review},
+    description={A form of systematic literature reviews that includes \gls{gl} in addition to the formal \gls{pl}.}
+}
+
+\newglossaryentry{backward-snowballing}
+{
+    name={Backward Snowballing},
+    description={A form of systematic literature reviews that includes \gls{gl} in addition to the formal \gls{pl}.}
+}
+
+\newglossaryentry{devops}
+{
+    name={DevOps},
+    description={A set of software development (dev) and it operations (ops) practices which aim to shorten the systems development life cycle and provide continuous delivery with high software quality.}
+}
+
+\newglossaryentry{container}
+{
+    name={container},
+    description={A unit of software packaging that combines the software and all of its dependencies in a standard format.}
+}
+
+\newglossaryentry{docker}
+{
+    name={Docker},
+    description={A software platform used to create, run and manage software applications packaged in \glspl{container}.}
+}
+
+\newglossaryentry{vm}
+{
+    name={virtual machine},
+    description={A software based, virtualization of a computer system.}
+}
+
+\newglossaryentry{micro-service}
+{
+    name={micro-service},
+    description={A variant of the \gls{soa} architectural style with fine-grained services and ligthweight protocols.}
+}
+
+\newglossaryentry{k8s}
+{
+    name={Kubernetes},
+    description={An open-source \gls{container} orchestration system for automating software deployment, scaling, and management.}
+}
+
+\newglossaryentry{monolith}
+{
+    name={monolith},
+    description={A software architecture that is self-contained and where the user interface and data access paterns are combined into a single program.}
+}
+
+\newglossaryentry{esb}
+{
+    name={Enterprise Service Bus},
+    description={An Enterprise Service Bus is an open standards, message-based, distributed integration infrastructure that provides routing, invocation and mediation services to facilitate the interactions of disparate distributed applications and services in a secure and reliable manner \cite{menge2007enterprise}.}
+}
+
+\newglossaryentry{ebpf}
+{
+    name={eBPF},
+    description={eBPF (extended Berkeley Packet Filter), is a technology which allows to run sandboxed programs in the Linux Kernel. It can do so without changing the kernel source code or loading kernel modules.}
+}
+
+\newglossaryentry{linkerd}
+{
+    name={Linkerd},
+    description={A service mesh implementation by Buoyant.}
+}
+
+
+
+
+
+% \newglossaryentry{soa}
+% {
+%     name={Service Oriented Architecture},
+%     description={A software development approach that takes advantages of decoupling software components into independent and reusable services.}
+% }
+
+\newglossaryentry{cabbage}
+{
+    name={cabbage},
+    description={vegetable with thick green or purple leaves}
+}
+
+\newglossaryentry{turnip}
+{
+    name={turnip},
+    description={round pale root vegetable}
+}
+
+\newglossaryentry{carrot}
+{
+    name={carrot},
+    description={orange root}
+}
+
+% --------------------------- END GLOSSARIES -------------------------------
