@@ -1,0 +1,35 @@
+\begin{table}[!t]
+    \centering
+
+    \begin{tabularx}{\textwidth}{l X}
+    
+        \toprule
+        \multicolumn{2}{c}{\textbf{EXP 2 - HTTP Constant Throughput}}  \\
+        \toprule
+        
+        \textbf{Goal}
+        & To evaluate how \gls{sm} configurations behave under varying levels of load. \\
+        \midrule
+        
+        \textbf{Methodology}
+        & The load generator will generate load in a constant and uniform throughput setting. This means that the load generator will produce a set number of requests per second and will not deviate or try to catch up when requests are not processed in time.  \\
+        \midrule
+        
+        \textbf{Workload} 
+        & HTTP (\cref{sec:experiments:design:workloads:http}) \\
+        \midrule
+
+        \multirow{2}{*}{\textbf{Factors}} 
+        & \Gls{sm} configuration (\cref{sec:experiments:design:meshes}) \\
+        & Requests per second \\
+        \midrule
+        
+        \textbf{Reasoning}
+        & This experiment evaluates the \gls{sm} configurations under similar levels of load. This allows us to compare these configurations to one another when they undergo the same workloads.  \\
+
+        \bottomrule
+
+    \end{tabularx}
+    \caption[Experiment Design: Experiment 2]{Experiment Design: Experiment 2}
+    \label{tab:experiment:design:02}
+\end{table}

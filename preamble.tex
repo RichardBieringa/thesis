@@ -49,6 +49,8 @@
 \usepackage{pdfpages} % Insert PDF pages into latex documents
 \usepackage{tikz} % Package for creating graphics
 \usepackage{booktabs} % Nicer tables
+\usepackage{tabularx} % Extends tabular* through the addition of an X-column
+\usepackage{multirow} % Complicated Tables
 \usepackage{xcolor} % Enables coloured text
 \usepackage{minted} % Code listings
 \usepackage[noabbrev, capitalise]{cleveref} % Uniform (smart) references
@@ -56,10 +58,66 @@
 \usepackage{enumitem} % Spacing in enumerations
 \usepackage{url} % Clickable and formatted urls
 \usepackage{listings} % Source code printer
+\usepackage{svg} % Allows svg images with includesvg
+\usepackage{graphicx} % Allows pdf image
+\usepackage{pdfpages} % Allows pdf pages
+\usepackage{fancyvrb } % Fancy inline verbatim (code snippets etc.)
+
+% Listings styling 
+% https://stackoverflow.com/questions/741985/latex-source-code-listing-like-in-professional-books
+\lstset{
+    basicstyle=\footnotesize\ttfamily, % Default font
+    % numbers=left,              % Location of line numbers
+    numberstyle=\tiny,          % Style of line numbers
+    % stepnumber=2,              % Margin between line numbers
+    numbersep=5pt,              % Margin between line numbers and text
+    tabsize=2,                  % Size of tabs
+    extendedchars=true,
+    breaklines=true,            % Lines will be wrapped
+    keywordstyle=\color{red},
+    frame=b,
+    % keywordstyle=[1]\textbf,
+    % keywordstyle=[2]\textbf,
+    % keywordstyle=[3]\textbf,
+    % keywordstyle=[4]\textbf,   \sqrt{\sqrt{}}
+    stringstyle=\color{white}\ttfamily, % Color of strings
+    showspaces=false,
+    showtabs=false,
+    xleftmargin=17pt,
+    framexleftmargin=17pt,
+    framexrightmargin=5pt,
+    framexbottommargin=4pt,
+    % backgroundcolor=\color{lightgray},
+    showstringspaces=false
+}
+
+% Circles for the qualitative comparison
+
+% Empty
+\newcommand*\circleE[1][1ex]{\tikz\draw (0,0) circle (#1);}
+
+% Half filled
+\newcommand*\circleH[1][1ex]{%
+  \begin{tikzpicture}
+  \draw[fill] (0,0)-- (90:#1) arc (90:270:#1) -- cycle ;
+  \draw (0,0) circle (#1);
+  \end{tikzpicture}}
+  
+% Fully filled
+\newcommand*\circleF[1][1ex]{\tikz\fill (0,0) circle (#1);} 
+
 
 % Checkmark and X
 \newcommand{\cmark}{\ding{51}}%
 \newcommand{\xmark}{\ding{55}}%
+
+% designref icon
+
+\newcommand{\designref}[1]{
+ \begin{tikzpicture}[baseline=(char.base)]
+   \node[draw, circle, inner sep=0.5pt, fill=black, text=white] (char){\small #1};
+ \end{tikzpicture}
+}
 
 
 \setuptodonotes{

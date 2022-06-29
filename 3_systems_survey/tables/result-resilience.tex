@@ -1,0 +1,24 @@
+\begin{table*}[t]
+\centering
+\resizebox{\linewidth}{!}{ %< auto-adjusts font size to fill line
+\begin{tabular}{l|llllll}
+\toprule
+Service Mesh       & Retry Funcionality & Timeout Settings & Rate Limiting & Circuit Breaking & Fault Injection & Delay Injection \\
+\midrule
+AWS App Mesh       & Yes                & Yes              & No            & Yes              & No              & No              \\
+Cilium             & Yes                & Yes              & Yes           & Yes              & Yes             & Yes             \\
+Consul             & Yes                & Yes              & Yes           & Yes              & No              & Yes             \\
+Ease Mesh          & Yes                & Yes              & Yes           & Yes              & No              & No              \\
+Istio              & Yes                & Yes              & Yes           & Yes              & Yes             & Yes             \\
+Kuma               & Yes                & Yes              & Yes           & Yes              & Yes             & Yes             \\
+Linkerd2           & Yes                & Yes              & No            & No               & Yes             & No              \\
+Nginx Service Mesh & Yes                & Yes              & Yes           & Yes              & No              & No              \\
+Open Service Mesh  & No                 & No               & No            & No               & No              & No              \\
+Traefik Mesh       & Yes                & Yes              & Yes           & Yes              & No              & No              \\
+\bottomrule
+\end{tabular}
+} %< \resizebox
+\caption{Comparing the resiliency capabilities of identified service mesh systems.}
+\label{tab:result-resilience}
+\end{table*}
+

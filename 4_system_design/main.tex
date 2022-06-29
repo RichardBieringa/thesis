@@ -1,0 +1,31 @@
+% Setup
+\graphicspath{./figures}
+
+\chapter{Design and Implementation of a Service Mesh Benchmark}
+\label{chap:system-design}
+
+% Introduction
+% - What will this chapter contain and what resaarch question it tries to answer
+
+% Prev chapter -> General
+% This chapter -> Perforormance oriented + importance
+In the previous chapter (\cref{chap:survey}), we conducted a systems survey and identified several state-of-the-art \gls{sm} systems. We examined the architectural differences between these systems and compared them on domain-specific functional and non-functional requirements. We observed that architectural differences can have various effects on the theoretical performance implications such systems can have. Furthermore, the performance implications have great effects as they affect all software services in the environment. Therefore, we dive deeper into the performance of \gls{sm} systems.
+
+
+% Which RQ will we answer
+% Related work -> Shortcomings
+% What we do to solve these shortcomings
+In this chapter, we provide an answer to research question \ref{rq-2}. \textit{How to design and implement a \gls{sm} benchmark which evaluates the performance of \gls{sm} systems?} During the literature survey, we observed that there was no relevant work found in the \gls{pl}. Furthermore, preliminary research has shown that previous and current efforts made to evaluate these performance characteristics are either in early stages or have limited functionality. To solve these shortcomings, we present an extensible \gls{sm} benchmark instrument that aims to support various workloads, protocols and \gls{sm} implementations.
+
+% Rest of the chapter is structured as follows
+% - The need for these surveys (related work)
+% - Methodology used for both surveys
+% - Results of 
+The remainder of this chapter is structured as follows. First, in \cref{sec:system:objectives} we introduce the goals of the benchmarking instrument. Second, in \cref{sec:system:sut} we describe the components that are part of the \gls{sut}. Afterwards, in \cref{sec:system:requirements-analysis} we present a requirement analysis in which we formalize the stakeholders, use cases and system requirements of the instrument. Next, in \cref{sec:system:design} we present the design of the benchmarking instrument. Following that, in \cref{sec:system:analysis} we analyse the proposed design.  Finally, in \cref{sec:system:implementation} we discuss the implementation details of the system.
+
+\input{4_system_design/sections/objectives}
+\input{4_system_design/sections/system-under-test}
+\input{4_system_design/sections/requirements-analysis}
+\input{4_system_design/sections/design}
+\input{4_system_design/sections/analysis}
+\input{4_system_design/sections/implementation}

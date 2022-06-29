@@ -1,0 +1,67 @@
+\begin{table*}[!t]
+\centering
+
+\begin{tabularx}{\textwidth}{l l l X}
+
+% Header
+\toprule
+\multicolumn{4}{c}{\textbf{Experiment Overview}} \\
+\toprule
+
+% Second Header
+\textbf{Experiment}     &
+\textbf{Workload}       &
+\textbf{Metrics}        &
+\textbf{Factors}        \\
+\midrule
+
+% Experiments
+\textbf{\ref{exp:design:1}} &
+HTTP                        &
+\ref{exp:metric:1}, \ref{exp:metric:2}, \ref{exp:metric:3}, \ref{exp:metric:4}         &
+\begin{tabular}{@{}l@{}}
+    \textbf{Mesh Configuration} \\
+    {}
+\end{tabular}
+\\
+\midrule
+
+\textbf{\ref{exp:design:2}} &
+HTTP                        &
+\ref{exp:metric:1}, \ref{exp:metric:2}, \ref{exp:metric:4}         &
+\begin{tabular}{@{}l@{}}
+    \textbf{Mesh Configuration} \\
+    \textbf{RPS} \textit{(1, 100, 500, 1000)} \\
+\end{tabular}
+\\
+\midrule
+
+\textbf{\ref{exp:design:3}} &
+HTTP                        &
+\ref{exp:metric:1}, \ref{exp:metric:2}, \ref{exp:metric:4}         &
+\begin{tabular}{@{}l@{}}
+    \textbf{Mesh Configuration} \\
+    \textbf{Payload Size} \textit{(0, 1kb, 10kb)} \\
+\end{tabular}
+\\
+\midrule
+
+\textbf{\ref{exp:design:4}} &
+gRPC                        &
+\ref{exp:metric:1}, \ref{exp:metric:2}, \ref{exp:metric:3}, \ref{exp:metric:4}         &
+\begin{tabular}{@{}l@{}}
+    \textbf{Mesh Configuration} \\
+    {}
+\end{tabular}
+\\
+\midrule
+
+
+      
+
+\end{tabularx}
+
+
+\caption{Overview of all experiments in this thesis.}
+\label{tab:experiment:design:overview}
+\end{table*}

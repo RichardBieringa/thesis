@@ -1,0 +1,33 @@
+\begin{table*}[!t]
+\centering
+
+\begin{tabular}{l r}
+
+
+\toprule
+\multicolumn{2}{c}{\textbf{GKE Configuration}}       \\
+\toprule
+
+\textbf{Compute Region}    & europe-west4            \\
+\textbf{Kubernetes Version}& 1.22.8-gke.201          \\
+\textbf{Kubernetes Release Channel} & regular        \\
+\textbf{VPC-native-routing}         & enabled        \\
+\textbf{Dataplane V2}               & disabled       \\
+
+\toprule
+\multicolumn{2}{c}{\textbf{Node Configuration}} \\
+\toprule
+
+\textbf{Compute Zone}               & europe-west4-a \\
+\textbf{Node Count}                 & 1              \\
+\textbf{vCPU}                       & 2              \\
+\textbf{Memory}                     & 8 GB           \\  
+
+\bottomrule
+
+\end{tabular}
+
+
+\caption{The cluster configuration used throughout the experiments.}
+\label{tab:experiment:design:cluster-config}
+\end{table*}

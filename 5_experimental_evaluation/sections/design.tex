@@ -1,0 +1,233 @@
+\section{Experiment Design}
+\label{sec:experiments:design}
+
+% The goal of the experimental evaluation
+
+
+The goal of the experimental evaluation is to gain insights into the performance characteristics of \gls{sm} systems. We do this by designing and conducting experiments to extract and gauge relevant metrics for these systems. This section builds upon the knowledge gained in previous chapters and details all the relevant aspects of the experiments.
+
+
+
+\subsection{Service Mesh Selection}
+\label{sec:experiments:design:meshes}
+% What mesh setups did we choose?
+% Why did we choose the service meshes included in the experiments?
+% None -> Gives baseline
+% Linkerd - Most popular (survey results)
+% Istio - Most popular (survey results)
+% Traefik - Per node arch
+% Cilium - ebpf arch
+
+The selection of \gls{sm} systems to include in the experiments is based on two criteria. First, we aimed to include a representative selection of systems that are used in real-world, production grade environments. Secondly, we aim to include systems based on different architectural approaches. In \cref{chap:survey}, we survey the existing state-of-the-art \gls{sm} systems in the industry and have identified the most frequently used, production grade systems. Furthermore, we identified three different architectural styles that could have major implications on the performance of these systems.
+
+With this in mind we present the list of mesh configurations that is used throughout the experiments.
+
+\begin{enumerate}[label=\textbf{SM\arabic*}, leftmargin=3\parindent]
+    \item \textbf{None (baseline)}
+    \label{exp:sm:0}
+    
+    To establish a baseline of performance, we start by performing experiments without any \gls{sm} at all. This enables us to not only compare different mesh systems to one another, but also allows us to paint a picture of the performance overhead compared to an unmeshed environment.
+    
+    \item \textbf{Istio}
+    \label{exp:sm:1}
+   
+    The first mesh of the selection is \textit{istio}, we chose to include this \gls{sm} because of its prevalence in the industry. During our system survey we have identified that \textit{istio} is the most frequently used, production grade system at the time of writing.
+    
+    \item \textbf{Linkerd}
+    \label{exp:sm:2}
+   
+    The second mesh of the selection is \textit{linkerd}, we chose to include this \gls{sm} because of its popularity. With a service proxy built for \gls{sm} workloads and a focus on performance, this system quickly gained popularity and established itself as a dominant entry in the industry.
+
+    \item \textbf{Traefik}
+    \label{exp:sm:3}
+    
+    The third mesh included in the experiments is \textit{traefik mesh}. We chose to include this mesh because it uses a vastly different architecture for its data plane. During our system survey we established that most of the identified \gls{sm} systems used a per-service proxy. \textit{traefik mesh} was the only system that we identified that used a \textit{per-node} proxy. By including this mesh in our experiments we aim to uncover the performance implications of this type of configuration.
+    
+    \item \textbf{Cilium}
+    \label{exp:sm:4}
+    
+    The final mesh included in the experiments is \textit{cilium}. A rather new entry in the world of \gls{sm} systems that we chose to include because of its architecture. During our system survey we identified that \textit{cilium} was the only \gls{sm} system which used a \gls{ebpf} based data plane proxy. By including this mesh in our experiments we aim to expose the performance implications such architecture can introduce.
+
+\end{enumerate}
+
+\todo{add mesh versions, this table looks rather small}
+
+Additionally, in \cref{tab:experiment:design:mesh} we present the versions used for each \gls{sm} during our experiments.
+
+\input{5_experimental_evaluation/tables/meshes}
+
+
+\subsection{Metrics}
+\label{sec:experiments:design:metrics}
+% - System Resources
+% - Throughput
+% - Latency
+
+To evaluate the performance characteristics of \gls{sm} systems we have to extract relevant metrics from the \gls{sut}. In \cref{chap:system-design}, we designed and implemented a benchmarking instrument to evaluate \gls{sm} systems. During the requirements analysis (\cref{sec:system:requirements-analysis}) we identified the stakeholders, discussed their use cases and formed a list of requirements. During this, we established a set of metrics that are used to evaluate the performance characteristics based on industry best practices.
+
+Below we present the list of metrics used throughout the experiments
+
+\begin{enumerate}[label=\textbf{M\arabic*}, leftmargin=3\parindent]
+    \item \textbf{CPU utilization}
+    \label{exp:metric:1}
+    
+    The first metric that we use during the experiments is related to resource utilization. This helps us to establish how much computational overhead the service proxies of a \gls{sm} introduce. All the CPU utilization results are expressed in fractions of a CPU core per second, e.g. the test system has 2 CPU cores and maximum utilization at a given time would be $2.0$. More specifically, we use the \Verb+container_cpu_usage_seconds_total+ as exposed through the \textit{Kubelet} process and obtain the results through \textit{Prometheus} using the query as seen in Listing \ref{lst:promql-cpu}.
+    
+    \begin{lstlisting}[caption=PromQL query for CPU metric, label=lst:promql-cpu] 
+    sum(rate(
+        container_cpu_usage_seconds_total{
+            container!="",
+            pod=~"(target-fortio|traefik-mesh-proxy|cilium).*"
+        }[2s]
+    )) by (pod, container)
+    \end{lstlisting}
+
+    
+    \item \textbf{Memory utilization}
+    \label{exp:metric:2}
+    
+    The second metric that we use in the experiments is also related to the resource utilization. We capture the memory utilization of service proxies by measuring the amount of memory they consume during operation. More specifically, we use the \Verb+container_memory_working_set_bytes+ as exposed through the \textit{Kubelet} process and obtain the results through \textit{Prometheus} using the query as seen in Listing \ref{lst:promql-memory}.
+    
+    
+    \begin{lstlisting}[caption=PromQL query for CPU metric, label=lst:promql-memory] 
+    sum(rate(
+        container_memory_working_set_bytes{
+            container!="",
+            pod=~"(target-fortio|traefik-mesh-proxy|cilium).*"
+        }[2s]
+    )) by (pod, container)
+    \end{lstlisting}
+
+    
+    \item \textbf{Requests per Second}
+    \label{exp:metric:3}
+    
+    The third metric that we use is the amount of requests the system has handled expressed in requests per second. This metrics allows us to identify to measure the amount of throughput or traffic that a system can handle. 
+
+    \item \textbf{Request Latency}
+    \label{exp:metric:4}
+    
+    The fourth metric that we use in our experiments captures the amount of time it takes for a request to be served. This metric, is expressed as latency in milliseconds allows us to establish the overhead caused in the data path of every request in the system.
+
+\end{enumerate}
+
+In the experiments we do not evaluate metrics related to the resiliency of the system. In our requirements analysis we established a requirement to capture this characteristic based on established best practices. However, is not included in the current experimental design. The reason for this is twofold. First of, we uncovered that the \gls{sm} systems handle timeouts and errors in requests differently \cite{linkerd-retry} and that it involves balancing resiliency capabilities and system load. This means that we cannot compare the systems based on their default settings. Second, to create a fair experiment we have to configure these systems to have identical fault tolerance behaviours, which not all systems support. 
+
+
+\subsection{Workloads}
+\label{sec:experiments:design:workloads}
+% GRPC Health
+% HTTP echo
+
+The selection of workloads aims to represent varying real-world scenarios that a \gls{sm} might encounter. Since a \gls{sm} handles most, if not all the traffic between software services, it can encounter a wide variety of workloads depending on the use case. With this in mind, we design our experiment to use workloads which are as generic as possible. 
+
+During the systems survey conducted in \cref{chap:survey} we analysed the state-of-the-art \gls{sm} systems and identified their key \glspl{fr} and \glspl{nfr}. We identified that \gls{sm} systems handle service traffic in an application aware manner. Furthermore, we identified the most common application level transport protocols in terms of support. With this in mind, we designed the experiments around the two most common application level protocols. 
+
+\subsubsection{HTTP Workload}
+\label{sec:experiments:design:workloads:http}
+
+For the experiments that make use of HTTP workloads we use a simple HTTP service. This service represents a simple echo service and replies with the data a client sends to it. This service requires relatively little system resources to operate and scales well to handle large amounts of connections. Additionally, it is also very configurable which enables us to test HTTP workloads with varying conditions and response payloads.
+
+Although this is a synthetic workload which cannot be compared to any real-world workload, it allows us to capture and evaluate the general performance characteristics of \gls{sm} systems under varying circumstances.
+
+\subsubsection{gRPC Workload}
+\label{sec:experiments:design:workloads:grpc}
+
+To evaluate how a \gls{sm} performs under varying application level workloads we included a GRPC workload. During the system survey we observed that all the identified \gls{sm} systems supported the \gls{grpc} protocol and noted that it was a common communication standard in distributed computing. With this in mind we introduced a simple \gls{grpc} based workload. To use the \gls{grpc} protocol, both the client and server need to know the service definition\footnote{\url{https://grpc.io/docs/what-is-grpc/core-concepts/\#service-definition}} since this varies from service to service. Best practices dictate that \gls{grpc} based services should to include a health checking endpoint\footnote{\url{https://github.com/grpc/grpc/blob/master/doc/health-checking.md}}. We use this to our advantage by using a simple \gls{grpc} service that includes this endpoint.
+
+This synthetic workload is used to evaluate the performance implications of other (non-HTTP) application level workloads on \gls{sm} systems.
+
+\subsection{Experimental Environment}
+\label{sec:experiments:design:environment}
+% Create repeatable experiments
+% Cluster/Compute Setup
+% Metric Collectors
+
+It is important for experiments to be repeatable and that the variance is a little as possible. This allows others to reproduce and verify the results obtained and therefore be of scientific relevance. 
+
+\subsubsection{Cluster Setup}
+\label{sec:experiments:design:environment:cluster}
+
+All the experiments were conducted on a \gls{k8s} cluster running on \gls{gcp}. The cluster was created through their managed \gls{k8s} service \gls{gke}. The decision to use their managed service to construct the cluster was based on their flexible, but vast array of network configuration options. In \cref{tab:experiment:design:cluster-config} we present the most important details of the cluster and node configurations used. Which we will now discuss in further detail.
+
+First, we conducted all the experiments in the \textit{europe-west4} region. More specifically, all the compute nodes are located in the \textit{europe-west4-a} data centre location which is located at Eemshaven in the Netherlands. We chose this location as it was closest to our own location. Secondly, we used the most recent version of \gls{k8s} available at the time of writing in the stable release channel. Thirdly, we made use of \textit{VPC-native-routing}\footnote{\url{https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips}} which implements the \gls{k8s} networking model\footnote{\url{https://kubernetes.io/docs/concepts/services-networking/\#the-kubernetes-network-model}}. Additionally, we disabled \textit{Dataplane V2} an upcoming networking solution based on \textit{cilium} that would conflict with the \gls{sm} systems that we evaluate.
+
+For the node configurations in the cluster we used a single \textit{e2-standard-2} node. This machine has 2 \textit{vCPUs} and 8 GB of memory\footnote{\url{https://cloud.google.com/compute/docs/cpu-platforms}}. We designed the experiments to be run on a single node cluster to abolish any variance in network latencies during the experiments. If for example, we chose to run the load generator on a single node and the target service on another node we introduce additional variance of network latencies.
+
+\input{5_experimental_evaluation/tables/cluster-configuration}
+
+\subsubsection{Metric Collection}
+\label{sec:experiments:design:environment:cluster}
+
+We capture two types of metrics from the experiments. The first type of metric is related to the load generator (\ref{exp:metric:3}-\ref{exp:metric:4}). These metrics are collected by capturing the \gls{json} output that the load generator produces. The second type of metric is related to resource utilization (\ref{exp:metric:1}-\ref{exp:metric:2}). To analyse the resource overheads of data plane proxies we have to capture the resource overheads at a fine level of granularity, more specifically, at the level of a \gls{pod}.
+
+To collect resource utilization at this level of granularity we bootstrap the cluster with various monitoring instruments. More specifically, we installed \textit{kube-prom-stack}\footnote{\url{https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-prometheus-stack}}, an end-to-end monitoring solution based on the open-source monitoring solution \textit{Prometheus}\footnote{\url{https://prometheus.io/}}.
+
+
+\subsection{Experiment Variables}
+\label{sec:experiments:design:variables}
+
+When performing load testing experiments we can observe and control many of the variables present in the environment. We can do so on three areas of the benchmark. First of, we can control which \gls{sm} is used, this will be done across all experiment. \cref{sec:experiments:design:meshes} details which \gls{sm} configurations are used and why they were chosen. Additionally, we can control the settings of the load generator. This allows us to tweak what kind of loads we can send (\cref{sec:experiments:design:workloads}) but also control how frequent we send loads and how to handle and or wait for responses. The final area which we can tweak is on the side of the target services. The target services are defined as the receiving endpoints of the load generator. This allows us to adjust the way a service responds, allowing us to introduce artificial delays, introduce faults or change payload sizes.
+
+\input{5_experimental_evaluation/tables/exp-variables}
+
+In \cref{tab:experiment:design:exp-variables} we present the variables that we control across the experiments in this thesis. Additionally, it includes the default values that were used for these variables if they are not introduced as factor variables within an experiment.
+
+\subsection{Experiments}
+\label{sec:experiments:design:overview}
+
+We now introduce the four experiments that were designed and used to evaluate the performance characteristics of \gls{sm} systems. For each of the experiments we introduce their primary goal, discuss how they are executed and reason why we chose this particular design. Additionally, \cref{tab:experiment:design:overview} presents an overview of all the experiments, what type of workloads they use, which  metrics they capture and which factors  are used to control the experiment.
+
+\input{5_experimental_evaluation/tables/exp-overview}
+
+\begin{enumerate}[label=\textbf{EXP\arabic*}, leftmargin=3\parindent]
+    \item \textbf{HTTP Maximum Throughput}
+    \label{exp:design:1}
+    
+    \textbf{Goal} \\
+    To find the maximum throughput each of the meshed configurations can achieve.
+    
+    \textbf{Methodology} \\
+    The load generator will run in an unrestricted mode and generate as much load as possible without holding back and without any request timeouts. The maximum throughput is determined by looking at the actual number of requests per second in the configuration was able to achieve.
+    
+    \textbf{Reasoning} \\
+    This experiment will serve as a baseline to determine the maximum throughput of all meshed configurations. The results will be used to determine sensible defaults for the experiments with a pre-defined constant throughput.
+
+    \item \textbf{HTTP Constant Throughput}
+    \label{exp:design:2}
+    
+    \textbf{Goal} \\
+    To evaluate how \gls{sm} configurations behave under varying levels of load.
+        
+    \textbf{Methodology} \\
+    The load generator will generate load in a constant and uniform throughput setting. This means that the load generator will produce a set number of requests per second and will not deviate or try to catch up when requests are not processed in time.
+    
+    \textbf{Reasoning} \\
+    This experiment evaluates the \gls{sm} configurations under similar levels of load. This allows us to compare these configurations to one another when they undergo the same workloads.
+    
+    \item \textbf{HTTP Payload}
+    \label{exp:design:3}
+    
+    \textbf{Goal} \\
+    To evaluate how \gls{sm} configurations behave with varying payload sizes.
+
+    \textbf{Methodology} \\
+    The load generator will produce HTTP requests to the target service, which in turn will respond with pre-determined payload sizes.
+
+    \textbf{Reasoning} \\
+    This experiment introduces several pre-determined payload sizes to evaluate the effects of additional application data being transferred in meshed environments. This allows us to study the effects and potential additional overheads extra data transfers may cause. 
+        
+    \item \textbf{gRPC Maximum Throughput}
+    \label{exp:design:4}
+    
+    \textbf{Goal} \\
+    To evaluate how meshed configurations behave with alternative communication protocols.
+        
+    \textbf{Methodology} \\
+    The load generator will generate gRPC traffic towards the gRPC service and do so in an unrestricted manner, meaning it will try to generate as much load as possible without holding back and without enforcing any timeouts. The maximum throughput is determined by looking at the actual number of requests per second in the configuration was able to achieve.
+    
+    \textbf{Reasoning} \\
+    This experiment allows us to evaluate the effects of alternative application level protocols. During the system survey we uncovered that \gls{sm} systems inspect and use this data to for both observability and routing functionalities. This experiment allows us to uncover the effects of alternative, but common, application level protocols widely used within the industry.
+
+\end{enumerate}
+

@@ -1,0 +1,24 @@
+\begin{table*}[t]
+\centering
+\resizebox{\linewidth}{!}{ %< auto-adjusts font size to fill line
+\begin{tabular}{l|lllll}
+\toprule
+Service Mesh       & Metrics        & Monitoring     & Tracing                     & Dashboard \\
+\midrule
+AWS App Mesh       & AWS CloudWatch & AWS CloudWatch & AWS CloudWatch              & AWS X-Ray \\
+Cilium             & Prometheus     & Grafana        & Jaeger, Open Telemetry      & Hubble    \\
+Consul             & Prometheus     & Grafana        & Jaeger, Zipkin, OpenTracing & Consul UI \\
+Ease Mesh          & Ease Monitor   & Ease Monitor   & OpenTracing                 & No        \\
+Istio              & Prometheus     & Grafana        & Jaeger, Zipkin              & Kiali     \\
+Kuma               & Prometheus     & Grafana        & Jaeger, Zipkin              & Yes       \\
+Linkerd2           & Prometheus     & Grafana        & Open Telemetry              & Yes       \\
+Nginx Service Mesh & Prometheus     & Grafana        & Jaeger                      & No        \\
+Open Service Mesh  & Prometheus     & Grafana        & Jaeger                      & No        \\
+Traefik Mesh       & Prometheus     & Grafana        & Jaeger                      & No        \\
+\bottomrule
+\end{tabular}
+} %< \resizebox
+\caption{Comparing the observability capabilities of identified service mesh systems.}
+\label{tab:result-observability}
+\end{table*}
+

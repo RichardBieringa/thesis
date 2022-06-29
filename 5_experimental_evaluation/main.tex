@@ -1,0 +1,23 @@
+% Setup
+\graphicspath{./figures}
+
+\chapter{Experimental Evaluation of Service Mesh systems}
+\label{chap:experimental-evaluation}
+
+% Introduction
+% - What will this chapter contain and what resaarch question it tries to answer
+
+% Prev chapter -> Design of the benchmark and implementation
+% This chapter -> Design of experiments, conducting of experiments and results
+In the previous chapter (\cref{chap:system-design}), we defined the \gls{sut} and the metrics that are important to evaluate the performance aspects of \gls{sm} systems. With this in mind, we designed and implemented a tool to benchmark the \gls{sut}. In this chapter, we present the experimental evaluation of \gls{sm} systems using the aforementioned benchmark. With this, we provide an answer to research question \ref{rq-3}. \textit{What are the differences between the different \gls{sm} systems in terms of overhead, throughput and latency?} 
+
+
+% Rest of the chapter is structured as follows
+% - Experimental Setup
+% - Experimental Results
+% - Analysis/Discussion
+The remainder of this chapter is structured as follows. First, in \cref{sec:experiments:design} we introduce the design of the experimental setup. After that, in \cref{sec:experiments:results} we present and explain how to interpret the obtained results. Finally, in \cref{sec:experiments:discussion} we discuss the results and their implications.
+
+\input{5_experimental_evaluation/sections/design}
+\input{5_experimental_evaluation/sections/results}
+\input{5_experimental_evaluation/sections/discussion}

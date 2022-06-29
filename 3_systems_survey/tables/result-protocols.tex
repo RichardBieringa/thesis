@@ -1,0 +1,24 @@
+\begin{table*}[t]
+\centering
+\resizebox{\linewidth}{!}{ %< auto-adjusts font size to fill line
+\begin{tabular}{l|lllllll}
+\toprule
+Service Mesh       & HTTP1.1 & HTTP2 & HTTP3 & Websockets & gRPC & TLS & Additional Protocols \\
+\midrule
+AWS App Mesh       & Yes     & Yes   & Yes   & Yes        & Yes  & Yes & -                    \\
+Cilium             & Yes     & Yes   & Yes   & Yes        & Yes  & Yes & Kafka                \\
+Consul             & Yes     & Yes   & Yes   & Yes        & Yes  & Yes & -                    \\
+Ease Mesh          & Yes     & Yes   & No    & Yes        & No   & Yes & MQTT                 \\
+Istio              & Yes     & Yes   & Yes   & Yes        & Yes  & Yes & Mongo, Redis, MySQL  \\
+Kuma               & Yes     & Yes   & Yes   & Yes        & Yes  & Yes & Kafka                \\
+Linkerd2           & Yes     & Yes   & No    & Yes        & Yes  & Yes & -                    \\
+Nginx Service Mesh & Yes     & Yes   & No    & Yes        & Yes  & Yes & -                    \\
+Open Service Mesh  & Yes     & Yes   & Yes   & Yes        & Yes  & Yes & -                    \\
+Traefik Mesh       & Yes     & Yes   & Yes   & Yes        & Yes  & Yes & -                    \\
+\bottomrule
+\end{tabular}
+} %< \resizebox
+\caption{Comparing the application level protocol support of identified service mesh systems.}
+\label{tab:result-protocols}
+\end{table*}
+

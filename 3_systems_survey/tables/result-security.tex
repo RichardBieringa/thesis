@@ -1,0 +1,24 @@
+\begin{table*}[t]
+\centering
+% \resizebox{\linewidth}{!}{ %< auto-adjusts font size to fill line
+\begin{tabular}{l|ll}
+\toprule
+Service Mesh       & mTLS & S2S Authorization Policies \\
+\midrule
+AWS App Mesh       & Yes  & IAM                        \\
+Cilium             & Yes  & Yes                        \\
+Consul             & Yes  & Yes                        \\
+Ease Mesh          & Yes  & Yes                        \\
+Istio              & Yes  & Yes                        \\
+Kuma               & Yes  & Yes                        \\
+Linkerd2           & Yes  & Yes                        \\
+Nginx Service Mesh & Yes  & Yes                        \\
+Open Service Mesh  & Yes  & Yes                        \\
+Traefik Mesh       & No   & No                          \\
+\bottomrule
+\end{tabular}
+% } %< \resizebox
+\caption{Comparing the security capabilities of identified service mesh systems.}
+\label{tab:result-security}
+\end{table*}
+

@@ -1,0 +1,189 @@
+\begin{table}[!t]
+
+\centering
+\resizebox{\linewidth}{!}{ %< auto-adjusts font size to fill line
+\begin{tabular}{c|cc|cccc|ccccc}
+\toprule
+
+% HEADER 1
+\multicolumn{1}{c|}{} &
+\multicolumn{2}{c|}{\textbf{Data Plane}} &
+\multicolumn{4}{c|}{\textbf{Functional Requirements}} &
+\multicolumn{5}{c}{\textbf{Non-Functional Requirements}}  \\
+
+% HEADER 2
+\multicolumn{1}{c|}{\textbf{Service Mesh}} &
+\multicolumn{1}{c}{\textbf{Service Proxy}}  &
+\multicolumn{1}{c|}{\textbf{Proxy Architecture}}  &
+\multicolumn{1}{c}{\ref{fr-1}}  &
+\multicolumn{1}{c}{\ref{fr-2}}  &
+\multicolumn{1}{c}{\ref{fr-3}}  &
+\multicolumn{1}{c|}{\ref{fr-4}} &
+
+\multicolumn{1}{c}{\ref{nfr-1}} &
+\multicolumn{1}{c}{\ref{nfr-2}} &
+\multicolumn{1}{c}{\ref{nfr-3}} &
+\multicolumn{1}{c}{\ref{nfr-4}} &
+\multicolumn{1}{c}{\ref{nfr-5}} \\
+
+\midrule
+% CONTENT
+
+AWS App Mesh
+& Envoy         % Service Proxy
+& Per-Service   % Proxy Architecture
+& \circleF      % FR1 Observability
+& \circleF      % FR2 Security
+& \circleH      % FR3 Resilience
+& \circleF      % FR4 Additional Deployment Models
+
+& \circleH      % NFR1 Application Level Protocol Aware
+& \circleE      % NFR2 Open-Source
+& \circleF      % NFR3 Documentation
+& \circleE      % NFR4 CNCF Level
+& \circleE      % NFR5 Commmunity Recognition
+\\
+
+Cilium
+& Cilium eBPF   % Service Proxy
+& In Kernel     % Proxy Architecture
+& \circleF      % FR1 Observability
+& \circleF      % FR2 Security
+& \circleF      % FR3 Resilience
+& \circleF      % FR4 Additional Deployment Models
+
+& \circleF      % NFR1 Application Level Protocol Aware
+& \circleF      % NFR2 Open-Source
+& \circleH      % NFR3 Documentation
+& \circleH      % NFR4 CNCF Level
+& \circleH      % NFR5 Commmunity Recognition
+\\
+
+Consul
+& Envoy         % Service Proxy
+& Per-Service   % Proxy Architecture
+& \circleF      % FR1 Observability
+& \circleF      % FR2 Security
+& \circleH      % FR3 Resilience
+& \circleF      % FR4 Additional Deployment Models
+
+& \circleH      % NFR1 Application Level Protocol Aware
+& \circleF      % NFR2 Open-Source
+& \circleF      % NFR3 Documentation
+& \circleE      % NFR4 CNCF Level
+& \circleH      % NFR5 Commmunity Recognition
+\\
+
+Ease Mesh
+& EaseGress     % Service Proxy
+& Per-Service   % Proxy Architecture
+& \circleF      % FR1 Observability
+& \circleE      % FR2 Security
+& \circleH      % FR3 Resilience
+& \circleE      % FR4 Additional Deployment Models
+
+& \circleH      % NFR1 Application Level Protocol Aware
+& \circleF      % NFR2 Open-Source
+& \circleE      % NFR3 Documentation
+& \circleE      % NFR4 CNCF Level
+& \circleE      % NFR5 Commmunity Recognition
+\\
+
+Istio
+& Envoy         % Service Proxy
+& Per-Service   % Proxy Architecture
+& \circleF      % FR1 Observability
+& \circleF      % FR2 Security
+& \circleF      % FR3 Resilience
+& \circleF      % FR4 Additional Deployment Models
+
+& \circleF      % NFR1 Application Level Protocol Aware
+& \circleF      % NFR2 Open-Source
+& \circleF      % NFR3 Documentation
+& \circleE      % NFR4 CNCF Level
+& \circleF      % NFR5 Commmunity Recognition
+\\
+
+Kuma
+& Envoy         % Service Proxy
+& Per-Service   % Proxy Architecture
+& \circleF      % FR1 Observability
+& \circleF      % FR2 Security
+& \circleF      % FR3 Resilience
+& \circleF      % FR4 Additional Deployment Models
+
+& \circleF      % NFR1 Application Level Protocol Aware
+& \circleF      % NFR2 Open-Source
+& \circleF      % NFR3 Documentation
+& \circleH      % NFR4 CNCF Level
+& \circleE      % NFR5 Commmunity Recognition
+\\
+
+Linkerd2
+& Linkerd2 Proxy% Service Proxy
+& Per-Service   % Proxy Architecture
+& \circleF      % FR1 Observability
+& \circleF      % FR2 Security
+& \circleH      % FR3 Resilience
+& \circleF      % FR4 Additional Deployment Models
+
+& \circleH      % NFR1 Application Level Protocol Aware
+& \circleF      % NFR2 Open-Source
+& \circleF      % NFR3 Documentation
+& \circleF      % NFR4 CNCF Level
+& \circleF      % NFR5 Commmunity Recognition
+\\
+
+Nginx Service Mesh
+& NGINX Plus    % Service Proxy
+& Per-Service   % Proxy Architecture
+& \circleF      % FR1 Observability
+& \circleF      % FR2 Security
+& \circleH      % FR3 Resilience
+& \circleE      % FR4 Additional Deployment Models
+
+& \circleH      % NFR1 Application Level Protocol Aware
+& \circleE      % NFR2 Open-Source
+& \circleH      % NFR3 Documentation
+& \circleE      % NFR4 CNCF Level
+& \circleE      % NFR5 Commmunity Recognition
+\\
+
+Open Service Mesh
+& Envoy         % Service Proxy
+& Per-Service   % Proxy Architecture
+& \circleF      % FR1 Observability
+& \circleF      % FR2 Security
+& \circleE      % FR3 Resilience
+& \circleE      % FR4 Additional Deployment Models
+
+& \circleH      % NFR1 Application Level Protocol Aware
+& \circleF      % NFR2 Open-Source
+& \circleH      % NFR3 Documentation
+& \circleH      % NFR4 CNCF Level
+& \circleE      % NFR5 Commmunity Recognition
+\\
+
+Traefik Mesh
+& Traefik Proxy % Service Proxy
+& Per-Node      % Proxy Architecture
+& \circleF      % FR1 Observability
+& \circleE      % FR2 Security
+& \circleH      % FR3 Resilience
+& \circleE      % FR4 Additional Deployment Models
+
+& \circleH      % NFR1 Application Level Protocol Aware
+& \circleF      % NFR2 Open-Source
+& \circleH      % NFR3 Documentation
+& \circleE      % NFR4 CNCF Level
+& \circleE      % NFR5 Commmunity Recognition
+\\
+\bottomrule
+\end{tabular}
+} %< \resizebox
+
+\caption[Qualitative comparison between state-of-the-art \gls{sm} systems.]{Qualitative comparison between state-of-the-art \gls{sm} systems. \\
+There are three different symbols in the table, each of them represents how well a requirement is satisfied. \circleF: Fully Satisfied, \circleE: Not Satisfied, \circleH: Partially Satisfied.}
+\label{tab:result-comparison}
+
+\end{table}

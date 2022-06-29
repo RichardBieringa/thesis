@@ -11,23 +11,23 @@ We decompose the challenges as described in the problem statement \cref{sec:prob
 % - Design/implementation of a benchmarking system
 % - Real World Experiments
 
-\todo{Research Questions: Formulation, double check RQ with Erwin/Alex, I suck at formulating these}
+\todo{Research Questions: Formulation}
 
 \begin{enumerate}[label=\textbf{RQ\arabic*}, leftmargin=3\parindent]
     \item \textbf{How do existing \gls{sm} implementations compare?}
     \label{rq-1}
     
-    Many \gls{sm} implementations have emerged from within the rapidly changing landscape of container and resource management technologies, prior to the adaptation of any standard to guide their development. It is necessary to evaluate these implementations in a structured systems survey, where we identify and analyse the characteristics of the current iterations of \gls{sm} systems. This allows us to create an overview of the state-of-the-art within the \gls{sm} landscape.
+    Many \gls{sm} implementations have emerged from within the rapidly changing landscape of container and resource management technologies, before the adaptation of any standard to guide their development. It is necessary to evaluate these implementations in a structured systems survey, where we identify and analyse the characteristics of the current iterations of \gls{sm} systems. This allows us to create an overview of the state-of-the-art within the \gls{sm} landscape.
     
-    \item \textbf{How can we map design a system to evaluate \gls{sm} systems?}
+    \item \textbf{How to design and implement a \gls{sm} benchmark which evaluates the performance of \gls{sm} systems?}
     \label{rq-2}
     
-    Based on the results of the system survey in \ref{rq-1}, we will identify the requirements for a system which can evaluate a service mesh. Based on these identified requirements, we should evaluate existing instruments to see if any of these satisfy. We then have to design or extend an instrument based on best practices \cite{folkerts2012benchmarking} which can support multiple experiment configuration, workloads and is able to produce reproducible real world experiments. The goal of this instrument is to capture the relevant system metrics, performance metrics and application domain specific \glspl{nfr} which results in a generic and objective comparison between said systems.
+    Based on the results of the system survey in \ref{rq-1}, we will identify the requirements for a system which can evaluate a service mesh. Based on these identified requirements, we should evaluate existing instruments to see if any of these satisfy. We then have to design or extend an instrument based on best practices \cite{folkerts2012benchmarking} which can support multiple experiment configuration, workloads and can produce reproducible real-world experiments. The goal of this instrument is to capture the relevant system metrics, performance metrics and application domain specific \glspl{nfr} which results in a generic and objective comparison between said systems.
 
-    \item \textbf{How can we conduct real world experiments on different service mesh implementations to objectively compare them?}
+    \item \textbf{What are the differences between the different \gls{sm} systems in terms of overhead, throughput and latency?}
     \label{rq-3}
     
-    Based on the system as designed in \ref{rq-2}, we have to conduct real world experiments on different \gls{sm} implementations. The benchmark should compare popular \gls{sm} implementations and implementations that vary based on their architectural design. The benchmark should compare different application workloads, highlighting various application specific aspects of the system where different implementations can vary in performance or capabilities. Finally, the benchmark should be as systematic as possible, meaning that anyone can verify the results by reproducing the experiments bearing in mind the inherent nature of variance within distributed systems.
+    Based on the benchmark as designed in \ref{rq-2}, we have to conduct real-world experiments on different \gls{sm} systems. The benchmark should compare popular \gls{sm} implementations and implementations that vary based on their architectural design. The benchmark should compare different application workloads, highlighting various application-specific aspects of the system where different implementations can vary in performance or capabilities. Finally, the benchmark should be as systematic as possible, meaning that anyone can verify the results by reproducing the experiments bearing in mind the inherent nature of variance within distributed systems.
 
 \end{enumerate}
 

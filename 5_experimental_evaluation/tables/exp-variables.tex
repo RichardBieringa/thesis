@@ -1,0 +1,44 @@
+\begin{table*}[!t]
+\centering
+
+\begin{tabularx}{\textwidth}{l X r}
+
+% Header
+\toprule
+\textbf{Variable}    &
+\textbf{Description} &
+\textbf{Default}     \\
+\toprule
+
+% Values
+\textbf{Mesh Configuration} &
+What type of \gls{sm} configuration is used in the experiment. (\cref{sec:experiments:design:meshes}) &
+- \\
+
+\textbf{Workload Type} &
+What type of workload the load generator should send (\cref{sec:experiments:design:workloads}). &
+HTTP \\
+
+\textbf{RPS} &
+How many requests per second the load generator should generate. &
+100 \\
+
+\textbf{Connections} &
+Number of simultaneous connections to use when making requests. &
+32 \\
+
+\textbf{Duration} &
+How long the load generator should generate load to the target service before aggregating and outputting results. &
+15 minutes \\
+
+\textbf{Payload Size} &
+The size of the response payload in bytes. &
+0 \\
+
+\bottomrule
+
+\end{tabularx}
+
+\caption{Overview of all experiment variables.}
+\label{tab:experiment:design:exp-variables}
+\end{table*}

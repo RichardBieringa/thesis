@@ -1,2 +1,155 @@
 \section{Results}
 \label{sec:survey:results}
+
+% General intro of what is happening in this chapter
+% - Identified Service Mesh Systems
+% - Identified requirements
+% - Comparison Framework
+
+In this section, we present the results from the systems survey as deliverable \designref{D5}. First, we present the identified \gls{sm} systems in \cref{sec:survey:results:sm-systems}. Furthermore, in \cref{sec:survey:results:sm-requirements} we introduce functional and non-functional requirements which we use to differentiate \gls{sm} systems. Finally, in \cref{sec:survey:results:sm-framework} we present a comparison framework for state-of-the-art \gls{sm} systems, in which we compare the identified systems.
+
+
+% Identified SM systems
+% - 12 Systems
+% - Why we dont include managed istio services
+\subsection{State-of-the-art Service Mesh Systems}
+\label{sec:survey:results:sm-systems}
+
+During the initial phase of the systems survey, we set out to identify existing \gls{sm} systems with our initial search strategy (\textbf{Q1} \& \textbf{Q2} in \cref{tab:search-queries}). During this phase, we identified 14 different \gls{sm} systems, which can be seen in \cref{tab:sm-implementations}, which represents deliverable \designref{D2}. By identifying these systems, we could run targeted queries on these them, which enabled us to dive deeper into their individual architectures.
+
+% SM Implementations table
+\input{3_systems_survey/tables/service-mesh-implementations}
+
+However, some systems in the list will be excluded from the rest of the work presented in this thesis. In particular, \textit{Alibaba Cloud Service Mesh},  \textit{Aspen Mesh}, \textit{Citrix ADC}, and \textit{Linkerd} are excluded. The first two systems are managed, closed-source service offerings of the popular \textit{Istio} \gls{sm}. The third system, has the option to utilize  \textit{Istio} to construct a \gls{sm}. We excluded these systems, as they provide no unique capabilities, are presented in the form of black box software and additionally has a financial cost attached to it. Finally, the last of the excluded systems mentioned, is superseded by \textit{Linkerd2} and is discontinued. 
+
+% Identified SM systems
+\subsection{Identified Requirements}
+\label{sec:survey:results:sm-requirements}
+
+To compare existing \gls{sm} systems, we have to introduce a set of requirements to compare them on. We do this in the form of \textit{Functional Requirements} and \textit{Non-Functional Requirements}. The former set of requirements describe the functions and characteristics of a system, such as the features and capabilities a specific system has. The latter, however, take a more general approach to describing the systems on its behaviour.
+
+% Most important aspects of a service mesh
+\subsubsection{Functional Requirements}
+\label{sec:survey:results:sm-requirements:fr}
+
+In this section, we introduce a list of six \textit{Functional Requirements} (\ref{fr-1} - \ref{fr-4}). We derived these requirements from the core functionalities of \gls{sm} systems. For each of the defined requirements, we provide a brief description of what the requirement entails and how we extract the information from the identified systems to measure this.
+
+
+\begin{enumerate}[label=\textbf{FR\arabic*}, leftmargin=3\parindent]
+    \item \textbf{Observability Capabilities}
+    \label{fr-1}
+    Indicates whether the system supports a wide variety of observability capabilities. Observability characteristics range from capturing metrics, to monitoring and tracing. To determine this, we have established a list of capabilities on which we compare these systems.
+    
+    \item \textbf{Security Capabilities}
+    \label{fr-2}
+    Indicates whether the system supports common security capabilities. To determine this, we first established a list of common security features, on which we compare the individual systems.
+    
+    \item \textbf{Resilience Capabilities}
+    \label{fr-3}
+    Indicates whether the system supports a wide variety of reliability characteristics. \Gls{sm} systems can improve the reliability of service-to-service communications in a system. To determine the capabilities of an individual system, we established a list of common reliability characteristics and compared the individual systems to these capabilities.
+    
+    \item \textbf{Support for Multiple Deployment Models}
+    \label{fr-4}
+    Indicates whether the system supports multiple deployment models. The most common scenario is to have a single cluster and a single service mesh. However, situations might exist where a topology consists of multiple clusters or multiple \glspl{sm} to provide for extra isolation, for example. We compare the identified systems to check for support on this characteristic.
+\end{enumerate}
+
+
+\subsubsection{Non-Functional Requirements}
+\label{sec:survey:results:sm-requirements:nfr}
+
+In this section, we introduce a list of six \textit{Non-Functional Requirements} (\ref{nfr-1} - \ref{nfr-5}). We established this list to provide for a general overview of the \gls{sm} systems. For each of the defined requirements, we provide a brief description of what the requirement entails and how we extract the information from the identified systems to measure this.
+
+
+
+\begin{enumerate}[label=\textbf{NFR\arabic*}, leftmargin=3\parindent]
+    \item \textbf{Application Protocol Support}
+    \label{nfr-1}
+    Service proxies can be aware of application level protocols to allow application level routing and rich metrics. This requirement indicates whether a \gls{sm} system supports a wide variety of application level protocols. To determine this, we established a list of common service-to-service protocols and also identified additional application level protocol support for each of the identified systems. The requirement is only fully satisfied if, in addition to the commonly listed protocols, it supports additional application level protocols.
+
+    \item \textbf{Open-source}
+    \label{nfr-2}
+    Indicates whether a \gls{sm} system is available in the form of open-source software. To determine this, we identified source code repositories for the individual \gls{sm} systems if they existed.
+    
+    \item \textbf{Thoroughly Documented}
+    \label{nfr-3}
+    Indicates whether the system is extensively documented. This is determined by examining the vendor documentation on the system. The requirement is not satisfied if there is no vendor documentation partially satisfied if there is some form of vendor documentation, but not extensive or up to date, and fully satisfied if there is extensive and well-written documentation on the system.
+    
+    \item \textbf{Cloud Native Computing Foundation Project}
+    \label{nfr-4}
+    
+    Indicates whether a \gls{sm} system is recognized as an official \gls{cncf} project and if so, which level of maturity it currently has. The \gls{cncf} defines three levels of maturity for each of its projects and imposes certain guidelines to achieve a new level of maturity \cite{cncf-project-graduation-criteria}. The projects and their levels ranging from \textit{sandbox} to \textit{incubating} to \textit{graduating} can be found on their website \footnote{\url{https://landscape.cncf.io/card-mode?category=service-mesh&grouping=category}} and can indicate the maturity of a project. The requirement is not satisfied if it is not a formal project, partially satisfied if it is in the \textit{sandbox} or \textit{incubating} stage, and fully satisfied if it is a \textit{graduated} project.
+
+
+    \item \textbf{Community Recognition}
+    \label{nfr-5}
+    
+    Indicates the recognition as per the community of users. We determine this by looking at various metrics and surveys regarding the usage of individual systems. For example, with open-source projects, we use community-related metrics such as GitHub stars. The requirement is partially satisfied if it has more than $10.000$ GitHub stars or more than 10 percent usage in production, according to the \gls{cncf} survey conducted in 2021 \cite{cncf-survey-2021}. To fully satisfy this requirement, the project needs more than $20.000$ GitHub stars or has more than 25 percent usage in production. 
+\end{enumerate}
+
+
+
+\subsection{Comparing Service Mesh Systems}
+\label{sec:survey:results:comparison}
+
+In this section, we present the results of the data synthesis based on the identified Functional and Non-Functional Requirements (\cref{sec:survey:results:sm-requirements:fr}, \cref{sec:survey:results:sm-requirements:nfr}). First, in \cref{sec:survey:results:comparison:proxy}, we compare the \gls{sm} systems on their service-to-service proxy. Secondly, in \cref{sec:survey:results:comparison:observability}, we compare the systems based on their observability capabilities. After that, in \cref{sec:survey:results:comparison:security}, we compare the systems on the most common security features. Following that, in \cref{sec:survey:results:comparison:resilience}, we evaluate the resiliency features of the systems. Finally, in \cref{sec:survey:results:comparison:nfr}, we show the obtained non-functional requirements regarding the systems. These results provide a stepping stone to the analysis in \cref{sec:survey:analysis}.
+
+\subsubsection{Proxy Systems}
+\label{sec:survey:results:comparison:proxy}
+% Custom vs Common proxy
+% Architectural Style
+% Traffic Proxy
+
+\input{3_systems_survey/tables/result-proxy}
+
+First off, we compared the service-to-service proxy mechanisms of the identified \gls{sm} systems. At the core of a \gls{sm} system lies the service-proxy, it serves as the data-plane of the system and has a huge impact on the flow of traffic. The result of this comparison can be seen in \cref{tab:result-proxy}. While some \gls{sm} systems have their own custom service proxy, such as \textit{Linkerd2}, others utilize popular open-source proxy implementations such as \textit{Envoy}. Not all service proxies work and behave the same, the architecture of a proxy has a major impact on the traffic flow of a \gls{sm} system. During this survey, we have identified three different types of proxy architectures. First off, we identified a per-service proxy, such as used by most of the identified service proxies. This means that every service gets its own service proxy, and thus the number of proxies linearly scales with the number of services. The second architectural style identified is a per-node proxy, this is used by the \textit{Traefik Proxy}. This means that there is a single proxy per node, and that all services running on a node use that same proxy. The third and final architectural style identified also makes use of a single proxy per node but manages the traffic in the kernel space using \gls{ebpf}. Furthermore, we identified for each of the proxy systems if it was able to proxy TCP and UDP traffic. Being able to proxy TCP and/or UDP traffic means that the system will intercept any traffic of that type, and proxy it to the appropriate destinations. \Gls{sm} systems without UDP traffic proxy support can still have UDP traffic in their system, however, with the traffic not passing through the proxy it will provide none of the features that a \gls{sm} traditionally provides such as observability, security and resilience.
+
+
+\subsubsection{Observability}
+\label{sec:survey:results:comparison:observability}
+% Metics system -> Nearly all prometheus
+% Monitoring system -> Nearly all grafana
+% Tracinf Support -> Jaeger > Zipkin > Open Standard
+% Additional Dashboard -> Some have, e.g. custom topology inspection
+
+\input{3_systems_survey/tables/result-observability}
+
+Observability is a key feature and reason to use a \gls{sm}. The proxying of service-to-service communications allows systems to implement per-service metrics such as latencies, request volumes and error rates. We compared the identified \gls{sm} systems on key observability requirements, and the results of that can be seen in \cref{tab:result-observability}. First off, we identified the way in which the systems report metrics. Most of the identified systems made use of \textit{Prometheus}, a popular open-source time-series metric aggregator.  Furthermore, we compared the ways the systems enabled monitoring. Once again, \gls{sm} implementations resort to the same solution, this time in the form of \textit{Grafana}, a monitoring and observability platform. Tracing support, on the other hand, showed more variability. Most of the identified systems support \textit{Jaeger}, an open-source distributed tracing system. \textbf{Zipkin} was another popular system with support, and some systems even supported open standards such as \textbf{Open Telemetry}, allowing for any tracing system that supports that standard. Some \gls{sm} systems come with a bundled dashboard or have popular open-source extensions which enable this. These dashboards provide additional domain specific insights, such as provide graph tools to visualize the service mesh traffic topology. 
+
+\subsubsection{Security}
+\label{sec:survey:results:comparison:security}
+% All services support MTLS (except Traefik)
+% All services support S2S Authz (except Traefik)
+
+\input{3_systems_survey/tables/result-security}
+
+Additional security is a feature that a \gls{sm} can provide. We compared the identified systems on the most common security characteristics a \gls{sm} can provide. The result of this can be seen in \cref{tab:result-security}. First, we identified if a \gls{sm} system can provide mutual TLS with little to no additional effort. This means that any service-to-service traffic is then encrypted and potential intruders in a network cannot inspect or intercept that traffic. All the systems, except \textit{Traefik Mesh}, support automatic mutual TLS encryption. Additionally, we compared the service-to-service authorization capabilities of these systems. This enables fine-grained control of access between services and users. Once again, all the systems, except \textit{Traefik Mesh}, have some form of authorization policies.
+
+\subsubsection{Resilience}
+\label{sec:survey:results:comparison:resilience}
+
+
+\input{3_systems_survey/tables/result-resilience}
+
+Managing applications in distributed systems is a complex task and can often lead to unwanted failures. Networks, compute nodes or applications can fail and cascade throughout the workload. To mitigate or resolve these problems, we can introduce distributed systems best practices to improve the resilience. In \cref{tab:result-resilience}, we compared the resiliency functionalities of identified \gls{sm} systems. First off, we compared the systems on the ability to retry failed service requests. Most of the systems, except \textit{Open Service Mesh}, supported this functionality. Furthermore, we identified and compared the systems on their ability to allow and tweak the timeout settings of service-to-service communications. Furthermore, we identified and compared the systems on their ability to support rate limiting. Rate-limiting in this context refers to the ability to tweak maximum request per second settings on a per-user or per-service level. Next, we evaluated the systems on their ability to support circuit breaking, this allows the system to prevent cascading failures by for example preventing traffic to reach an individual service instance if this instance fails requests too frequently. Finally, we compared the systems on their support for fault injections and delayed fault injections. These features allow the user to evaluate the resiliency of their applications by injecting faulty requests and timeouts, and can catch bugs in service integrations.
+
+
+\subsubsection{Application-Level Protocol Support}
+\label{sec:survey:results:comparison:protocols}
+% Most are application aware of the same protocols
+% Some support HTTP3
+% Some have additional protocol support
+
+
+\input{3_systems_survey/tables/result-protocols}
+
+
+Not all service proxies are the same, some are built to be very minimal and fast, whereas others try to provide as much functionality as possible. We evaluated the identified \gls{sm} systems on their application level protocol support, as shown in \cref{tab:result-protocols}. To have advanced proxy capabilities such as routing and rich metrics, the protocol must be determined and understood. All the systems support the most common service-to-service protocols in the form of \textit{HTTP/1.1} \textit{HTTP/2.0} and \gls{grpc}. This means that the user of such system can see the HTTP status codes in the metrics or route the traffic based on the HTTP headers present. Additionally, all the identified systems support web sockets and TLS encryption. Some systems have support for the newer \textit{HTTP/3.0} protocol, however, for all the identified systems that support this, the feature is in beta and bound to change. Finally, we identified some systems that support additional application level protocols. 
+
+
+
+\subsubsection{Non-Functional Requirements}
+\label{sec:survey:results:comparison:nfr}
+
+\input{3_systems_survey/tables/result-nfr}
+
+Finally, we identified several non-functional requirements of each of the identified service mesh systems. The result of this can be seen in \cref{tab:result-nfa}. We identified the launch date of a \gls{sm} system by either the first official vendor blog post or commit in an open-source repository, if available. Furthermore, we identified which company or initiated the project, this can give an indication on the amount of backing a project can get. Next up, we determined if the \gls{sm} system is part of any formal\gls{cncf} project, and if so at which stage it currently is, this can indicate a level of maturity. We also determined if the system is available as open-source software. If the project was open-source, we were able to determine other requirements, such as the current version number, licence and main programming language used as well as the amount of stars the project has which can give an insight in community recognition. Every identified open-source system had a remote repository on GitHub, for which we extracted the previously mentioned attributed through their public API\footnote{\url{https://docs.github.com/en/rest}}.

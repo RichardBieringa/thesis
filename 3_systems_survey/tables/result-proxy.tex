@@ -1,0 +1,30 @@
+\begin{table*}[t]
+\centering
+\resizebox{\linewidth}{!}{ %< auto-adjusts font size to fill line
+\begin{tabular}{l|llll}
+\toprule
+Service Mesh       & Service Proxy  & Proxy Architecture & Proxy TCP & Proxy UDP \\
+\midrule
+AWS App Mesh       & Envoy          & Per-Service        & Yes       & Yes       \\
+Cilium             & Cilium eBPF    & Kernel (eBPF)      & Yes       & Yes       \\
+Consul             & Envoy*         & Per-Service        & Yes       & Yes       \\
+Ease Mesh          & Easegress      & Per-Service        & Yes       & No        \\
+Istio              & Envoy          & Per-Service        & Yes       & Yes       \\
+Kuma               & Envoy          & Per-Service        & Yes       & Yes       \\
+Linkerd2           & Linkerd2 Proxy & Per-Service        & Yes       & No        \\
+Nginx Service Mesh & NGINX Plus     & Per-Service        & Yes       & Yes       \\
+Open Service Mesh  & Envoy          & Per-Service        & Yes       & Yes       \\
+Traefik Mesh       & Treafik Proxy  & Per-Node           & Yes       & Yes       \\
+\bottomrule
+\end{tabular}
+
+} %< \resizebox
+\caption
+[Comparing the service-to-service proxy mechanisms of service mesh systems.]
+{Comparing the service-to-service proxy mechanisms of service mesh systems.
+
+*: Can be interchanged for other service proxies.
+}
+\label{tab:result-proxy}
+\end{table*}
+

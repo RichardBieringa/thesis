@@ -1,0 +1,34 @@
+\begin{table}[!t]
+    \centering
+
+    \begin{tabularx}{\textwidth}{l X}
+    
+        \toprule
+        \multicolumn{2}{c}{\textbf{EXP 4 - gRPC Maximum Throughput}}  \\
+        \toprule
+        
+        \textbf{Goal}
+        & To evaluate how meshed configurations behave with alternative communication protocols. \\
+        \midrule
+        
+        \textbf{Methodology}
+        & The load generator will generate gRPC traffic towards the gRPC service and do so in an unrestricted manner, meaning it will try to generate as much load as possible without holding back and without enforcing any timeouts. The maximum throughput is determined by looking at the actual number of requests per second in the configuration was able to achieve. \\
+        \midrule
+        
+        \textbf{Workload} 
+        & gRPC (\cref{sec:experiments:design:workloads:grpc}) \\
+        \midrule
+
+        \multirow{1}{*}{\textbf{Factors}} 
+        & \Gls{sm} configuration (\cref{sec:experiments:design:meshes}) \\
+        \midrule
+        
+        \textbf{Reasoning}
+        & This experiment allows us to evaluate the effects of alternative application level protocols. During the system survey we uncovered that \gls{sm} systems inspect and use this data to for both observability and routing functionalities. This experiment allows us to uncover the effects of alternative, but common, application level protocols widely used within the industry. \\
+
+        \bottomrule
+
+    \end{tabularx}
+    \caption[Experiment Design: Experiment 4]{Experiment Design: Experiment 4}
+    \label{tab:experiment:design:04}
+\end{table}

@@ -1,0 +1,35 @@
+\begin{table}[!t]
+    \centering
+
+    \begin{tabularx}{\textwidth}{l X}
+    
+        \toprule
+        \multicolumn{2}{c}{\textbf{EXP 3 - HTTP Payload Response}}  \\
+        \toprule
+        
+        \textbf{Goal}
+        & To evaluate how \gls{sm} configurations behave with varying payload sizes. \\
+        \midrule
+        
+        \textbf{Methodology}
+        & The load generator will produce HTTP requests to the target service, which in turn will respond with pre-determined payload sizes.  \\
+        \midrule
+        
+        \textbf{Workload} 
+        & HTTP (\cref{sec:experiments:design:workloads:http}) \\
+        \midrule
+
+        \multirow{2}{*}{\textbf{Factors}} 
+        & \Gls{sm} configuration (\cref{sec:experiments:design:meshes}) \\
+        & Payload size \\
+        \midrule
+        
+        \textbf{Reasoning}
+        & This experiment introduces several pre-determined payload sizes to evaluate the effects of additional application data being transferred in meshed environments. This allows us to study the effects and potential additional overheads extra data transferes may cause. \\
+
+        \bottomrule
+
+    \end{tabularx}
+    \caption[Experiment Design: Experiment 3]{Experiment Design: Experiment 3}
+    \label{tab:experiment:design:03}
+\end{table}

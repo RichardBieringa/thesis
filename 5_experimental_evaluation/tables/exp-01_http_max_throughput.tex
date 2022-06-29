@@ -1,0 +1,34 @@
+\begin{table}[!t]
+    \centering
+
+    \begin{tabularx}{\textwidth}{l X}
+    
+        \toprule
+        \multicolumn{2}{c}{\textbf{EXP 1 - HTTP Maximum Throughput}}  \\
+        \toprule
+        
+        \textbf{Goal}
+        & To find the maximum throughput each of the meshed configurations can achieve. \\
+        \midrule
+        
+        \textbf{Methodology}
+        & The load generator will run in an unrestricted mode and generate as much load as possible without holding back and without any request timeouts. The maximum throughput is determined by looking at the actual number of requests per second in the configuration was able to achieve. \\
+        \midrule
+        
+        \textbf{Workload} 
+        & HTTP (\cref{sec:experiments:design:workloads:http}) \\
+        \midrule
+
+        \multirow{1}{*}{\textbf{Factors}} 
+        & \Gls{sm} configuration (\cref{sec:experiments:design:meshes}) \\
+        \midrule
+        
+        \textbf{Reasoning}
+        & This experiment will serve as a baseline to determine the maximum throughput of all meshed configurations. The results will be used to determine sensible defaults for the experiments with a pre-defined constant throughput. \\
+
+        \bottomrule
+
+    \end{tabularx}
+    \caption[Experiment Design: Experiment 1]{Experiment Design: Experiment 1}
+    \label{tab:experiment:design:01}
+\end{table}
