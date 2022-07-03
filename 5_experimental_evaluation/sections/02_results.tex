@@ -1,29 +1,53 @@
 \section{Experiment Results}
 \label{sec:experiments:results}
 
-In this section, we present the results obtained from the experiments as defined in \cref{sec:experiments:design:overview}. We first present the main findings in \cref{sec:experiments:main-findings}. After this, we present and explain how to interpret the results per experiment in \cref{sec:experiments:results:per-experiment}.
+In this section, we present the results obtained from the experiments as defined in \cref{sec:experiments:design:overview}. We first present the main findings in \cref{sec:experiments:main-findings}. After this, we present and explain how to interpret the results per experiment in \cref{sec:experiments:results:per-experiment} and discuss these findings in greater detail.
 
 \subsection{Main Findings}
 \label{sec:experiments:main-findings}
+% Significant decrease in throughput
+% Additional avg latency, esp tail ends. p99+
+% Traefik experiences bottlenecks, bimodal distribution
+% Istio consumes most CPU resources
+% Applications Payloads seem to have little effect on performance
+% Application protocol seems to have little impact, although linkerd performs a bit worse on gRPC throughput
+% Traefik failed to handle gRPC worklaods
+% Cilium best allround performer
 
 We now present the main findings of the conducted experiments.
 
 \begin{enumerate}[label=\textbf{MF\arabic*}, leftmargin=3\parindent]
-    \item \textbf{Cilium can handle the most amount of throughput}
-    \label{exp:mf1}
-    \todo{add main findings}
-    Nice
-    
     \item \textbf{There can be a significant drop in maximum throughput when using a service mesh}
-    \label{exp:mf2}
-    
-    \item \textbf{There can be a significant increase on the demand of CPU resources when using a service mesh}
-    Nice
-    
-    \item \textbf{Request latencies can see a significant increase when using a service mesh}
     \label{exp:mf1}
+    Every service mesh suffers from a decrease in maximum throughput. The observed decrease in throughput varies greatly, with a best-case scenario having a  $-16.8\%$ decrease while the worst performing configuration has a significant  $-97.38\%$ decrease in maximum throughput.
     
-    Nice
+    \item \textbf{There can be a significant increase in request latencies when using a service mesh}
+    \label{exp:mf2}
+    A service mesh introduces additional request latency by introducing a network proxy in front of the service. This additional overhead, however, can have a large impact on average and tail end request latencies as observed. With the best performing mesh increasing the average request latency with $20.27\%$ whereas the worst performing configuration saw a staggering $3720.95\%$ uplift.
+    
+    \item \textbf{Traefik mesh experiences bottlenecks after it reaches a certain throughput threshold}
+    \label{exp:mf3}
+    We observed that \textit{Traefik} cannot perform above a certain throughput level, and will throttle requests, resulting in a bimodal distribution of request latencies and a significant loss of performance for those requests.
+    
+    \item \textbf{Istio is the most demanding in terms of CPU utilization}
+    \label{exp:mf4}
+    We observe that \textit{Istio} consumes significantly more CPU resources compared to other configurations. We also observe that this is due to its data plane proxy which does not scale as well as the proxies in other configurations.
+    
+    \item \textbf{Application payloads have little to no effect on the observed performance}
+    \label{exp:mf5}
+    We observed that increasing the application payload, has little to no effect on the performance of meshed configurations.
+    
+    \item \textbf{Application level protocols have little to no effect on the observed performance}
+    \label{exp:mf6}
+    We observed that different layer 7 protocols, HTTP vs gRPC, had little to no impact on the decrease in throughput observed.
+    
+    \item \textbf{Traefik was unable to handle gRPC workloads}
+    \label{exp:mf7}
+    We observed that \textit{Traefik} was unable to handle and execute gRPC workloads in our experiments even though it listed explicit support for gRPC.
+    
+    \item \textbf{Cilium was the best all-round performing configuration, with a significant margin}
+    \label{exp:mf8}
+    We observed that the configuration using \textit{Cilium} outperformed any other configuration using a \gls{sm} with significant margins in all the experiments that were conducted.
 \end{enumerate}
 
 
@@ -221,7 +245,7 @@ The histograms in \cref{fig:exp:result:04:latency} show the distribution of requ
 % linkerd: -63.053%
 
 % Htpt diff
-% % cilium QPS diff: -16.827679769486704%
+% cilium QPS diff: -16.827679769486704%
 % istio QPS diff: -80.0264142981776%
 % linkerd QPS diff: -54.940993873502805%
 % traefik QPS diff: -97.38692130213765%

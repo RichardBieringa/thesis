@@ -14,12 +14,12 @@ We decompose the challenges as described in the problem statement \cref{sec:prob
 \todo{Research Questions: Formulation}
 
 \begin{enumerate}[label=\textbf{RQ\arabic*}, leftmargin=3\parindent]
-    \item \textbf{How do existing \gls{sm} implementations compare?}
+    \item \textbf{How to compare, and evaluate \gls{sm} systems?}
     \label{rq-1}
     
     Many \gls{sm} implementations have emerged from within the rapidly changing landscape of container and resource management technologies, before the adaptation of any standard to guide their development. It is necessary to evaluate these implementations in a structured systems survey, where we identify and analyse the characteristics of the current iterations of \gls{sm} systems. This allows us to create an overview of the state-of-the-art within the \gls{sm} landscape.
     
-    \item \textbf{How to design and implement a \gls{sm} benchmark which evaluates the performance of \gls{sm} systems?}
+    \item \textbf{How to design and implement a benchmark that evaluates the performance of \gls{sm} systems?}
     \label{rq-2}
     
     Based on the results of the system survey in \ref{rq-1}, we will identify the requirements for a system which can evaluate a service mesh. Based on these identified requirements, we should evaluate existing instruments to see if any of these satisfy. We then have to design or extend an instrument based on best practices \cite{folkerts2012benchmarking} which can support multiple experiment configuration, workloads and can produce reproducible real-world experiments. The goal of this instrument is to capture the relevant system metrics, performance metrics and application domain specific \glspl{nfr} which results in a generic and objective comparison between said systems.

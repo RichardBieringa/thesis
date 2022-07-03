@@ -114,33 +114,33 @@ Functional requirements are requirements that the system \textit{must} implement
     
     The benchmarking instrument must support the most popular \gls{sm} implementations. During the systems survey (\cref{chap:survey}), we identified that two of the identified \gls{sm} implementations currently dominate the landscape in terms of usage \cite{cncf-survey-2021}. Therefore, the benchmarking instrument has to support both \textit{Istio} and \textit{Linkerd} to be relevant for most users. 
     
-    \item \textbf{Support systems using different data plane architectures}, \textit{related to:} \ref{u3}
+    \item \textbf{Support systems using different data plane architectures}, \textit{related to:} \ref{u-3}
     \label{system:fr-2}
     
     The benchmarking instrument must support all the identified data plane architectures (\cref{sec:survey:analysis:architectures}). During the systems survey, we identified four different data plane architectures with various performance implications. To analyse this, the benchmark must support at least one of the identified systems for each identified data plane architecture. The system already has to support systems adhering to the \textit{per-service} through the first established functional requirement (\ref{system:fr-1}). Since the other architectures only relate to a single \gls{sm} implementation, it means that the system must additionally support  \textit{Cilium} and \textit{Traefik}.
     
-    \item \textbf{Implement and Report the Four Golden Signals}, \textit{related to:} \ref{u-1}, \ref{u-2}, \ref{u-3} 
+    \item \textbf{Implement and Report the Four Golden Signals}, \textit{related to:} \ref{u-1}, \ref{u-2}, \ref{u-3}, \ref{u-4}, \ref{u-5} 
     \label{system:fr-3}
     
     The benchmarking instrument must implement the \textit{Four Golden Signals}. To report meaningful data, we have to define meaningful metrics that the benchmarking instrument will report. To achieve this, we define the metrics by following industry best practices as established in the Google SRE handbook \cite{google-sre} and implement the \textit{Four Golden Signals}. This means that the benchmarking instrument must implement relevant metrics to report the \textit{Latency}, \textit{Traffic}, \textit{Errors}, and, \textit{Saturation} of the \gls{sut}.
     
-    \item \textbf{Support Varying Workloads}, \textit{related to:} \ref{u-1}, \ref{u-3} 
+    \item \textbf{Support Varying Workloads}, \textit{related to:} \ref{u-1}, \ref{u-3}, \ref{u-5} 
     \label{system:fr-4}
     
     The benchmarking instrument must support varying workloads. This allows the benchmark to be relevant for the different use cases it can encounter and simulate the different workloads a \gls{sm} can see in the real world. To support this, the benchmark must provide a mechanism to specify the workload that the benchmark will run. Additionally, it has to provide a way in which the user can specify how the benchmark can extract relevant metrics. This is done by specifying how the workload, or service, can be consumed (e.g. HTTP endpoints).
     
-    \item \textbf{Support Varying Cluster Environments}, \textit{related to:} \ref{u-1}, \ref{u-2}, \ref{u-3} 
+    \item \textbf{Support Varying Cluster Environments}, \textit{related to:} \ref{u-1}, \ref{u-2}, \ref{u-3}, \ref{u-5} 
     \label{system:fr-5}
     
     The benchmarking instrument must support varying cluster environments. This means that the benchmark must support any valid \gls{k8s} cluster environment. This allows users to evaluate \gls{sm} implementations on within their own environment and enables environment-specific use cases such as \ref{u-5}.
     
-    \item \textbf{Report results in a well-known data format}, \textit{related to:} \ref{u-1}, \ref{u-2}, \ref{u-3} 
+    \item \textbf{Report results in a well-known data format}, \textit{related to:} \ref{u-1}, \ref{u-2}, \ref{u-3}, \ref{u-4}
     \label{system:fr-6}
     
     The benchmarking instrument must report its results in a well-known data format. In order for the results to be useful to the various stakeholders, data must be presented in well-known formats such as \textit{JSON}, \textit{CSV} or \textit{YAML}.
     
     
-    \item \textbf{Produce Reproducible Results}, \textit{related to:} \ref{u-1}, \ref{u-2}, \ref{u-3} 
+    \item \textbf{Produce Reproducible Results}, \textit{related to:} \ref{u-1}, \ref{u-2}, \ref{u-3}, \ref{u-4}, \ref{u-5} 
     \label{system:fr-7}
     
     The benchmarking instrument must produce reproducible results. To provide meaningful results, the instrument has to be able to produce similar results when running a single experiment in the same environment. If the instrument is given the same inputs, similar outputs have to be expected.
