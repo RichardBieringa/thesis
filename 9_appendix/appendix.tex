@@ -3,10 +3,111 @@
 % Uncomment for sorted glossary definitions
 % \printglossaries
 
-
-
+\section{Experiment Overview}
 \input{5_experimental_evaluation/tables/exp-01_http_max_throughput}
 \input{5_experimental_evaluation/tables/exp-02_http_constant_throughput}
 \input{5_experimental_evaluation/tables/exp-03_http_payload}
 \input{5_experimental_evaluation/tables/exp-04_grpc_max_throughput}
 
+\section{Experiment 1 Results}
+
+\begin{figure}[h]
+    \centering
+    
+    \includegraphics[width=\linewidth]{5_experimental_evaluation/figures/exp_01-latency-results.pdf}
+
+    \caption{\ref{exp:design:1} - Histogram - Latency per Service Mesh.}
+    
+    \label{fig:appendix:exp:result:01:latency:histogram}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    
+    \includegraphics[width=\linewidth]{5_experimental_evaluation/figures/exp_01-latency-boxplot.pdf}
+
+    \caption{\ref{exp:design:1} - Box plot - Latency per Service Mesh.}
+    
+    \label{fig:appendix:exp:result:01:latency:boxplot}
+\end{figure}
+
+
+\begin{figure}[h]
+    \centering
+    
+    \includegraphics[width=\linewidth]{5_experimental_evaluation/figures/exp_01-latency-boxplot-log.pdf}
+
+    \caption{\ref{exp:design:1} - Box plot - Latency per Service Mesh (logarithmic scale).}
+    
+    \label{fig:appendix:exp:result:01:latency:boxplot-log}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    
+    \includegraphics[width=\linewidth]{5_experimental_evaluation/figures/exp_01-latency-boxplot-no-traefik.pdf}
+
+    \caption{\ref{exp:design:1} - Box plot - Without Traefik.}
+    
+    \label{fig:appendix:exp:result:01:latency:boxplot-no-traefik}
+\end{figure}
+
+
+\begin{figure}[h]
+    \centering
+    
+    \includegraphics[width=\linewidth]{5_experimental_evaluation/figures/exp_01-cpu-results.pdf}
+
+    \caption{\ref{exp:design:1} - CPU utilization over time.}
+    
+    \label{fig:appendix:exp:result:01:cpu:timeline}
+\end{figure}
+
+
+\begin{figure}[h]
+    \centering
+    
+    \includegraphics[width=\linewidth]{5_experimental_evaluation/figures/exp_01-memory-results.pdf}
+
+    \caption{\ref{exp:design:1} - Memory consumption over time.}
+    
+    \label{fig:appendix:exp:result:01:memory:timeline}
+\end{figure}
+
+
+\begin{figure}[h]
+    \centering
+    
+    \includegraphics[width=\linewidth]{5_experimental_evaluation/figures/exp_01-throughput-barchart.pdf}
+
+    \caption{\ref{exp:design:1} - Bar Chart - Maximum Throughput per mesh.}
+    
+    \label{fig:appendix:exp:result:01:throughput:barchart}
+\end{figure}
+
+
+\section{Experiment 2 Results}
+
+\begin{figure}[h]
+    \centering
+    
+    \includegraphics[width=\linewidth]{5_experimental_evaluation/figures/exp_02-cpu-boxplot.pdf}
+
+    \caption{\ref{exp:design:2} - Box Plot - CPU utilization.}
+    
+    \label{fig:appendix:exp:result:02:cpu-boxplot}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    
+    \includegraphics[width=\linewidth]{5_experimental_evaluation/figures/exp_02-cpu-boxplot.pdf}
+
+    \caption{\ref{exp:design:2} - Box Plot - CPU utilization.}
+    
+    \label{fig:appendix:exp:result:02:cpu-boxplot}
+\end{figure}
+
+\section{Experiment 3 Results}
+
+\section{Experiment 4 Results}

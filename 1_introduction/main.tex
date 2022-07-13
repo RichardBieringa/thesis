@@ -3,17 +3,44 @@
 
 \chapter{Introduction}
 \label{chap:introduction}
+% Why is the topic being studied?
+% How is the topic being studied?
+% What is being studied?
 
-% Introduction
 
-A \gls{sm} is a dedicated layer of infrastructure that sits between services and aims to provide several distributed systems best practices in a uniform manner. The terminology was introduced in the last decade, and several implementations have seen the light of day since. The premise of introducing additional observability in the system, increasing the reliability of it while also adding security best practices to little or no additional lines of application code made this technology a hot topic in the field. However, this technology does not come in the form of a zero cost offering. Most of the service mesh designs work by introducing additional network proxies and an additional control plane. By introducing these components into the system, an increase in system resources is to be expected. More importantly, the introduction of a proxy between each service leads to additional latencies in every service-to-service communication. 
 
-The introduction of additional latencies in service-to-service communications or the increase in system resources can be a make or break scenario in many aspects. Companies and organizations for example can have \gls{kpi} based on the end-to-end response times of the services they provide. These \gls{qos} based metrics are important and drive their business decisions. Can the introduction of the benefits provided by a \gls{sm} outweigh the additional latency introduced, or more importantly, how much latency will be introduced at all? Another scenario that comes to mind comes in the form of resource constrained environments, which can often occur in \gls{iot} or \gls{edge-computing} topologies. 
+% Structure
+% Hook
+% Background
+% What is this thesis about/problem
+% What is being presented in this thesis
 
-Although the technology has been in the spotlight in the last decade and the technology has seen a steady increase in adoption \cite{cncf-survey-2020, rh-survey} and implementations have seen to matured, there has been a lack of performance studies that evaluate these systems in depth. Previous works have established the groundwork by introducing simple benchmarking instruments \cite{kinvolk-bench} and their preliminary results \cite{bench-istio-linkerd-2019, bench-istio-linkerd-2021}. These benchmarks and instruments, however, do not capture the unique characteristics of a \gls{sm} well enough.
+How do you design and build the IT infrastructure of the present, and future? A difficult, but important question in the era distinguished by globalization and digitalization. More and more of society is relying on the internet, and its wide variety of products and service offerings. From online stores, to productivity tools, streaming services to news websites, modern IT infrastructure empowers many areas and is a staple of the global economy. This was amplified and made abundantly clear in the last couple of years, where the world as a whole, moved online to prevent the further spread of COVID-19.
 
-\todo{Fix intro last p (END)}
-In this thesis, we present x, an automated service mesh evaluation benchmark that makes it easy to conduct reproducible real world experiments on different \gls{sm} implementations. With this instrument, we conduct experiments on existing \gls{sm} implementation to compare them on key performance characteristics.
+
+% Linking it to MCS
+In this \textit{Age of Computer Ecosystems}, we align ourselves with the goals and visions expressed in \gls{mcs} \cite{Iosup2018}. The work as presented in this thesis aims to uncover the intricacies of the computer ecosystems discussed, helping to understand them and guide future system designs. \gls{mcs} envisions a domain where everything developed is tested and benchmarked in a reproducible manner. This ideology is exemplified by the experimental approach used  throughout this thesis.
+
+% Customer experience
+% Growing cybersecurity, data privacy threats
+% Fierce competition for talent
+There are many designs and approaches that are currently in use within the field. So far, there has not been a single approach, a golden architecture, that answers all the toughest challenges that we are facing today. How do we minimize the end-to-end latencies, and improve reliability to improve the seamless customer experience? How do we deal with the growing threats of cybersecurity and the rise of data privacy threats? How can we optimize the productivity of developers so that they can focus on business logic instead of infrastructure related concerns? These are just a few of the challenges \cite{modern-it-challenges}, that should be considered when designing and building a modern, distributed system. 
+
+% Model of deployment
+% Microservices architecture
+Recent trends and developments in deployment models have paved the way for the currently popular \textit{microservices architecture}. An architectural style characterized by separating applications in many small, independent parts, that have their own responsibilities. This style of architecture is made feasible by the low cost of computational overhead caused by container technologies and emerging workload managers such as \gls{k8s}. With most of the organizations (71\% as observed in 2021 by Statista \cite{microservices-adoption}) adopting or using a microservices architecture in some for, it is important to analyse the benefits and especially the shortcomings of such an approach.
+
+% Communication complexities
+The architectural style has many benefits, such as the ability to decompose complex problems into smaller ones and allow teams to work on decoupled services. It also enables better scaling, as individual components can now be replicated instead of entire applications. However, it also introduces a new layer of complexity, that comes in the form of service-to-service communications. Networking brings numerous challenges, it introduces additional latencies and poses security threats. The architectural style has to deal with routing and load balancing and consider the possibility of failing links in inherently unreliable networks.
+
+% Software lib -> sm approach
+For many years, companies approached this set of problems by changing the application code responsible for service-to-service communications, often in the form of client libraries that did so in a uniform manner. However, recent trends and community-wide efforts empowered the rise of the \gls{sm} architecture. This architectural paradigm aims to solve similar challenges, without having to modify any application code or having to stick to a single programming language or framework. The architecture works by introducing a dedicated infrastructure layer, that facilitates service-to-service communications, achieved by adding network \textit{proxies} in front of the logical services. These proxies intercept communications from and to these services, and provides a uniform approach of dealing with service-to-service traffic, enabling observability into communications, secure connections and reliability mechanisms. 
+
+% Work presented in this thesis
+% Systems Survey -> Qualitative Study
+% Mesh Bench -> Benchmark design/implementation
+% Experimental Evaluation -> Insights into the performance overheads and promising directions
+Within this emerging field of \gls{sm} systems, we focus on the performance implications of these systems. What is the computational overhead of the additional machinery introduced, and what is the impact of latency through the additional network hops? In this thesis, we present an extensive study into the performance characteristics of \gls{sm} systems. Furthermore, we introduce \textit{Mesh Bench}, a benchmarking instrument to evaluate state-of-the-art \gls{sm} systems. With a focus on reproducibility, we design and perform experiments to uncover the performance implications of these systems.
 
 % Sections 
 \input{1_introduction/sections/01_context}

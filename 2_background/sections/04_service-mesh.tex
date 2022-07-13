@@ -1,2 +1,31 @@
 \section{Service Mesh}
 \label{sec:background:service-mesh}
+
+In the previous sections we discussed the evolution in deployment models (\cref{sec:background:containers}) and how this caused a shift in system design, based on decoupling business logic into logical services (\cref{sec:background:soa}). We then went on to briefly introduce \gls{k8s} and several related concepts (\cref{sec:background:soa}). In this section, we build on top of the topics discussed in the background chapter and introduce the \gls{sm} architecture which is at the core of the work presented in this thesis. A style of architecture that builds on top of the \gls{k8s} ecosystem which aims to solve the communicative challenges caused by service-oriented design.
+
+% This section introduces a service mesh to the user
+% What is a service mesh
+% What does a service mesh try to solve
+% Why is it becoming a thing now
+% Is it a overhyped technology
+
+
+
+
+% Context
+% Short intro service mesh, how it can add to latency/overhead
+A \gls{sm} is a dedicated layer of networking infrastructure that sits between logical software services and aims to solve some communicative challenges introduces by a \gls{soa}. The terminology was introduced in the last decade \cite{service-mesh-hype}, and several systems adhering to this architecture have seen the light of day since. The premise of introducing additional observability in the system, increasing the reliability of it while also adding security best practices to little or no additional lines of application code made this technology a hot topic in the field. However, this technology does not come in the form of a zero cost offering. The \gls{sm} architecture introduces additional machinery to achieve its goals. The components that make up a \gls{sm} can be divided into two  categories. A set of management components that constitute the \textit{Control Plane} and a set of components that handle the network traffic referred to as the \textit{Data Plane}.
+
+
+Most notably, it adds a network proxy in front of logical services which intercepts the network traffic of a service. By introducing these components into the system, an increase in system resources is to be expected. More importantly, the introduction of a network proxy leads to an additional hop in the data path for each packet. This leads to an increase in request latency for each request destined to the software service. 
+
+% Effects of introduces latency / system  resources
+The introduction of additional request latencies or the increase in system resources can be a make or break scenario in many aspects. Companies often set certain \glspl{kpi} based on the end-to-end response times of services they provide. This is because of the effects that request latencies can have on the performance of business offerings. Amazon, for example, found that for every 100ms of additional end-to-end latency, it would lose out on roughly 1\% of total sales revenue \cite{amazon-latency-conversion-drop}. Google, indicated back in 2009 \cite{google-latency-bounce-rate} that latency has a direct relation with service usage and has been actively prioritizing performance of services since then. However, Google goes a step further, as they now actively measure the performance of websites and use these results to implement their search ranking \cite{google-search-index-perf}. 
+
+% Cost/Benefit discussion
+% Media-Attention
+This naturally brings us to the following questions; Do the benefits of a \gls{sm} system outweigh the performance implications it introduces? Is this technology just another fad originating from the \gls{k8s} community? Or is the hype  \cite{hashicorp-sm-hype} and attention it has been receiving within countless blog posts and talks justified? Can it even be considered a "necessity" \cite{sm-kubernetes-necessity} in modern-day infrastructure or is it limited to certain use cases?
+
+% Lack of research into the performance overeads
+% Related work (kinvolk)
+The technology has been in the spotlight, and many implementations of the \gls{sm} architecture have been released in the last couple of years, some of them even receiving significant support and backing from enterprise players in the field such as Google and Microsoft \cite{cncf-sm-landscape}. Additionally, the technology has seen a steady increase in its  its adoption rate \cite{cncf-survey-2020, rh-survey} and implementations have matured. However, there appears to be a sharp contrast in amount of attention the technology has received from both the industry and academia. In particular, there have been very few studies that evaluate the performance characteristics of these systems. Previous attempts originating from the industry have established the groundwork by introducing simple benchmarking instruments \cite{kinvolk-bench} and by presenting their preliminary results \cite{bench-istio-linkerd-2019, bench-istio-linkerd-2021}. However, the results originating from these benchmarks are primitive and compare a subset of \gls{sm} implementations in the field.
