@@ -40,7 +40,7 @@ In this section, we will present the identified methods that we can use for a su
 \label{sec:survey:methodology:strategy:systematic}
 
 % SLR
-To prevent any form of bias to have an effect on the process and results of a survey, we have to establish and utilize a systematic approach. We have identified a state-of-the-art methodology which aims to create a systematic process which will be used to guide this survey. The works of Kitchenham and Charters \cite{Kitchenham2007} introduce a battle-tested and auditable set of guidelines for literature reviews aimed at software engineering researchers  with the goal of promoting reproducibility. The introduced \gls{slr} methodology consists of three steps, planning the review, conducting the review and reporting the review. We decided to use these guidelines as a baseline for the survey, as it aligns with our goals and environment.
+To prevent any form of bias to have an effect on the process and results of a survey, we have to establish and utilize a systematic approach. We have identified a state-of-the-art methodology which aims to create a systematic process which will be used to guide this survey. The works of Kitchenham and Charters \cite{Kitchenham2007} introduce a battle-tested and auditable set of guidelines for literature reviews aimed at software engineering researchers  with the goal of promoting reproducibility. The introduced \textit{\gls{slr}} methodology consists of three steps, planning the review, conducting the review and reporting the review. We decided to use these guidelines as a baseline for the survey, as it aligns with our goals and environment.
 
 In addition to the guidelines introduced by the \gls{slr} methodology, we utilize the guidelines as introduced in the works of Petersen et al. \cite{Petersen2008, Petersen2015}. The authors introduce a set of guidelines and techniques which can be used to conduct a mapping study on a given topic. Among the guidelines and techniques, the authors introduce a method to perform comparative analysis. These guidelines and methods align with our needs and goals to compare \gls{sm} systems in the field as stated by the formulated research question \ref{rq-1}. 
 
@@ -61,7 +61,7 @@ To maintain a systematic approach with the inclusion of \gls{gl}, we had to defi
 \input{3_systems_survey/tables/mlr-checklist}
 
 % - MLR requriements checklist
-Additionally, the authors have created a checklist which can be used to verify the need for inclusion of \gls{gl} within a survey. If one or more of the questions in the checklist is answered with a “yes”, it indicates that \gls{gl} can be beneficial to the survey. We answered the questions in the provided checklist and the results of this can be seen in \cref{tab:mlr-checklist}. These results reaffirmed our requirement for \gls{gl} throughout the survey and made us adapt the guidelines as described by the methodology.
+Additionally, the authors have created a checklist which can be used to verify the need for inclusion of \gls{gl} within a survey. If one or more of the questions in the checklist is answered with a \say{yes}, it indicates that \gls{gl} can be beneficial to the survey. We answered the questions in the provided checklist and the results of this can be seen in \cref{tab:mlr-checklist}. These results reaffirmed our requirement for \gls{gl} throughout the survey and made us adapt the guidelines as described by the methodology.
 
 
 
@@ -73,7 +73,7 @@ Additionally, the authors have created a checklist which can be used to verify t
 % - MLR -> inclusiong of GL
 % - Petersen -> comparitive analysis
 
-In the previous section (\cref{sec:survey:methodology:strategy}), we identified several methodologies and guidelines which we can use to conduct a survey. We explained why we have chosen some of these guidelines for our systems survey and how they could apply to our research goals. The resulting strategy can be seen in more detail in the form of a flow chart in  \cref{fig:survey-methodology}. This figure depicts two of the three stages in the \gls{slr} methodology, namely the planning phase and the conducting phase. It also lists all the deliverables of this systems survey (\designref{D1} - \designref{D5}). 
+In the previous section (\cref{sec:survey:methodology:strategy}), we identified several methodologies and guidelines which we can use to conduct a survey. We explained why we have chosen some of these guidelines for our systems survey and how they could apply to our research goals. The resulting strategy can be seen in more detail in the form of a flow chart in  \cref{fig:survey-methodology}. This figure depicts two of the three stages in from the \gls{slr} methodology, namely the planning phase and the conducting phase. It also lists all the deliverables of this systems survey (\designref{D1} - \designref{D5}). 
 
 Up to this point, we have discussed two steps of the planning phase. This first step of the planning phase \designref{P1}, consists of establishing a need for the survey, which we did in \cref{sec:survey:related-work}. Next, we established our goals \ref{g-1} - \ref{g-3} and research question \ref{rq-1} in \cref{sec:survey:goals} which relates to process \designref{P2}.
 
@@ -143,7 +143,7 @@ To create a reproducible data set, we have to establish a search strategy which 
 % - Only established, well respected conferences
 The first component that makes up the search strategy is related to the data sources. The Atlarge  team\footnote{\url{https://atlarge-research.com/}} has identified several digital libraries which are well established and which contain the leading publications in the field of distributed systems. Additionally, years of experience in the field led to the creation of a list of established and well-respected conferences. This consolidated knowledge led to the development of a software instrument \gls{aip}. This instrument is used to generate the initial dataset of \gls{pl} for this survey and query it. To establish a dataset of \gls{gl} in this survey, we use Google Search to identify relevant literature.
 
-The second component of the search strategy is related to the search technique. Since the goal of this survey to compare state-of-the-art \gls{sm} systems, we first have to identify said systems. To achieve that, we first conducted exploratory research in the field. To reduce bias in this process, we first used the single identified secondary study \cite{service-mesh-survey} to obtain an initial set of \gls{sm} systems. After this, we identified the \gls{sm} systems that were part of official \gls{cncf} projects\footnote{\url{https://landscape.cncf.io/card-mode?category=service-mesh&grouping=category}}, as they proved to be an authoritative entity in the field as discussed in \cref{sec:background:cncf}. This list was then complemented by results obtained from \gls{gl} using generic search queries. 
+The second component of the search strategy is related to the search technique. Since the goal of this survey to compare state-of-the-art \gls{sm} systems, we first have to identify said systems. To achieve that, we first conducted exploratory research in the field. To reduce bias in this process, we first used the single identified secondary study \cite{service-mesh-survey} to obtain an initial set of \gls{sm} systems. After this, we identified the \gls{sm} systems that were part of official \gls{cncf} projects\footnote{\url{https://landscape.cncf.io/card-mode?category=service-mesh&grouping=category}}, as they have proven to be an authoritative entity in the field as discussed in \cref{sec:background:cncf}. This list was then complemented by results obtained from \gls{gl} using generic search queries. 
 
 
 The final component of the search strategy is related to the search queries that we use to establish the resulting dataset. To find and identify the current state-of-the-art \gls{sm} systems, we used generic terms as described above. After this, we utilized a snowballing method in which we based the search queries on the identified systems. The final list of search queries used can be seen in \cref{tab:search-queries}. Queries \textbf{Q1} and \textbf{Q2} represent the queries used to obtain and expand the list of identified \gls{sm} systems, while \textbf{Q3} indicates the system-specific queries that were used. 
@@ -161,7 +161,7 @@ Since we have decided to also include \gls{gl} in our survey, we decided to esta
 
 The following checklist (\cref{list:checklist:pl}) contains a set of selection criteria that applies to the \gls{pl} that is obtained through the search process. For this, we apply a set of generic criteria in order to 
 
-In addition to the search queries, we used a filter to filter out any results before 2014 since that the initial release date of \gls{k8s} \cite{kubernetes-overview}. This limits the results based on the scope of this research, which provides a focus on \gls{sm} systems in a \gls{k8s} environment.
+In addition to the search queries, we used a filter to filter out any results before 2014 since that the initial release date of \gls{k8s} \cite{kubernetes-overview}. This limits the results based on the scope of this research, which provides a focus on \gls{sm} systems in the \gls{k8s} ecosystem.
 
 \begin{itemize}
     \item[(\cmark)] Publications that are written in English.
@@ -183,14 +183,14 @@ The following checklist (\cref{list:checklist:gl}) contains a set of selection c
 \begin{itemize}
     \item[(\cmark)] Publications that are written in English.
     \item[(\cmark)] Publications introducing novel concepts.
-    \item[(\cmark)] Publications originating from well established and known organizations (e.g. \gls{cncf}, Google, Red Hat, etc.)
-    \item[(\cmark)] Publications that supply official vendor or platform documentation
+    \item[(\cmark)] Publications originating from well established and known organizations (e.g. \gls{cncf}, Google, Red Hat, etc.).
+    \item[(\cmark)] Publications that supply official vendor or platform documentation.
     \item[(\cmark)] Publications in the form of blog posts from organizations or authorities in the field.
     \item[(\cmark)] Publications in the form of videos from talks or conferences related to the field.
-    \item[(\cmark)] Source code repositories of open-source \gls{sm} systems (e.g. a GitHub repository).
+    \item[(\cmark)] Source code repositories of open-source \gls{sm} systems (e.g., a GitHub repository).
     
-    \item[(\xmark)] Publications in which we cannot validate the authority of an author (e.g. anonymous posts, or posts by someone not established in the field). 
-    \item[(\xmark)] Publications which do not provide any novelty for the survey (e.g. tutorials on the technologies). 
+    \item[(\xmark)] Publications in which we cannot validate the authority of an author (e.g., anonymous posts, or posts by someone not established in the field). 
+    \item[(\xmark)] Publications which do not provide any novelty for the survey (e.g., tutorials on the technologies). 
     \item[(\xmark)] Publications that are not full-text (e.g., small snippets, parts of a demo or short social media excerpts such as tweets).
     
     \label{list:checklist:gl}

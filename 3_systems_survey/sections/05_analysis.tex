@@ -4,7 +4,7 @@
 
 In the previous section (\cref{sec:survey:results}), we conducted a data synthesis process on the data we obtained during the systems survey. This process resulted in domain-specific characteristics of identified service mesh systems. In this section, we continue with the data and analyse and discuss notable differences we discovered during the data synthesis process.
 
-The remainder of this section is structured as follows. In \cref{sec:survey:analysis:sm-framework}, we provide a qualitative comparison of the service mesh systems and present several key findings from the obtained data. After that, in \cref{sec:survey:analysis:architectures}, we dive into the different architectures and how they can relate to the observed behaviour. Finally, in \cref{sec:survey:analysis:conclusion}, we provide an answer to \ref{rq-1} and conclude the systems survey.
+The remainder of this section is structured as follows. In \cref{sec:survey:analysis:sm-framework}, we provide a qualitative comparison of the service mesh systems and present several key findings from the obtained data. Thereafter, in \cref{sec:survey:analysis:architectures}, we dive into the different architectures and how they can relate to the observed behaviour. Finally, in \cref{sec:survey:analysis:conclusion}, we provide an answer to \ref{rq-1} and conclude the systems survey.
 
 
 \subsection{Qualitative Comparison of Service Mesh Systems}
@@ -30,7 +30,7 @@ We now present a list of the most interesting findings we obtained:
     % Most use a per-service proxy
     % Most use envoy
     
-    The first finding from the obtained data is that most of the systems use a similar architecture for the data plane of the \gls{sm}. Out of the ten identified \gls{sm} implementations, eight used a per-service architecture for the service proxy. Furthermore, out of those eight using a per-service architecture, half of them used the same service proxy implementation in the form of \textit{Envoy}, an open-source general purpose proxy.
+    The first finding from the obtained data is that most of the systems use a similar architecture for the data plane of the \gls{sm}. Out of the ten identified \gls{sm} implementations, eight used a per-service proxy architecture. Furthermore, out of those eight using a per-service proxy architecture, half of them used the same service proxy implementation in the form of \textit{Envoy}, an open-source general purpose proxy.
     
     \item \textbf{Per-node data plane architecture prevents support for common security features.}
     \label{f-2}
@@ -47,7 +47,7 @@ We now present a list of the most interesting findings we obtained:
     % Istio -> Feature focus + Mature + Complex
     % Kuma -> Feature focus, Extensibility, Support for different environments
     
-    The third finding is that out of all ten identified service mesh systems, just three systems fully satisfy all the functional requirements (\ref{fr-1}-\ref{fr-4}), namely, \textit{Cilium}, \textit{Istio} and \textit{Kuma}. This finding can be explained by taking a closer look at the maturity levels and the goals that the individual \gls{sm} implementations have. The three identified services that achieve all functional requirements are mature projects or heavily emphasize their feature set and extensibility. \textit{Istio} is the most mature platform, with large backing and is the most used \gls{sm} implementation out of all identified systems according to the \gls{cncf} survey conducted in 2021 \cite{cncf-survey-2021}. It also supports the most features and therefore hits all the functional requirements. \textit{Kuma} on the other hand, is a much smaller project. However, its focus lies on having a broad feature set with lots of extensibility options as well, thus achieving all functional requirements as well. \textit{Cilium} on the other hand, is a new entry in the \gls{sm} landscape by looking at the non-functional attributes (\cref{tab:result-nfa}). However, this story also does not paint the entirety of the picture as it builds upon the \textit{Cilium} networking solution, a mature networking solution that facilitates most of the functional requirements.
+    The third finding is that out of all ten identified service mesh systems, just three systems fully satisfy all the functional requirements (\ref{fr-1}-\ref{fr-4}), namely, \textit{Cilium}, \textit{Istio} and \textit{Kuma}. This finding can be explained by taking a closer look at the maturity levels and the goals that the individual \gls{sm} implementations have. The three identified services that achieve all functional requirements are mature projects or heavily emphasize their feature set and extensibility. \textit{Istio} is the most mature platform, with large backing and is the most used \gls{sm} implementation out of all identified systems according to the \gls{cncf} survey conducted in 2021 \cite{cncf-survey-2021}. It also supports the most features and therefore hits all the functional requirements. \textit{Kuma} on the other hand, is a much smaller project. However, its focus lies on having a broad feature set with lots of extensibility options as well, thus achieving all functional requirements as well. \textit{Cilium} on the other hand, is a new entry in the \gls{sm} landscape (as can be seen by the release date in the list of non-functional attributes (\cref{tab:result-nfa}). However, this story also does not paint the entirety of the picture as it builds upon the \textit{Cilium} networking solution, a mature networking solution that already facilitates most of the functional requirements listed.
     
 
     \item \textbf{Maturity does not translate to support of requirements.}
@@ -58,7 +58,7 @@ We now present a list of the most interesting findings we obtained:
     % - Fast
     % - Tailored proxy, less features
     
-    A fourth finding is that maturity does not necessarily translate to the support of functional and non-functional requirements. This refers to \textit{Linkerd2} in particular, which does not  not fully satisfy the resiliency requirements \ref{fr-3} and also lacking in the additional application level protocol support \ref{nfr-1}. Despite its maturity, large-scale usage \cite{cncf-survey-2021} in production environments and graduated \gls{cncf} project status, the system seems to be lacking in features. This, however, can be attributed to the goals of the project. Whereas \textit{Istio} has the most features of any system, it is also dubbed as a complex system. \textit{Linkerd2}, however, aims to optimize for simplicity and speed. Instead of using a generic proxy with numerous features and capabilities, such as \textit{Envoy} or \textit{NGINX}, it uses a custom proxy specifically tailored to the service mesh, optimizing for simplicity, security and speed \cite{linkerd-no-envoy}.
+    A fourth finding is that maturity does not necessarily translate to the support of functional and non-functional requirements. This refers to \textit{Linkerd2} in particular, which does not  not fully satisfy the resiliency requirements \ref{fr-3} and also lacking in the additional application level protocol support \ref{nfr-1}. Despite its maturity, large-scale usage in production environments \cite{cncf-survey-2021}, and graduated \gls{cncf} project status, the system seems to be lacking in features. This, however, can be attributed to the goals of the project. Whereas \textit{Istio} has the most features of any system, it is also dubbed as a complex system. \textit{Linkerd2}, however, aims to optimize for simplicity and speed. Instead of using a generic proxy with numerous features and capabilities, such as \textit{Envoy} or \textit{NGINX}, it uses a custom proxy specifically tailored to the service mesh, optimizing for simplicity, security, and performance \cite{linkerd-no-envoy}.
     
     \item \textbf{Lack of additional layer 7 protocol support.}
     \label{f-5}
@@ -66,7 +66,7 @@ We now present a list of the most interesting findings we obtained:
     % Why it is useful
     % External project (Aeraki) -> Tries to solve this
     
-    A fifth finding is that just a few of the identified systems support additional application level protocols (\ref{nfr-1}).  Since \gls{sm} systems can greatly benefit from application aware proxies, it can be a promising area. It can enable application level aware traffic management, rich metric collection or can lead to advanced authorization policies. \textit{Cilium} and \textit{Kuma} for example, provide support for the Apache Kafka protocol and therefore can target specific messages when dealing with events of the platform.  Although we did identify only a few implementations that provided support for this, we did identify an external project in the \gls{cncf} landscape that tries to enable this. \textit{Aeraki} \footnote{\url{https://www.aeraki.net/}}, attempts to close this gap by creating an extensible platform that enables layer 7 support for many protocols such as \textit{Redis}, \textit{Kafka} and \textit{ZooKeeper}. This project, however, only provides support for \textit{Istio} and therefore currently does not support any other \gls{sm} implementation.
+    A fifth finding is that just a few of the identified systems support additional application level protocols (\ref{nfr-1}). Since \gls{sm} systems can greatly benefit from additional application level support from its service proxies, it can be a promising area. It can enable application level aware traffic management, rich metric collection or can lead to advanced authorization policies. \textit{Cilium} and \textit{Kuma} for example, provide support for the Apache Kafka protocol and therefore can target specific messages when dealing with events of the platform.  Although we did identify only a few implementations that provided support for this, we did identify an external project in the \gls{cncf} landscape that tries to enable this. \textit{Aeraki}\footnote{\url{https://www.aeraki.net/}}, attempts to close this gap by creating an extensible platform that enables layer 7 support for many protocols such as \textit{Redis}, \textit{Kafka} and \textit{ZooKeeper}. This project, however, only provides support for \textit{Istio} and therefore currently does not support any other \gls{sm} implementation.
     
     \item \textbf{New technologies enable additional data plane architectures.}
     \label{f-6}
@@ -74,7 +74,7 @@ We now present a list of the most interesting findings we obtained:
     % - Does not have linear dependency on proxy/service
     % - Relatively new techonology
     
-    A final finding is that only a single project uses a kernel-based proxy. \textit{Cilium} uses a kernel-based proxy approach by utilizing \gls{ebpf} applications to implement the service proxy. Together with \textit{Traefik proxy}, it is the only \gls{sm} that does not use a per-service based data plane architecture. We can attribute this finding to the fact that \gls{ebpf} is a relatively new technology, and that the \textit{Cilium} networking project has been banking on that technology before extending its networking solution to include the properties of a service mesh \cite{cilium-mesh} in late 2021. Although this is a fairly new concept, it has been adopted by one of the leading \gls{k8s} service provider in the form of \textit{Google Kubernetes Engine} \cite{google-cilium-ebpf}. Furthermore, other \gls{sm} implementations also experiment with the technology to enable new functionality and features, such as reported for both \textit{Istio} \cite{istio-merbridge} and certain \textit{NGINX Service Mesh} beta features \cite{nginx-service-mesh-arch}. 
+    A final finding is that only a single project uses a kernel-based proxy. \textit{Cilium} uses a kernel-based proxy approach by utilizing \gls{ebpf} applications to implement the service proxy. Together with \textit{Traefik proxy}, it is the only \gls{sm} that does not use a per-service based data plane architecture. We can attribute this finding to the fact that \gls{ebpf} is a relatively new technology, and that the \textit{Cilium} networking project has been banking on that technology before extending its networking solution to include the properties of a service mesh in late 2021 \cite{cilium-mesh}. Although this is a fairly new approach, it has been adopted by one of the leading \gls{k8s} service providers in the form of \textit{Google Kubernetes Engine} \cite{google-cilium-ebpf}. Furthermore, other \gls{sm} systems also experiment with \gls{ebpf} technology to improve upon existing functionalities and support new features \cite{istio-merbridge, nginx-service-mesh-arch}. 
 \end{enumerate}
 
 
@@ -120,7 +120,7 @@ In \cref{fig:sm-arch-per-service}, we present a reference architecture of this d
     \includegraphics[width=\linewidth]{3_systems_survey/figures/sm-arch-per-service.pdf}
     }
 
-    \caption{A service mesh using a service proxy per-service.}
+    \caption[Per-service proxy plane architecture.]{The data path of a per-service data plane.}
     \label{fig:sm-arch-per-service}
 \end{figure}
 
@@ -149,7 +149,7 @@ Another identified \gls{sm} architecture makes use of the per-node proxy. This a
     \includegraphics[width=\linewidth]{3_systems_survey/figures/sm-arch-per-node.pdf}
     }
     
-    \caption{A service mesh using a service proxy per-node.}
+    \caption[Per-node proxy plane architecture.]{The data path of a per-node data plane.}
     \label{fig:sm-arch-per-node}
 \end{figure}
 
@@ -170,7 +170,7 @@ However, this architectural pattern comes at a cost. Since the traffic is not pa
 The last of the identified \gls{sm} architectures uses a vastly different approach. The approach used by \textit{Cilium} uses \gls{ebpf} to establish a mesh network between the services. What started out as a \gls{k8s} networking solution and evolved to become a fully fledged \gls{sm} implementation \cite{cilium-mesh}. 
 
 % Shortened data path
-In \cref{fig:sm-arch-ebpf}, we present a simplified data path of a \gls{sm} implemented using \textit{Cilium}.  Many of the components a re shared with the other architectures and are explained in \cref{sec:survey:analysis:architectures:per-service}. However, compared to the other identified architectures, the data path as depicted here is much shorter. This is because the routing and proxying is done in the kernel through \gls{ebpf} (\designref{P}). 
+In \cref{fig:sm-arch-ebpf}, we present a simplified data path of a \gls{sm} implemented using \textit{Cilium}.  Many of the components are shared with the other architectures and are explained in \cref{sec:survey:analysis:architectures:per-service}. However, compared to the other identified architectures, the data path as depicted here is much shorter. This is because the routing and proxying is done in the kernel through \gls{ebpf} (\designref{P}). 
 
 % Explain EBPF
 To explain the shortened data path, we first briefly have to introduce the technology powering it. \gls{ebpf} is a Linux Kernel technology that allows users to run sandboxed programs in the operating system kernel \cite{ebpf}. Furthermore, it is event-driven and allows these programs to execute on certain hooks. This is used throughout \textit{Cilium} to implement the observability, security and networking functionalities of the \gls{sm}. \gls{ebpf} allows for hooks throughout the entire lifecycle of a network packet. This combined with the programmable sandbox environments allows it to replace the role of service proxies in the other architectural styles. Since the \gls{ebpf} programs are aware of the \gls{k8s} endpoints and services, packets can be routed straight from the kernel, enabling a much more direct route.
@@ -179,9 +179,6 @@ To explain the shortened data path, we first briefly have to introduce the techn
 This architectural style has several advantages compared to the previously introduced per-service and per-node architectures. First, it has potential to decrease latency in its data path. It does this by not requiring additional hops in service-to-service communications. Additionally, it allows for greater programmability of the mesh network, as certain programs can be compiled and then run in a sandboxed environment. However, it also can have some disadvantages. First off, the technology and this implementation of it in particular is fairly new, even in a beta phase at the time of writing. This means that the \gls{sm} implementation could be unstable and not suitable for production usage. Furthermore, using user programs in kernel space could introduce potential security risks. 
 
 
-
-
-\textit{Cilium} started out 
 \begin{figure}[!t]
     \centering
     
@@ -189,7 +186,7 @@ This architectural style has several advantages compared to the previously intro
     \includegraphics[width=\linewidth]{3_systems_survey/figures/sm-arch-ebpf.pdf}
     }
     
-    \caption{A service mesh using a service proxy per-node.}
+    \caption[\Gls{ebpf}-based data plane architecture.]{The data path of an \gls{ebpf}-based data plane.}
     \label{fig:sm-arch-ebpf}
 \end{figure}
 
@@ -199,4 +196,4 @@ This architectural style has several advantages compared to the previously intro
 
 To conclude the systems survey, we return to the initial research question (\ref{rq-1}), \textit{How do existing \gls{sm} implementations compare?}. The answer to this question is provided in various levels of detail throughout the systems survey. The most detailed and objective answer is provided  within the data synthesis and results section (\cref{sec:survey:results}) in which we identified domain-specific characteristics and features and compared the systems based on that. A summarized result is presented in the form of established functional and non-functional requirements (\cref{sec:survey:analysis}), in which we combine results from the data synthesis to provide a more generic, but more useful result. Finally, in \cref{sec:survey:analysis:architectures}, we take a deep-dive into the architectural differences of identified systems in which we answer the research question by exploring key characteristics in more detail.
 
-Throughout this systems survey, we observed that \gls{sm} systems can have different approaches and goals and that systems within this the area are constantly changing. With many of the systems adopting different strategies and bleeding edge technologies, the area is exciting in many ways. 
+Throughout this systems survey, we observed that \gls{sm} systems can have different approaches and goals and that systems within this the area are constantly changing. With many of the systems adopting different strategies and bleeding-edge technologies, the area is exciting in many ways. 
