@@ -1,10 +1,5 @@
 \section{Context}
 \label{sec:introduction:context}
-
-
-% Why should people care about the  work
-
-
 % Societal impact
 % Economic -> Impact for companies (e2e latencies)
 % Society at large -> We rely on infra (shift in responsibilies)
@@ -19,18 +14,20 @@
 % Lots of new systems (OSM, Cilium)
 
 
+% Why should people care about the  work
+We live in the \textit{Age of Computer Ecosystems} \cite{Iosup2018}, where our society as a whole relies on the modern IT infrastructure. From governments to schools and businesses, many use the internet as a gateway to their services and offerings. The design of modern IT systems and infrastructure therefore has a large societal impact, for both the end user, the providing entities, and the every increasing number of engineers \cite{it-employment-worldwide} that are required to develop and manage it.
+
+Businesses that rely on IT infrastructure, can face major economic impact through slight design alterations. Amazon, for example, found that for every 100ms of additional end-to-end latency, it would lose out on roughly 1\% of total sales revenue \cite{amazon-latency-conversion-drop}. And Google, indicated back in 2009 \cite{google-latency-bounce-rate} that latency has a direct relation with service usage and has been actively prioritizing performance of services ever since
+
+In this thesis, we evaluate the \gls{sm} architecture and systems that implement this. These systems introduce an additional layer of machinery that naturally causes a performance overhead. Even though, the performance complications can have major impact, the systems in question have received lots of attention from the industry and increasing number of companies are evaluating and using such solutions in their IT infrastructure \cite{cncf-survey-2021}.  With large corporations, such as Google and Microsoft backing the development of \gls{sm} systems it is clear that this technology has lots of potential. 
+
+The \gls{sm} landscape is a rapidly evolving field, that is in its relative infancy.  There have been numerous new systems that have emerged in the last couple of years and there have been many technological advancements that pave the way for alternative approaches to the problem. It comprises a landscape where most of the systems are in active development and see frequent improvements and architectural changes \cite{istio-merbridge, cilium-mesh}. This grants us the opportunity to evaluate the different approaches these systems take, as they evolve and explore an exciting field of bleeding-edge technologies.
+
+Although \gls{sm} systems have gained a lot of attention and hype from within the industry. It has received relatively little to no attention from academia as observed by our previous works in which we have conducted a topical survey of the field. In this thesis, we aim to close that gap by performing an extensive study on \gls{sm} systems, with a focus on their performance characteristics.
+
+% MCS relation
+Throughout this thesis, we align ourselves with the goals and visions expressed in \gls{mcs} \cite{Iosup2018}. The work as presented in this thesis aims to uncover the intricacies of the computer ecosystems discussed, helping to understand them and guide future system designs. \gls{mcs} envisions a domain where everything developed is tested and benchmarked in a reproducible manner. This ideology is exemplified by the experimental approach used  throughout this thesis.2
 
 
 
 
-% % THESIS PROPOSAL
-% \todo{Placeholder (Thesis proposal) rewrite this}
-% The notion of a \gls{soa} dates as far back as 1998 \cite{soa}, where the general application architecture is broken down in to multiple services. When using such an architecture, services communicate with each other through some form of network protocol, which introduces several problems. First, application developers have to design and implement the functionality to make the service-to-service communications. Secondly, networks are inherently unreliable and could fail, this introduces extra complexities and could result in advanced timeout and retry mechanisms. Furthermore, even skipping many intricacies of features that one could want for these inter-service communications, implementing this costs valuable time, which could otherwise be spent on business logic. 
-
-% In order to tackle the issues that come from a \gls{soa}, architectural patterns such as the \textit{Enterprise Service Bus}\cite{esb} emerged. Many companies that operated a service oriented architecture like Netflix, Google, and Twitter implemented such patterns in custom tailored client libraries that handled service-to-service communications to solve these problems and create that uniform layer\cite{service-mesh-history}. However, one large downfall of this approach was that the client libraries were language specific and had to be used in every service that the company controlled. Updates to the client library resulted in having to update all the services which used the library, resulting in management overheads.
-
-% With the introduction of \textit{Docker}\footnote{\url{https://docker.com/}} back in 2013, containers were becoming popular quickly. This led to the rise of container centric resource managers such as \textit{Kubernetes}\footnote{\url{https://kubernetes.io/}}, which enabled enterprise grade orchestration at global scale. These transitions in the industry meant that the cost of deployment and maintainability reduced, such that it paved the way for the microservices architectures present today. Large companies such as Netflix use such a microservices' architecture to manage and maintain over 1000 services\cite{netflix-chaos, netflix-svc}. With many supporting multiple programming languages and framework, meaning that maintaining client libraries was not an option any more, presenting the same problems once again.
-
-% Recently, out of process solutions for service-to-service communications became prevalent. By attaching a networking proxy to every service in the network, the network could be abstracted from the underlying applications. This solved the problem of having language specific client libraries at the cost of additional network hops or latency. This form of software defined networking layer is what is now known or referred to as the “service mesh”. This layer of abstraction provides many benefits\cite{lyft-envoy} and is a natural evolution in microservice based architectures. Firstly, it allows the usage of different programming languages, as the network is abstracted away and does not require client specific libraries. Secondly, it provides a uniform way to handle observability within the mesh network, with logging and tracing capabilities built into the proxy. Furthermore, it provides traffic management capabilities such as load balancing, which can be layer 4 and layer 7 aware and is not reliant on existing black box load balancing solutions. Also, it can implement complex retry and circuit breaking mechanics in order to improve reliability. Finally, it can provide for authentication and authorization features between services. 
-
-% The service mesh abstraction provides modern distributed systems best practices and tries to solve and minimize the complexities of application developers. It is an area of interest that is actively being worked on in the industry, and can be utilized in more ways than just a mesh network by for example utilizing the metrics to optimize resource scaling. Recently, proxy-less service mesh implementations have also appeared\cite{cilium-mesh}, removing the extra hops required in service-to-service communications. The underlying technology \cite{ebpf} has captured the attention of many recently, since it also provides the foundation of other networking technologies found in the cloud native computing community. Needless to say, the networking aspect of microservices architectures is undergoing many changes and is a prime target for further research.

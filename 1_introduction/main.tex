@@ -18,13 +18,11 @@
 How do you design and build the IT infrastructure of the present, and future? A difficult, but important question in the era distinguished by globalization and digitalization. More and more of society is relying on the internet, and its wide variety of products and service offerings. From online stores, to productivity tools, streaming services to news websites, modern IT infrastructure empowers many areas and is a staple of the global economy. This was amplified and made abundantly clear in the last couple of years, where the world as a whole, moved online to prevent the further spread of COVID-19.
 
 
-% Linking it to MCS
-In this \textit{Age of Computer Ecosystems}, we align ourselves with the goals and visions expressed in \gls{mcs} \cite{Iosup2018}. The work as presented in this thesis aims to uncover the intricacies of the computer ecosystems discussed, helping to understand them and guide future system designs. \gls{mcs} envisions a domain where everything developed is tested and benchmarked in a reproducible manner. This ideology is exemplified by the experimental approach used  throughout this thesis.
 
 % Customer experience
 % Growing cybersecurity, data privacy threats
 % Fierce competition for talent
-There are many designs and approaches that are currently in use within the field. So far, there has not been a single approach, a golden architecture, that answers all the toughest challenges that we are facing today. How do we minimize the end-to-end latencies, and improve reliability to improve the seamless customer experience? How do we deal with the growing threats of cybersecurity and the rise of data privacy threats? How can we optimize the productivity of developers so that they can focus on business logic instead of infrastructure related concerns? These are just a few of the challenges \cite{modern-it-challenges}, that should be considered when designing and building a modern, distributed system. 
+There are many designs and approaches that are currently in use within the field. So far, there has not been a single approach, a golden architecture, that answers all the toughest challenges that we are facing today. How do we minimize the end-to-end latencies, and improve reliability to improve the seamless end-user experience? How do we deal with the growing threats of cybersecurity and the rise of data privacy threats? How can we optimize the productivity of developers so that they can focus on business logic instead of infrastructure related concerns? These are just a few of the most pressing challenges \cite{modern-it-challenges}, that should be considered when designing and building a modern, distributed system. 
 
 % Model of deployment
 % Microservices architecture
@@ -36,11 +34,13 @@ The architectural style has many benefits, such as the ability to decompose comp
 % Software lib -> sm approach
 For many years, companies approached this set of problems by changing the application code responsible for service-to-service communications, often in the form of client libraries that did so in a uniform manner. However, recent trends and community-wide efforts empowered the rise of the \gls{sm} architecture. This architectural paradigm aims to solve similar challenges, without having to modify any application code or having to stick to a single programming language or framework. The architecture works by introducing a dedicated infrastructure layer, that facilitates service-to-service communications, achieved by adding network \textit{proxies} in front of the logical services. These proxies intercept communications from and to these services, and provides a uniform approach of dealing with service-to-service traffic, enabling observability into communications, secure connections and reliability mechanisms. 
 
+
 % Work presented in this thesis
 % Systems Survey -> Qualitative Study
 % Mesh Bench -> Benchmark design/implementation
 % Experimental Evaluation -> Insights into the performance overheads and promising directions
-Within this emerging field of \gls{sm} systems, we focus on the performance implications of these systems. What is the computational overhead of the additional machinery introduced, and what is the impact of latency through the additional network hops? In this thesis, we present an extensive study into the performance characteristics of \gls{sm} systems. Furthermore, we introduce \textit{Mesh Bench}, a benchmarking instrument to evaluate state-of-the-art \gls{sm} systems. With a focus on reproducibility, we design and perform experiments to uncover the performance implications of these systems.
+Within this emerging field of \gls{sm} systems, we focus on the performance implications of these systems. What is the computational overhead of the additional machinery introduced, and what is the impact of latency through the additional network hops? In this thesis, we present an extensive study into the performance characteristics of \gls{sm} systems. First, we conduct a systems survey, in which we identify and analyse the state-of-the-art \gls{sm} systems. After this, we design and introduce \textit{Mesh Bench}, a benchmarking instrument that can evaluate the performance characteristics of \gls{sm} systems. Finally, with a focus on reproducibility, we design, perform and analyse  performance related experiments of \gls{sm} systems.
+
 
 % Sections 
 \input{1_introduction/sections/01_context}
