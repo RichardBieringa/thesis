@@ -7,10 +7,9 @@
 % - Analyze the maximum throughput of the system
 % - Analyze protocol differences
 
-The goal of a benchmarking instrument is to objectively compare, and decide on the best systems in a specific domain. However, the concrete definition of the best system depends on the underlying benchmarking objective \cite{folkerts2012benchmarking}. Therefore, it is important to first establish a set of goals for the benchmarking before designing or implementing it. In this section, we will introduce the benchmarking object vices, related to the main research question \ref{rq-2}.
+The goal of a benchmarking instrument is to objectively compare, and decide on the best system for a particular domain. However, the concrete definition of the best system depends on the underlying benchmarking objective \cite{folkerts2012benchmarking}. Therefore, it is important to first establish a set of goals for the benchmarking before designing or implementing it. In this section, we will introduce the benchmarking objectives, related to the main research question \ref{rq-2}.
 
-
-To design a benchmark that evaluates key characteristics of a system, we guide the process by following industry best practices for measuring and monitoring distributed systems. Following the best practices and principles of the Google Site Reliability Engineering handbook \cite{google-sre}, we can establish a base set of metrics and signals that are important to measure in distributed systems. More specifically, we can follow the guidelines for \textit{white-box monitoring} and implement the  \textit{Four Golden Signals} in our benchmarking instrument.
+To design a benchmark that evaluates key characteristics of a \gls{sm} system, we guide the process by following industry best practices for measuring and monitoring distributed systems. Following the best practices and principles of the Google Site Reliability Engineering handbook \cite{google-sre}, we can establish a base set of metrics and signals that are important to measure in distributed systems. More specifically, we can follow the guidelines for \textit{white-box monitoring} and implement the  \textit{Four Golden Signals} in our benchmarking instrument.
 
 The following list presents the objectives that the benchmarking instrument has.
 
@@ -23,13 +22,12 @@ The following list presents the objectives that the benchmarking instrument has.
     \item \textbf{Support Throughput Measurements}
     \label{o-2}
     
-    The second objective is to measure the amount of throughput a system can handle. This is used to see if the \gls{sm} system introduces any bottleneck in terms of throughput.
+    The second objective is to measure the amount of throughput a system can handle. The throughput in this context refer to the number of requests per pre-defined time frame a \gls{sm} system can handle. This is used to see if the \gls{sm} system introduces any bottleneck in terms of throughput.
 
     \item \textbf{Support Latency Measurements}
     \label{o-3}
     
     The third objective is to measure the amount of latency requests have. This is used to measure how much latency a \gls{sm} system introduces.
-    
 
     \item \textbf{Support Resiliency Measurements}
     \label{o-4}

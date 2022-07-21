@@ -22,6 +22,7 @@ In \cref{tab:result-comparison}, we present a qualitative evaluation of state-of
 
 \input{3_systems_survey/tables/result-comparison}
 
+
 We now present a list of the most interesting findings we obtained:
 
 \begin{enumerate}[label=\textbf{F\arabic*}, leftmargin=3\parindent]
@@ -76,6 +77,7 @@ We now present a list of the most interesting findings we obtained:
     
     A final finding is that only a single project uses a kernel-based proxy. \textit{Cilium} uses a kernel-based proxy approach by utilizing \gls{ebpf} applications to implement the service proxy. Together with \textit{Traefik proxy}, it is the only \gls{sm} that does not use a per-service based data plane architecture. We can attribute this finding to the fact that \gls{ebpf} is a relatively new technology, and that the \textit{Cilium} networking project has been banking on that technology before extending its networking solution to include the properties of a service mesh in late 2021 \cite{cilium-mesh}. Although this is a fairly new approach, it has been adopted by one of the leading \gls{k8s} service providers in the form of \textit{Google Kubernetes Engine} \cite{google-cilium-ebpf}. Furthermore, other \gls{sm} systems also experiment with \gls{ebpf} technology to improve upon existing functionalities and support new features \cite{istio-merbridge, nginx-service-mesh-arch}. 
 \end{enumerate}
+
 
 
 % The first observation we can make from the obtained data is that most of the systems use a data plane with a per-service proxy. However, some \gls{sm} systems use a different approach, such as \textit{Traefik Mesh}, which uses a per-node proxy and \textit{Cilium}, which uses a kernel-based proxy. This can be attributed to the fact that half of the implementations use \textit{Envoy} as proxy, which is an open-source proxy. 

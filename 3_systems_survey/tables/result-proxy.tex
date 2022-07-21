@@ -1,30 +1,159 @@
 \begin{table*}[t]
 \centering
 \resizebox{\linewidth}{!}{ %< auto-adjusts font size to fill line
-\begin{tabular}{l|llll}
+\begin{tabular}{ll|llcc}
+
+
 \toprule
-Service Mesh       & Service Proxy  & Proxy Architecture & Proxy TCP & Proxy UDP \\
+
+% HEADER 1
+\multicolumn{2}{c|} {\textbf{Service Mesh}} &
+\multicolumn{4}{c} {\textbf{Service Proxy Capbilities}}  \\
+
+% HEADER 2
+ID &
+Name &
+Service Proxy &
+Proxy Architecture &
+Proxy TCP &
+Proxy UDP \\
+
+
 \midrule
-AWS App Mesh       & Envoy          & Per-Service        & Yes       & Yes       \\
-Cilium             & Cilium eBPF    & Kernel (eBPF)      & Yes       & Yes       \\
-Consul             & Envoy*         & Per-Service        & Yes       & Yes       \\
-Ease Mesh          & Easegress      & Per-Service        & Yes       & No        \\
-Istio              & Envoy          & Per-Service        & Yes       & Yes       \\
-Kuma               & Envoy          & Per-Service        & Yes       & Yes       \\
-Linkerd2           & Linkerd2 Proxy & Per-Service        & Yes       & No        \\
-Nginx Service Mesh & NGINX Plus     & Per-Service        & Yes       & Yes       \\
-Open Service Mesh  & Envoy          & Per-Service        & Yes       & Yes       \\
-Traefik Mesh       & Treafik Proxy  & Per-Node           & Yes       & Yes       \\
+
+
+\textbf{SM1} &
+AWS App Mesh  & 
+Envoy & 
+Per-Service & 
+\cmark & 
+\cmark \\
+
+
+\textbf{SM2} &
+Cilium  & 
+Cilium (\gls{ebpf}) & 
+In-Kernel & 
+\cmark & 
+\cmark \\
+
+
+\textbf{SM3} &
+Consul  & 
+Envoy* & 
+Per-Service & 
+\cmark & 
+\cmark \\
+
+
+\textbf{SM4}&
+Ease Mesh & 
+Easegress & 
+Per-Service & 
+\cmark & 
+\xmark \\
+
+
+\textbf{SM5} &
+Istio & 
+Envoy & 
+Per-Service & 
+\cmark & 
+\cmark \\
+
+
+\textbf{SM6} &
+Kuma & 
+Envoy & 
+Per-Service & 
+\cmark & 
+\cmark \\
+
+
+\textbf{SM7} &
+Linkerd2 & 
+Linkerd2 Proxy & 
+Per-Service & 
+\cmark & 
+\xmark \\
+
+
+\textbf{SM8} &
+Nginx Service Mesh & 
+NGINX Plus & 
+Per-Service & 
+\cmark & 
+\cmark \\
+
+
+\textbf{SM9} &
+Open Service Mesh  & 
+Envoy & 
+Per-Service & 
+\cmark & 
+\cmark \\
+
+
+\textbf{SM10} &
+Traefik Mesh &
+Traefik Proxy & 
+Per-Node & 
+\cmark & 
+\cmark \\
+
+
 \bottomrule
 \end{tabular}
 
 } %< \resizebox
 \caption
-[Comparing the service-to-service proxy mechanisms of service mesh systems.]
-{Comparing the service-to-service proxy mechanisms of service mesh systems.
+[Comparing the proxy capabilities of service mesh systems.]
+{Comparing the proxy capabilities of identified service mesh systems. \\
 
+\textit{Service Proxy} indicates the type of proxy component used, as this is considered an implementation detail of the service mesh architecture (see background \cref{sec:background:service-mesh}). \\
+\textit{Proxy Architecture} refers to the manner in which the proxy is introduced within the system (see \cref{sec:survey:analysis:architectures}). \\
+\textit{Proxy TCP} and \textit{Proxy UDP} support features indicate whether the \textit{Service Proxy} can proxy this type of traffic or whether it just forwards the type of traffic. 
+
+\cmark: Indicates that the feature is supported. \\
+\xmark: Indicates that the feature is no supported. \\
 *: Can be interchanged for other service proxies.
 }
 \label{tab:result-proxy}
 \end{table*}
+
+
+
+
+
+
+
+% \begin{table*}[t]
+% \centering
+% \resizebox{\linewidth}{!}{ %< auto-adjusts font size to fill line
+% \begin{tabular}{l|llll}
+% \toprule
+% Service Mesh       & Service Proxy  & Proxy Architecture & Proxy TCP & Proxy UDP \\
+% \midrule
+% AWS App Mesh       & Envoy          & Per-Service        & Yes       & Yes       \\
+% Cilium             & Cilium eBPF    & Kernel (eBPF)      & Yes       & Yes       \\
+% Consul             & Envoy*         & Per-Service        & Yes       & Yes       \\
+% Ease Mesh          & Easegress      & Per-Service        & Yes       & No        \\
+% Istio              & Envoy          & Per-Service        & Yes       & Yes       \\
+% Kuma               & Envoy          & Per-Service        & Yes       & Yes       \\
+% Linkerd2           & Linkerd2 Proxy & Per-Service        & Yes       & No        \\
+% Nginx Service Mesh & NGINX Plus     & Per-Service        & Yes       & Yes       \\
+% Open Service Mesh  & Envoy          & Per-Service        & Yes       & Yes       \\
+% Traefik Mesh       & Treafik Proxy  & Per-Node           & Yes       & Yes       \\
+% \bottomrule
+% \end{tabular}
+
+% } %< \resizebox
+% \caption
+% [Comparing the service-to-service proxy mechanisms of service mesh systems.]
+% {Comparing the service-to-service proxy mechanisms of service mesh systems.
+
+% *: Can be interchanged for other service proxies.
+% }
+% \label{tab:result-proxy}
+% \end{table*}
 

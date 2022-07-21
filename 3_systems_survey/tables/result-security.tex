@@ -1,24 +1,97 @@
 \begin{table*}[t]
 \centering
 % \resizebox{\linewidth}{!}{ %< auto-adjusts font size to fill line
-\begin{tabular}{l|ll}
+
+\begin{tabular}{ll|cc}
+
+
 \toprule
-Service Mesh       & mTLS & S2S Authorization Policies \\
+
+% HEADER 1
+\multicolumn{2}{c|} {\textbf{Service Mesh}} &
+\multicolumn{2}{c} {\textbf{Security Capbilities}}  \\
+
+% HEADER 2
+ID &
+Name &
+Mutual TLS &
+S2S Auth. Policies \\
+
+
 \midrule
-AWS App Mesh       & Yes  & IAM                        \\
-Cilium             & Yes  & Yes                        \\
-Consul             & Yes  & Yes                        \\
-Ease Mesh          & Yes  & Yes                        \\
-Istio              & Yes  & Yes                        \\
-Kuma               & Yes  & Yes                        \\
-Linkerd2           & Yes  & Yes                        \\
-Nginx Service Mesh & Yes  & Yes                        \\
-Open Service Mesh  & Yes  & Yes                        \\
-Traefik Mesh       & No   & No                          \\
+
+
+\textbf{SM1} &
+AWS App Mesh  & 
+\cmark  &
+\cmark  \\
+
+\textbf{SM2} &
+Cilium  & 
+\cmark  & 
+\cmark \\
+
+
+\textbf{SM3} &
+Consul  & 
+\cmark  & 
+\cmark   \\
+
+
+\textbf{SM4}&
+Ease Mesh & 
+\cmark  & 
+\cmark \\
+
+
+\textbf{SM5} &
+Istio & 
+\cmark  & 
+\cmark   \\
+
+
+\textbf{SM6} &
+Kuma & 
+\cmark  & 
+\cmark   \\
+
+
+\textbf{SM7} &
+Linkerd2 & 
+\cmark  & 
+\cmark \\
+
+
+\textbf{SM8} &
+Nginx Service Mesh & 
+\cmark & 
+\cmark \\
+
+
+\textbf{SM9} &
+Open Service Mesh  & 
+\cmark  & 
+\cmark \\
+
+
+\textbf{SM10} &
+Traefik Mesh &
+\xmark  & 
+\xmark \\
+
+
 \bottomrule
 \end{tabular}
 % } %< \resizebox
-\caption{Comparing the security capabilities of identified service mesh systems.}
+
+\caption[Comparing service mesh security capabilities]
+{Comparing the security capabilities of identified service mesh systems.
+
+\textit{Mutual TLS} indicates if the \gls{sm} system supports TLS authentications, which enables encrypted communications between service proxies. \\
+\textit{S2S Auth. Policies} (Service-to-service authorization policies) indicate whether the \gls{sm} system supports advanced  authorization policies which enables the operator to grant or deny permissions to services to communicate with given entities (such as other services). \\
+
+\cmark: Indicates that the feature is supported. \\
+\xmark:  Indicates that the feature is no supported. }
 \label{tab:result-security}
 \end{table*}
 

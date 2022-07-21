@@ -1,0 +1,71 @@
+\begin{table*}[t]
+\centering
+% \resizebox{\linewidth}{!}{ %< auto-adjusts font size to fill line
+
+\begin{tabularx}{\textwidth}{ll|cc|cc|c}
+\toprule
+
+\multicolumn{2}{c|}{\textbf{Workload Generator}} &
+\multicolumn{2}{c|}{\textbf{Workload Support}} &
+\multicolumn{2}{c|}{\textbf{Configurability}} &
+\multicolumn{1}{c}{\textbf{Other}}  \\
+
+\textbf{ID} &
+\textbf{Name} &
+\textbf{HTTP/2} &
+\textbf{GRPC} &
+\textbf{Payload} & 
+\textbf{Output} & 
+\textbf{Server Process} \\
+\midrule
+
+\ref{wg-1} &
+\textbf{wrk2} &
+\circleE &
+\circleE &
+\circleH &
+\circleH &
+\circleE  \\
+
+\ref{wg-2} &
+\textbf{k6} &
+\circleH &
+\circleH &
+\circleH &
+\circleH &
+\circleH \\
+
+\ref{wg-3} &
+\textbf{hey} &
+\circleF &
+\circleE &
+\circleF &
+\circleF &
+\circleE \\
+
+\ref{wg-4} &
+\textbf{ghz} &
+\circleE &
+\circleF &
+\circleF &
+\circleF & 
+\circleE \\
+
+\ref{wg-5} &
+\textbf{fortio} & 
+\circleF &
+\circleF &
+\circleF & 
+\circleF & 
+\circleF \\
+
+
+\bottomrule
+\end{tabularx}
+
+% } %< \resizebox
+
+\caption[Comparing workload generator systems.]{Comparing workload generator systems on relevant properties and features. There are three different symbols in the table, each of them represents how well a requirement is satisfied. \circleF: Fully Satisfied, \circleE: Not Satisfied, \circleH: Partially Satisfied.}
+\label{tab:system:implementation:workload-generators}
+\end{table*}
+

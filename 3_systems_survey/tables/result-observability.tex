@@ -1,24 +1,110 @@
 \begin{table*}[t]
 \centering
 \resizebox{\linewidth}{!}{ %< auto-adjusts font size to fill line
-\begin{tabular}{l|lllll}
+\begin{tabular}{ll|lllc}
+
 \toprule
-Service Mesh       & Metrics        & Monitoring     & Tracing                     & Dashboard \\
+
+% HEADER 1
+\multicolumn{2}{c|} {\textbf{Service Mesh}} &
+\multicolumn{4}{c} {\textbf{Observability Capbilities}}  \\
+
+% HEADER 2
+ID &
+Name & 
+Metrics & 
+Monitoring & 
+Tracing  & 
+Dashboard \\
+
 \midrule
-AWS App Mesh       & AWS CloudWatch & AWS CloudWatch & AWS CloudWatch              & AWS X-Ray \\
-Cilium             & Prometheus     & Grafana        & Jaeger, Open Telemetry      & Hubble    \\
-Consul             & Prometheus     & Grafana        & Jaeger, Zipkin, OpenTracing & Consul UI \\
-Ease Mesh          & Ease Monitor   & Ease Monitor   & OpenTracing                 & No        \\
-Istio              & Prometheus     & Grafana        & Jaeger, Zipkin              & Kiali     \\
-Kuma               & Prometheus     & Grafana        & Jaeger, Zipkin              & Yes       \\
-Linkerd2           & Prometheus     & Grafana        & Open Telemetry              & Yes       \\
-Nginx Service Mesh & Prometheus     & Grafana        & Jaeger                      & No        \\
-Open Service Mesh  & Prometheus     & Grafana        & Jaeger                      & No        \\
-Traefik Mesh       & Prometheus     & Grafana        & Jaeger                      & No        \\
+
+\textbf{SM1} &
+AWS App Mesh  & 
+AWS CloudWatch & 
+AWS CloudWatch & 
+AWS CloudWatch & 
+\cmark \\
+
+\textbf{SM2} &
+Cilium  & 
+Prometheus & 
+Grafana & 
+Jaeger, Open Telemetry & 
+\cmark    \\
+
+\textbf{SM3} &
+Consul  & 
+Prometheus & 
+Grafana  & 
+Jaeger, Zipkin, OpenTracing & 
+\cmark \\
+
+\textbf{SM4}&
+Ease Mesh & 
+Ease Monitor & 
+Ease Monitor & 
+OpenTracing & 
+\xmark        \\
+
+\textbf{SM5} &
+Istio & 
+Prometheus & 
+Grafana & 
+Jaeger, Zipkin &
+\cmark * \\
+
+\textbf{SM6} &
+Kuma & 
+Prometheus & 
+Grafana & 
+Jaeger, Zipkin &
+\cmark \\
+
+\textbf{SM7} &
+Linkerd2 & 
+Prometheus & 
+Grafana & 
+Open Telemetry &
+\cmark \\
+
+\textbf{SM8} &
+Nginx Service Mesh & 
+Prometheus & 
+Grafana & 
+Jaeger & 
+\xmark \\
+
+\textbf{SM9} &
+Open Service Mesh  & 
+Prometheus & 
+Grafana & 
+Jaeger &
+\xmark \\
+
+\textbf{SM10} &
+Traefik Mesh &
+Prometheus &
+Grafana &
+Jaeger &
+\xmark \\
+
+
 \bottomrule
 \end{tabular}
 } %< \resizebox
-\caption{Comparing the observability capabilities of identified service mesh systems.}
+\caption[Comparing service mesh observability capabilities]
+{Comparing the observability capabilities of identified service mesh systems.
+
+\textit{Metrics} indicates the system which is used to collect and aggregate relevant metrics of the \gls{sm} system. \\
+\textit{Monitoring} indicates the system which is used as observability and monitoring tool for the \gls{sm} system. \\
+\textit{Tracing} indicates which tracing backends are supported for the \gls{sm} system. \\
+\textit{Dashboard} indicates whether a \gls{sm} system has a dashboard, which acts as a management console and or observability (i.e., can display service topology maps etc.). \\
+
+\cmark: Indicates that the feature is supported. \\
+\xmark: Indicates that the feature is no supported. \\
+*: Available through third party, open-source offering \textit{Kiali}.
+}
 \label{tab:result-observability}
 \end{table*}
 

@@ -1,24 +1,144 @@
 \begin{table*}[t]
 \centering
 \resizebox{\linewidth}{!}{ %< auto-adjusts font size to fill line
-\begin{tabular}{l|lllllll}
+\begin{tabular}{ll|ccccccc}
+
 \toprule
-Service Mesh       & HTTP1.1 & HTTP2 & HTTP3 & Websockets & gRPC & TLS & Additional Protocols \\
+
+% HEADER 1
+\multicolumn{2}{c|} {\textbf{Service Mesh}} &
+\multicolumn{7}{c} {\textbf{Protocol Support}}  \\
+
+% HEADER 2
+ID &
+Name &
+HTTP1.1 &
+HTTP2 &
+HTTP3 &
+Websockets &
+gRPC &
+TLS &
+Additional Protocols \\
+
 \midrule
-AWS App Mesh       & Yes     & Yes   & Yes   & Yes        & Yes  & Yes & -                    \\
-Cilium             & Yes     & Yes   & Yes   & Yes        & Yes  & Yes & Kafka                \\
-Consul             & Yes     & Yes   & Yes   & Yes        & Yes  & Yes & -                    \\
-Ease Mesh          & Yes     & Yes   & No    & Yes        & No   & Yes & MQTT                 \\
-Istio              & Yes     & Yes   & Yes   & Yes        & Yes  & Yes & Mongo, Redis, MySQL  \\
-Kuma               & Yes     & Yes   & Yes   & Yes        & Yes  & Yes & Kafka                \\
-Linkerd2           & Yes     & Yes   & No    & Yes        & Yes  & Yes & -                    \\
-Nginx Service Mesh & Yes     & Yes   & No    & Yes        & Yes  & Yes & -                    \\
-Open Service Mesh  & Yes     & Yes   & Yes   & Yes        & Yes  & Yes & -                    \\
-Traefik Mesh       & Yes     & Yes   & Yes   & Yes        & Yes  & Yes & -                    \\
+
+\textbf{SM1} &
+AWS App Mesh  & 
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+- \\
+
+
+\textbf{SM2} &
+Cilium  & 
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+Kafka \\
+
+
+\textbf{SM3} &
+Consul  & 
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+- \\
+
+
+\textbf{SM4}&
+Ease Mesh & 
+\cmark &
+\cmark &
+\xmark &
+\cmark &
+\xmark &
+\cmark &
+MQTT \\
+
+
+\textbf{SM5} &
+Istio & 
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+Mongo, Redis, MySQL  \\
+
+
+\textbf{SM6} &
+Kuma & 
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+Kafka \\
+
+
+\textbf{SM7} &
+Linkerd2 & 
+\cmark &
+\cmark &
+\xmark &
+\cmark &
+\cmark &
+\cmark &
+- \\
+
+
+\textbf{SM8} &
+Nginx Service Mesh & 
+\cmark &
+\cmark &
+\xmark &
+\cmark &
+\cmark &
+\cmark &
+- \\
+
+
+\textbf{SM9} &
+Open Service Mesh  & 
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+- \\
+
+
+\textbf{SM10} &
+Traefik Mesh &
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+\cmark &
+- \\
+
 \bottomrule
 \end{tabular}
 } %< \resizebox
-\caption{Comparing the application level protocol support of identified service mesh systems.}
+\caption[Comparing service mesh proxy protocol support capabilities]
+{Comparing the application level protocol support of identified service mesh systems.
+
+\cmark: Indicates that the feature is supported. \\
+\xmark:  Indicates that the feature is no supported. }
 \label{tab:result-protocols}
 \end{table*}
 

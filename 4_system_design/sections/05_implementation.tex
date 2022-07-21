@@ -1,18 +1,74 @@
 \section{Implementation}
 \label{sec:system:implementation}
 
+In this section, we discuss the implementation details of a benchmark prototype that adheres to the design of \textit{Mesh Bench} as presented in \cref{sec:system:design}. The remainder of this section will discuss the design decisions for the core components in more detail. We present our implementation details, and the alternatives we had considered and how they relate to our requirements as discussed in \cref{sec:system:requirements-analysis}.
+
 \subsection{Workload Generator}
 \label{sec:system:workload-generator}
 
-Fortio load generator (REST MODE)
+The workload generator is arguably the most important component of the benchmark and has to support a large amount of functional requirements as discussed in \cref{sec:system:requirements-analysis:functional}. 
+
+Foremost, the workload generator has to support \textit{varying workloads} (\ref{system:fr-4}). This means that it has to support the two most common service-to-service communication protocols in the form of HTTP and gRPC (as derived from our system survey results in \cref{sec:survey:results:comparison:protocols}). Furthermore, to support a wide variety of experiments the workload generator would have to support varying workload sizes and payloads so that the user can specify and evaluate the impact it would have. In addition to this, it would be beneficial to us to be able to configure this on the fly. This would mean that the workload generator would be deployed as a server-side process, that can receive instructions from a client-side process. 
+
+The final two functional requirements for the workload generator are related to the data it produces. First off, it would have to implement three of the four golden metrics as discussed in \ref{system:fr-3}. It would have to measure the end-to-end \textit{latency} of any request that it generates towards a target service. Additionally, it would have to measure the amount of \textit{traffic} at any given time, measured in the form of \textit{queries per second}. Finally, it would have to check for any \textit{errors}, this would mean it has to evaluate the HTTP and gRPC status codes to check if the request was successful. The last requirement has to deal with the format the data is presented in \ref{system:fr-6}. The resulting data would ultimately be reported back to the user to analyse the traffic and its performance.
+
+\input{4_system_design/tables/workload-generators}
+
+To decide on a fitting workload generator we evaluated numerous systems as seen in \cref{tab:system:implementation:workload-generators}. We performed simple load tests with each of these systems and assessed their support for the relevant functional requirements. 
+
+
+\begin{enumerate}[label=\textbf{WG\arabic*}, leftmargin=3\parindent]
+   
+    \item \textbf{wrk2}
+    \label{wg-1}
+    
+    \textit{wrk2} was the first workload generator that we had considered as it was a battle-tested solution. It is an evolution of \textit{wrk} that can achieve highly accurate latency details (i.e., 99.9999\%'ile). It also consumed the least amount of system resources which would translate in the ability to evaluate systems under more load. Configurability was done through command line interface options, as most of the evaluated systems did. However, it did not support many modern features, most notably it did not support http/2 and only supported the older protocol versions. Additionally, it did not support reporting in common formats nor was it able to modify request payloads out of the box, but required Lua scripts to modify its behaviour. Furthermore, it would have to be paired with a load generator that would support the gRPC protocol as per the functional requirements, as it did not support that either.    
+
+    \item \textbf{k6}
+    \label{wg-2}
+    
+    \textit{k6} was another promising solution, as the programmable take on load testing would allow us to design and create any form of synthetic workload that our benchmark would require. Although this approach is great for complex load testing environments (i.e. those that requires specific flows such as authentication procedures for instance), it was less useful to perform relatively simple load testing experiments. The solution that required pre-programmed scripts that represent a load test scenario is a bit too convoluted for experiments that changed a singular variable. We also noted that k6 used a lot of system resources whilst generating workloads, that could potentially influence the outcome of load-test experiments if the load generator and target service operate on the same machine.
+
+    \item \textbf{hey}
+    \label{wg-3}    
+    
+    \textit{hey} is another load testing tool for HTTP-based workloads. It is a modern tool that supported all the required functionalities and was a prime candidate to act as a component within the workload generator.
+    
+    \item \textbf{ghz}
+    \label{wg-4}
+    
+    \textit{ghz} is a benchmarking and load testing tool for gRPC based services. It matched all of our functional requirements and was considered for the implementation of the workload generator.
+    
+    \item \textbf{fortio}
+    \label{wg-5}
+    
+    \textit{fortio}, however, was the implementation we ultimately decided upon using. As this solution was designed to evaluate the performance of services under various environments and conditions. It was able to generate both HTTP and gRPC based workloads, which allowed us to use a single tool for both types of workloads. Additionally, it supported a wide variety of configuration options, that allows us to modify payloads. A decisive feature, however, was that it was able to operate as a server-side process. This meant that we could run this process in the cluster as depicted in the benchmark design \cref{fig:benchmark-design} and instruct it from a separate component, controlled by the user.
+\end{enumerate}
+
+
 
 \subsection{Target Service}
 \label{sec:system:target-service}
 
-Fortio HTTP echo service
-Fortio gRPC healthz service
+The workload generator generates requests to a target service, which has to process this request and reply afterwards. As previously mentioned, we want to minimize the impact the target service has on the end-to-end latencies as observed in the data path. To accomplish this we first developed simple services, that replied the content of the requests back to the requesting entity. 
+
+However, fortio comes bundled with a set of testing services that we could use for our use case. This meant that we could instrument our benchmarking prototype with fortio as the load generator, and as target services. It comes bundled with an HTTP echo service that acts similarly as described above. In addition to the HTTP echo service, it comes with a simple gRPC based service that implements a common health checking protocol\footnote{\url{https://github.com/grpc/grpc/blob/master/doc/health-checking.md}}. 
+
+
 
 \subsection{Monitoring System}
 \label{sec:system:monitoring-system}
 
-Prometheus + Grafana
+The workload driver allows us to capture and report metrics related to service requests. However, to measure the amount of system resources the components in our \gls{sut} use we have to implement a system that exports the related metrics in a fine granularity which can differentiate various container processes. In addition to that we need a system that can extract these metrics and aggregate them. Furthermore, the reported metrics should be stored as time-series data, so we can analyse the metrics at a given time in conjuncture with our experiments. Finally, the monitoring system should support extensive querying capabilities and the ability to export data in a common format \ref{system:fr-6}.
+
+For the implementation of our monitoring system we decided to use \textit{Prometheus}\footnote{\url{https://prometheus.io/}}. This tool satisfies all the requirements and is a common cloud-native tool that matches our use case. As a matter of fact, it is so common within the \gls{k8s} ecosystem that most of the \gls{sm} systems as identified, provide support for this tool (see \cref{sec:survey:results:comparison:observability}).
+
+To extract resource utilization metrics, we can make use of the \textit{cAdvisor}\footnote{\url{https://github.com/google/cadvisor}} daemon that is already embedded into a standard \gls{k8s} component (the \textit{Kubelet} process). cAdvisor collects, aggregates and processes resource utilization metrics and is aware of the isolation parameters of a container. By introducing Prometheus into our benchmark prototype, and configure it to scrape and collect the metrics exposed by cAdvisor, we can analyse experiment results and relate it to resource utilization data per pod and container.
+
+Additionally, we use \textit{Grafana}\footnote{\url{https://grafana.com/}} in our prototype. This is another common, open-source tool that acts as an observability platform. It natively supports Prometheus and can be used to analyse and explore the collected data. Although we do not use it for our data visualizations as presented in the experimental evaluation (\cref{chap:experimental-evaluation}), we did use it to quickly validate and explore results of experiments.
+
+
+% \subsection{Benchmark Interface}
+% \label{sec:system:benchmark-interface}
+
+% The prototype of the benchmark interface was constructed through several shell scripts and external programs. 
