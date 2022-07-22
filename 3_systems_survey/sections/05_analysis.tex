@@ -4,7 +4,7 @@
 
 In the previous section (\cref{sec:survey:results}), we conducted a data synthesis process on the data we obtained during the systems survey. This process resulted in domain-specific characteristics of identified service mesh systems. In this section, we continue with the data and analyse and discuss notable differences we discovered during the data synthesis process.
 
-The remainder of this section is structured as follows. In \cref{sec:survey:analysis:sm-framework}, we provide a qualitative comparison of the service mesh systems and present several key findings from the obtained data. Thereafter, in \cref{sec:survey:analysis:architectures}, we dive into the different architectures and how they can relate to the observed behaviour. Finally, in \cref{sec:survey:analysis:conclusion}, we provide an answer to \ref{rq-1} and conclude the systems survey.
+% The remainder of this section is structured as follows. In \cref{sec:survey:analysis:sm-framework}, we provide a qualitative comparison of the service mesh systems and present several key findings from the obtained data. Thereafter, in \cref{sec:survey:analysis:architectures}, we dive into the different architectures and how they can relate to the observed behaviour.
 
 
 \subsection{Qualitative Comparison of Service Mesh Systems}
@@ -155,7 +155,7 @@ Another identified \gls{sm} architecture makes use of the per-node proxy. This a
     \label{fig:sm-arch-per-node}
 \end{figure}
 
-The most significant difference compared to the per-service architectural style is that service proxy (\designref{P}) is now not embedded within the \gls{pod} but lives within the node, thus makes use of the host network namespace. The reason for this is that this architectural style tries to limit the additional overheads caused by the introduces proxies of a \gls{sm}. This style of service proxies results in a single proxy per node, and thus does not scale linearly with the number of services on a node. This leads to the advantage that it consumes less system resources in the form of CPU cycles and memory. An additional benefit of this approach is that the traffic in the data path now has to traverse the proxy once in a service-to-service request. This halves the amount of service proxy hops compared to the previous solution. 
+The most significant difference compared to the per-service architectural style is that service proxy (\designref{P}) is now not embedded within the \gls{pod} but lives within the node, thus makes use of the host network namespace. This is because this architectural style tries to limit the additional overheads caused by the introduces proxies of a \gls{sm}. This style of service proxies results in a single proxy per node, and thus does not scale linearly with the number of services on a node. This leads to the advantage that it consumes less system resources in the form of CPU cycles and memory. An additional benefit of this approach is that the traffic in the data path now has to traverse the proxy once in a service-to-service request. This halves the amount of service proxy hops compared to the previous solution. 
 
 However, this architectural pattern comes at a cost. Since the traffic is not passing through the service proxies from within the pod, traffic enters the host network in a potentially compromised state. To elaborate this, the per-service approach allowed the traffic between proxies to be automatically encrypted using a mutual TLS connection, a characteristic evaluated during the system's review (\ref{fr-2}). This is, however, not possible as the data path outside the \glspl{pod} is not fully controlled and therefore has to be implemented manually. A downside is that when this is ignored, service-to-service data flows unencrypted through the node and therefore breaches well established security best practices such as the notion of zero trust networks \cite{zero-trust-network}.
 
@@ -193,9 +193,3 @@ This architectural style has several advantages compared to the previously intro
 \end{figure}
 
 
-\subsection{Conclusion}
-\label{sec:survey:analysis:conclusion}
-
-To conclude the systems survey, we return to the initial research question (\ref{rq-1}), \textit{How do existing \gls{sm} implementations compare?}. The answer to this question is provided in various levels of detail throughout the systems survey. The most detailed and objective answer is provided  within the data synthesis and results section (\cref{sec:survey:results}) in which we identified domain-specific characteristics and features and compared the systems based on that. A summarized result is presented in the form of established functional and non-functional requirements (\cref{sec:survey:analysis}), in which we combine results from the data synthesis to provide a more generic, but more useful result. Finally, in \cref{sec:survey:analysis:architectures}, we take a deep-dive into the architectural differences of identified systems in which we answer the research question by exploring key characteristics in more detail.
-
-Throughout this systems survey, we observed that \gls{sm} systems can have different approaches and goals and that systems within this the area are constantly changing. With many of the systems adopting different strategies and bleeding-edge technologies, the area is exciting in many ways. 
