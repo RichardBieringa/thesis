@@ -15,21 +15,21 @@ ID &
 Name &
 Launched   & 
 Initiator &
-CNCF Project & 
-Open-Source & 
-Stars & 
+\makecell{CNCF \\ Project} & 
+OSS & 
+\makecell{GitHub \\ Stars} & 
 Version & 
 Licence & 
-Language \\
+Lang. \\
 \midrule
 
 
 \textbf{SM1} &
 AWS App Mesh  & 
 27/03/2019 &
-Amazazon  & 
-No & 
-No & 
+Amazon  & 
+\xmark & 
+\xmark & 
 - & 
 - & 
 - & 
@@ -40,78 +40,79 @@ No &
 Cilium  & 
 02/12/2021 & 
 Isovalent & 
-Incubating & 
-Yes & 
+\circleH & 
+\cmark & 
 11149 & 
 Beta & 
-Apache 2.0 & 
-Golang \\
+Apache & 
+Go \\
 
 
 \textbf{SM3} &
 Consul  & 
 26/06/2018 &
 Hashicorp &
-No &
-Yes &
+\xmark & 
+\cmark & 
 24423 &
 1.11.4 &
-Mozilla 2.0 &
-Golang \\
+Mozilla &
+Go \\
 
 
 \textbf{SM4}&
 Ease Mesh & 
 01/02/2021 &
 MegaEase &
-No &
-Yes &
+\xmark &
+\cmark & 
 396 &
 1.2.0 &
-Apache 2.0 &
-Golang \\
+Apache &
+Go \\
 
 \textbf{SM5} &
 Istio &
 19/11/2016 &
 Google &
-No &
-Yes &
+\xmark &
+\cmark & 
 29770 &
 1.13.2 &
-Apache 2.0 &
-Golang \\
+Apache &
+Go \\
 
 
 \textbf{SM6} &
 Kuma & 
 13/03/2019 &
 Kong &
-Sandbox &
-Yes &
+\circleE &
+\cmark & 
 2637 &
 1.5.0 &
-Apache 2.0 & Golang \\
+Apache &
+Go \\
 
 
 \textbf{SM7} &
 Linkerd2 & 
 05/12/2017 &
 Buoyant &
-Graduated &
-Yes &
+\circleF &
+\cmark & 
 8207 &
 1.7.5 &
-Apache 2.0 &
-Golang \\
+Apache &
+Go \\
 
 
 \textbf{SM8} &
 Nginx Service Mesh & 
 12/10/2020 &
 Nginx &
-No &
-No &
+\xmark &
+\xmark & 
 - &
 1.4.0 &
 - &
@@ -122,28 +123,36 @@ No &
 Open Service Mesh  & 
 13/12/2019 &
 Microsoft &
-Sandbox &
-Yes &
+\circleE &
+\cmark & 
 2343 &
 1.0 &
-Apache 2.0 &
-Golang \\
+Apache &
+Go \\
 
 
 \textbf{SM10} &
 Traefik Mesh &
 03/03/2019 &
 Traefik &
-No &
-Yes &
+\xmark &
+\cmark & 
 1622 &
 1.4.5 &
-Apache 2.0 & Golang \\
+Apache &
+Go \\
 
 
 \bottomrule
 \end{tabular}
 } %< \resizebox
-\caption[Comparing the non-functional attributes of service mesh systems]{Comparing the non-functional attributes of identified service mesh systems.}
+\caption[Comparing the non-functional attributes of service mesh systems]{Comparing the non-functional attributes of identified service mesh systems.
+
+Circles in the table indicate the level of maturity for \gls{cncf} projects: \\
+\circleE: Sandbox \\
+\circleH: Incubating \\
+\circleF: Graduated \\
+\cmark: Indicates that the attribute conforms. \\
+\xmark: Indicates that the attribute does not conform. }
 \label{tab:result-nfa}
 \end{table*}

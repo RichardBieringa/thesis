@@ -6,10 +6,21 @@ In this section, we discuss the identified related work in the field. The core w
 \subsection{System Survey}
 \label{sec:background:related-work:survey}
 
+Before conducting a system survey of the field of \gls{sm} systems, we identified earlier studies that aimed to synthesize the field. In previous works we have conducted we conducted a literature survey on the \gls{k8s} ecosystem. During this survey, we uncovered the field of \gls{sm} systems and identified the fact that little academic output was generated with a focus on this field. 
 
-\subsection{Benchmark}
-\label{sec:background:related-work:survey}
+During the system survey, we identified the works of Li et al. \cite{service-mesh-survey}, which have conducted a literature review \gls{sm} systems back in 2019. In this work, the authors evaluated four different \gls{sm} systems and provided a high-level, architectural overview. In their evaluation of \gls{sm} systems they compared the systems primarily based on non-functional attributes such as the availability of source code and the activity of the projects themselves. With a focus on system goals and high-level concepts this work established the only secondary study we have uncovered on this topic. 
 
+
+\subsection{Benchmark Tools}
+\label{sec:background:related-work:benchmark}
+
+Before we started the work in this thesis, we searched and evaluated existing tools in the field which could perform performance related experiments on \gls{sm} systems. During this, we identified two tools.
+
+The first tool that we have identified is created by  \textit{Kinvolk}\footnote{\url{https://kinvolk.io/}}. This benchmark tool\footnote{\url{https://github.com/kinvolk/service-mesh-benchmark}} consists of several shell scripts which conduct experiments to evaluate and compare two popular \gls{sm} systems in the form of \textit{istio} and \textit{linkerd}. The benchmark installs one of the previously mentioned \gls{sm} systems and performs load tests on a predetermined, sample application.
+
+The second tool that we have identified is \textit{Meshery}\footnote{\url{https://meshery.io/}}. Meshery is a \gls{sm} \textit{management plane}, which can install and manage various \gls{sm} systems. It is an extensive platform that allows users to interact with \gls{sm} systems on various supported platforms such as \gls{k8s} and Docker. Meshery supports many features and is currently under active development. First, it can manage the lifecycle of \gls{sm} systems, meaning that it can install, remove or update them. Secondly, it can install applications on a \gls{k8s} cluster, as well as adapt commonly used patterns. Furthermore, it can perform simple load tests and report results in an open standard\footnote{\url{https://smp-spec.io/}} which they are maintaining. Additionally, they can perform conformity tests to check if a  given \gls{sm} system adheres to certain \gls{k8s} specific standards\footnote{\url{https://smi-spec.io/}}.
 
 \subsection{Experimental Evaluation}
-\label{sec:background:related-work:survey}
+\label{sec:background:related-work:experimental-evaluation}
+
+The goal of this thesis is to address the lack of performance related studies to \gls{sm} systems. However, we did manage to identify related performance studies on these systems. We identified two performance oriented studies that used the benchmark tool by Kinvolk. The first study was from the authors of the tool themselves \cite{bench-istio-linkerd-2019}. The second study was performed by the creators of linkerd \cite{bench-istio-linkerd-2021}. Both of these studies compare istio and linkerd, two of the most popular \gls{sm} systems.

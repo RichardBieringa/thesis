@@ -156,7 +156,7 @@ For the node configurations in the cluster we used a single \textit{e2-standard-
 \input{5_experimental_evaluation/tables/cluster-configuration}
 
 \subsubsection{Metric Collection}
-\label{sec:experiments:design:environment:cluster}
+\label{sec:experiments:design:environment:metric-collection}
 
 We capture two types of metrics from the experiments. The first type of metric is related to the load generator (\ref{exp:metric:3}-\ref{exp:metric:4}). These metrics are collected by capturing the \gls{json} output that the load generator produces. The second type of metric is related to resource utilization (\ref{exp:metric:1}-\ref{exp:metric:2}). To analyse the resource overheads of data plane proxies we have to capture the resource overheads at a fine level of granularity, more specifically, at the level of a \gls{pod}.
 

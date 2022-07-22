@@ -103,6 +103,26 @@ We now present a list of the most interesting findings we obtained:
 In this section, we analyse the identified \gls{sm} architectures in more detail. For every identified architecture, we present a reference topology and discuss the advantages and disadvantages one such implementation has. First, in \cref{sec:survey:analysis:architectures:per-service}, we discuss the most common identified approach, a \gls{sm} using a per-service proxy. Next, in \cref{sec:survey:analysis:architectures:per-node}, we discuss architectures leveraging a per-node proxy. Finally, in \cref{sec:survey:analysis:architectures:ebpf}, we discuss architectures using a kernel-based \gls{ebpf} approach.
 
 
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=0.6\textwidth]{3_systems_survey/figures/sm-per-service-small.pdf}
+    \caption[Per-service proxy plane architecture.]{The data path of a per-service data plane.}
+    \label{fig:sm-arch-per-service}
+    
+    \vspace*{1cm}
+    
+    \includegraphics[width=0.6\textwidth]{3_systems_survey/figures/sm-per-node-small.pdf}
+    \caption[Per-node proxy plane architecture.]{The data path of a per-node data plane.}
+    \label{fig:sm-arch-per-node}
+    
+    \vspace*{1cm}
+   
+    \includegraphics[width=0.6\textwidth]{3_systems_survey/figures/sm-ebpf-small.pdf}  
+    \caption[\Gls{ebpf}-based data plane architecture.]{The data path of an \textit{\gls{ebpf}-based} data plane.}
+    \label{fig:sm-arch-ebpf}
+\end{figure}
+
+
 \subsubsection{Per-Service Proxy}
 \label{sec:survey:analysis:architectures:per-service}
 % - Simplest architecture
@@ -115,16 +135,16 @@ During the systems survey, we identified ten different \gls{sm} systems. Out of 
 
 In \cref{fig:sm-arch-per-service}, we present a reference architecture of this design pattern for service meshes in a \gls{k8s} cluster. This shows the data path of a packet throughout its lifespan in a system that implements this architecture. To explain the data path of a packet, we first introduce the individual components depicted, as most of them are present in the other architectures as well. 
 
-\begin{figure}[!t]
-    \centering
+% \begin{figure}[!t]
+%     \centering
     
-    \scalebox{.8}{
-    \includegraphics[width=\linewidth]{3_systems_survey/figures/sm-arch-per-service.pdf}
-    }
+%     \scalebox{.8}{
+%     \includegraphics[width=\linewidth]{3_systems_survey/figures/sm-arch-per-service.pdf}
+%     }
 
-    \caption[Per-service proxy plane architecture.]{The data path of a per-service data plane.}
-    \label{fig:sm-arch-per-service}
-\end{figure}
+%     \caption[Per-service proxy plane architecture.]{The data path of a per-service data plane.}
+%     \label{fig:sm-arch-per-service}
+% \end{figure}
 
 % Basic components introduction
 First off, we have the node (\designref{1}), this represents a worker machine in \gls{k8s}, which can run workloads. Next up, we have a \gls{pod} (\designref{1}), this is the smallest unit of deployment within \gls{k8s} and consists of one or more application containers. The last \gls{k8s} related concept is the Kubernetes Networking Model (\designref{3}) \cite{kubernetes-cluster-networking}, which can be implemented in various ways, but has as goal to connect the nodes and pods within the cluster. Within the \gls{pod}, lives the actual application (\designref{4}), which can for example be a web server. The \textit{Linux Network Stack} (\designref{5}) is abstracted in this design as one single component, but consists of routing and filtering tables used to manage packets within the system. An important note, is that both the node and the \gls{pod} implement a separate networking stack, which isolates the pod network from the host network through network namespaces \cite{man-network-namespaces}. The traffic flows to physical and virtual network interfaces (\designref{6}) connected through one another, to reach its destination. Note that in actual deployments, more complex models are often present, such as bridge networks to support multiple pod networks or tunnel interfaces to create overlay networks, for instance. However, for this example, the added complexity does not help to illustrate the architectural differences at hand.
@@ -144,16 +164,16 @@ One of the advantages of such an architecture is that you can have fine-grained 
 
 Another identified \gls{sm} architecture makes use of the per-node proxy. This architectural style is used by a single identified \gls{sm} system, \textit{Traefik Mesh}. We present this form of \gls{sm} architecture in \cref{fig:sm-arch-per-node}. Although many of the components in this system are similar and previously explained in \cref{sec:survey:analysis:architectures:per-service}, some differences change several characteristics drastically.
 
-\begin{figure}[!t]
-    \centering
+% \begin{figure}[!t]
+%     \centering
     
-    \scalebox{.8}{
-    \includegraphics[width=\linewidth]{3_systems_survey/figures/sm-arch-per-node.pdf}
-    }
+%     \scalebox{.8}{
+%     \includegraphics[width=\linewidth]{3_systems_survey/figures/sm-arch-per-node.pdf}
+%     }
     
-    \caption[Per-node proxy plane architecture.]{The data path of a per-node data plane.}
-    \label{fig:sm-arch-per-node}
-\end{figure}
+%     \caption[Per-node proxy plane architecture.]{The data path of a per-node data plane.}
+%     \label{fig:sm-arch-per-node}
+% \end{figure}
 
 The most significant difference compared to the per-service architectural style is that service proxy (\designref{P}) is now not embedded within the \gls{pod} but lives within the node, thus makes use of the host network namespace. This is because this architectural style tries to limit the additional overheads caused by the introduces proxies of a \gls{sm}. This style of service proxies results in a single proxy per node, and thus does not scale linearly with the number of services on a node. This leads to the advantage that it consumes less system resources in the form of CPU cycles and memory. An additional benefit of this approach is that the traffic in the data path now has to traverse the proxy once in a service-to-service request. This halves the amount of service proxy hops compared to the previous solution. 
 
@@ -181,15 +201,15 @@ To explain the shortened data path, we first briefly have to introduce the techn
 This architectural style has several advantages compared to the previously introduced per-service and per-node architectures. First, it has potential to decrease latency in its data path. It does this by not requiring additional hops in service-to-service communications. Additionally, it allows for greater programmability of the mesh network, as certain programs can be compiled and then run in a sandboxed environment. However, it also can have some disadvantages. First off, the technology and this implementation of it in particular is fairly new, even in a beta phase at the time of writing. This means that the \gls{sm} implementation could be unstable and not suitable for production usage. Furthermore, using user programs in kernel space could introduce potential security risks. 
 
 
-\begin{figure}[!t]
-    \centering
+% \begin{figure}[!t]
+%     \centering
     
-    \scalebox{.8}{
-    \includegraphics[width=\linewidth]{3_systems_survey/figures/sm-arch-ebpf.pdf}
-    }
+%     \scalebox{.8}{
+%     \includegraphics[width=\linewidth]{3_systems_survey/figures/sm-arch-ebpf.pdf}
+%     }
     
-    \caption[\Gls{ebpf}-based data plane architecture.]{The data path of an \gls{ebpf}-based data plane.}
-    \label{fig:sm-arch-ebpf}
-\end{figure}
+%     \caption[\Gls{ebpf}-based data plane architecture.]{The data path of an \gls{ebpf}-based data plane.}
+%     \label{fig:sm-arch-ebpf}
+% \end{figure}
 
 
