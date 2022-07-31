@@ -1,21 +1,37 @@
 \begin{table*}[t]
 \centering
 
-\begin{tabular}{l r}
+\begin{tabularx}{\linewidth}{llX}
 
     \toprule
-    Service Mesh       & Version \\
+    Service Mesh       & Version & Reason for inclusion \\
     \toprule
     
-    Cilium             & v1.12.0-rc1  \\
-    Istio              & 1.14 \\
-    Linkerd2           & 2.11.2  \\
-    Traefik Mesh       & 1.4.5   \\
+    Cilium &
+    v1.12.0-rc1 &
+    The singular identified \gls{sm} system that uses an in-kernel, \textit{eBPF}-based data plane architecture.
+    \\
+    
+    Istio &
+    1.14 &
+    Prevalence and market share.
+    \\
+    
+    Linkerd2 &
+    2.11.2 &
+    Prevalence and market share.
+    \\
+    
+    Traefik Mesh&
+    1.4.5 &
+    The singular identified \gls{sm} system that uses a per-node service proxy in its  data plane architecture.
+    \\
+    
     \bottomrule
     
-\end{tabular}
+\end{tabularx}
 
-\caption{The service mesh configurations as used throughout the experiments.}
+\caption[The \gls{sm} systems used in the experiments.]{The \gls{sm} systems used in the experiments and the reason of inclusion.}
 \label{tab:experiment:design:mesh}
 \end{table*}
 

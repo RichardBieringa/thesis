@@ -9,15 +9,16 @@
 
 % Prev chapter -> Design of the benchmark and implementation
 % This chapter -> Design of experiments, conducting of experiments and results
-In the previous chapter (\cref{chap:system-design}), we defined the \gls{sut} and the metrics that are important to evaluate the performance aspects of \gls{sm} systems. With this in mind, we designed and implemented a tool to benchmark the \gls{sut}. In this chapter, we present the experimental evaluation of \gls{sm} systems using the aforementioned benchmark. With this, we provide an answer to research question \ref{rq-3}. \textit{What are the differences between the different \gls{sm} systems in terms of overhead, throughput and latency?} 
+In the previous chapter (\cref{chap:system-design}), we defined the \gls{sut} and the metrics that are important to evaluate the performance aspects of \gls{sm} systems. This ultimately led to the design, and implementation of \textit{Mesh Bench}, a benchmarking system for \gls{sm} systems. In this chapter, we present the experimental evaluation of \gls{sm} systems using the aforementioned benchmarking tool. With this, we provide an answer to research question \ref{rq-3}. \textit{What are the differences between the different \gls{sm} systems in terms of overhead, throughput and latency?} 
 
 
 % Rest of the chapter is structured as follows
 % - Experimental Setup
 % - Experimental Results
 % - Analysis/Discussion
-The remainder of this chapter is structured as follows. First, in \cref{sec:experiments:design} we introduce the design of the experimental setup. After that, in \cref{sec:experiments:results} we present and explain how to interpret the obtained results. Finally, in \cref{sec:experiments:summary} we discuss the results and their implications.
+The remainder of this chapter is structured as follows. First, in \cref{sec:experiments:design} we introduce the design of the experimental setup. After this, in \cref{sec:experiments:microbenchmarks} we evaluate  and measure the impact of our experimental environment and functional components of our benchmark through several micro benchmarks. Subsequently, in \cref{sec:experiments:results} we present and explain how to interpret the obtained results. Finally, in \cref{sec:experiments:summary} we discuss the results and their implications.
 
 \input{5_experimental_evaluation/sections/01_design}
-\input{5_experimental_evaluation/sections/02_results}
-\input{5_experimental_evaluation/sections/03_summary}
+\input{5_experimental_evaluation/sections/02_microbench}
+\input{5_experimental_evaluation/sections/03_results}
+\input{5_experimental_evaluation/sections/04_summary}

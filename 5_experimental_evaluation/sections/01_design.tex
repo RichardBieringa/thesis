@@ -70,14 +70,14 @@ Below we present the list of metrics used throughout the experiments
     \item \textbf{CPU utilization}
     \label{exp:metric:1}
     
-    The first metric that we use during the experiments is related to resource utilization. This helps us to establish how much computational overhead the service proxies of a \gls{sm} introduce. All the CPU utilization results are expressed in fractions of a CPU core per second, e.g. the test system has 2 CPU cores and maximum utilization at a given time would be $2.0$. More specifically, we use the \Verb+container_cpu_usage_seconds_total+ as exposed through the \textit{Kubelet} process and obtain the results through \textit{Prometheus} using the query as seen in Listing \ref{lst:promql-cpu}.
+    The first metric that we use during the experiments is related to resource utilization. This helps us to establish how much computational overhead the service proxies of a \gls{sm} introduce. All the CPU utilization results are expressed in fractions of a CPU core per second, e.g. the test system has 2 CPU cores and maximum utilization at a given time would be $2.0$. More specifically, we use the \verb+container_cpu_usage_seconds_total+ as exposed through the \textit{Kubelet} process and obtain the results through \textit{Prometheus} using the query as seen in Listing \ref{lst:promql-cpu}.
     
     \begin{lstlisting}[caption=PromQL query for CPU metric, label=lst:promql-cpu] 
     sum(rate(
         container_cpu_usage_seconds_total{
             container!="",
             pod=~"(target-fortio|traefik-mesh-proxy|cilium).*"
-        }[2s]
+        }[1m]
     )) by (pod, container)
     \end{lstlisting}
 
@@ -85,7 +85,7 @@ Below we present the list of metrics used throughout the experiments
     \item \textbf{Memory utilization}
     \label{exp:metric:2}
     
-    The second metric that we use in the experiments is also related to the resource utilization. We capture the memory utilization of service proxies by measuring the amount of memory they consume during operation. More specifically, we use the \Verb+container_memory_working_set_bytes+ as exposed through the \textit{Kubelet} process and obtain the results through \textit{Prometheus} using the query as seen in Listing \ref{lst:promql-memory}.
+    The second metric that we use in the experiments is also related to the resource utilization. We capture the memory utilization of service proxies by measuring the amount of memory they consume during operation. More specifically, we use the \verb+container_memory_working_set_bytes+ as exposed through the \textit{Kubelet} process and obtain the results through \textit{Prometheus} using the query as seen in Listing \ref{lst:promql-memory}.
     
     
     \begin{lstlisting}[caption=PromQL query for CPU metric, label=lst:promql-memory] 
@@ -93,7 +93,7 @@ Below we present the list of metrics used throughout the experiments
         container_memory_working_set_bytes{
             container!="",
             pod=~"(target-fortio|traefik-mesh-proxy|cilium).*"
-        }[2s]
+        }[1m]
     )) by (pod, container)
     \end{lstlisting}
 
@@ -144,14 +144,14 @@ This synthetic workload is used to evaluate the performance implications of othe
 
 It is important for experiments to be repeatable and that the variance is a little as possible. This allows others to reproduce and verify the results obtained and therefore be of scientific relevance. 
 
-\subsubsection{Cluster Setup}
+\subsubsection{Cluster Configuration}
 \label{sec:experiments:design:environment:cluster}
 
 All the experiments were conducted on a \gls{k8s} cluster running on \gls{gcp}. The cluster was created through their managed \gls{k8s} service \gls{gke}. The decision to use their managed service to construct the cluster was based on their flexible, but vast array of network configuration options. In \cref{tab:experiment:design:cluster-config} we present the most important details of the cluster and node configurations used. Which we will now discuss in further detail.
 
 First, we conducted all the experiments in the \textit{europe-west4} region. More specifically, all the compute nodes are located in the \textit{europe-west4-a} data centre location which is located at Eemshaven in the Netherlands. We chose this location as it was closest to our own location. Secondly, we used the most recent version of \gls{k8s} available at the time of writing in the stable release channel. Thirdly, we made use of \textit{VPC-native-routing}\footnote{\url{https://cloud.google.com/kubernetes-engine/docs/concepts/alias-ips}} which implements the \gls{k8s} networking model\footnote{\url{https://kubernetes.io/docs/concepts/services-networking/\#the-kubernetes-network-model}}. Additionally, we disabled \textit{Dataplane V2} an upcoming networking solution based on \textit{cilium} that would conflict with the \gls{sm} systems that we evaluate.
 
-For the node configurations in the cluster we used a single \textit{e2-standard-2} node. This machine has 2 \textit{vCPUs} and 8 GB of memory\footnote{\url{https://cloud.google.com/compute/docs/cpu-platforms}}. We designed the experiments to be run on a single node cluster to abolish any variance in network latencies during the experiments. If for example, we chose to run the load generator on a single node and the target service on another node we introduce additional variance of network latencies.
+For the node configurations in the cluster we used a single \textit{e2-standard-2} node. This type of machine has 2 \textit{vCPUs} and 8 GB of memory\footnote{\url{https://cloud.google.com/compute/docs/cpu-platforms}} and is the default option. We designed the experiments to be run on a single node cluster to abolish any variance in network latencies during the experiments. If for example, we chose to run the load generator on a single node and the target service on another node we introduce additional variance of network latencies.
 
 \input{5_experimental_evaluation/tables/cluster-configuration}
 
