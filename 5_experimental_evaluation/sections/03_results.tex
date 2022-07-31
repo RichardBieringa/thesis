@@ -4,12 +4,6 @@
 In this section, we present the results obtained from the experiments as defined in \cref{sec:experiments:design:overview}. We first present the main findings in \cref{sec:experiments:main-findings}. After this, we present and explain how to interpret the results per experiment and discuss their findings in greater detail.
 
 
-\todo{Feedback: dodge mr bar chart, if possible}
-\todo{Feedback: line plot -> change to something}
-\todo{Feedback: line plot -> microbench bar chart -> line plot}
-\todo{Feedback: line plot -> cpu line}
-
-
 \subsection{Main Findings}
 \label{sec:experiments:main-findings}
 % Significant decrease in throughput
@@ -23,40 +17,97 @@ In this section, we present the results obtained from the experiments as defined
 
 We now present the main findings of the conducted experiments.
 
-\begin{enumerate}[label=\textbf{MF\arabic*}, leftmargin=3\parindent]
-    \item \textbf{There can be a significant drop in maximum throughput when using a service mesh}
-    \label{exp:mf1}
-    Every service mesh suffers from a decrease in maximum throughput. The observed decrease in throughput varies greatly, with a best-case scenario having a  $-16.8\%$ decrease while the worst performing configuration has a significant  $-97.38\%$ decrease in maximum throughput.
+% \begin{enumerate}[label=\textbf{MF\arabic*}, leftmargin=3\parindent]
+%     \item \textbf{There can be a significant drop in maximum throughput when using a service mesh}
+%     \label{exp:mf1}
+%     Every service mesh suffers from a decrease in maximum throughput. The observed decrease in throughput varies greatly, with a best-case scenario having a  $-16.8\%$ decrease while the worst performing configuration has a significant  $-97.38\%$ decrease in maximum throughput.
     
-    \item \textbf{There can be a significant increase in request latencies when using a service mesh}
-    \label{exp:mf2}
-    A service mesh introduces additional request latency by introducing a network proxy in front of the service. This additional overhead, however, can have a large impact on average and tail end request latencies as observed. With the best performing mesh increasing the average request latency with $20.27\%$ whereas the worst performing configuration saw a staggering $3720.95\%$ uplift.
+%     \item \textbf{There can be a significant increase in request latencies when using a service mesh}
+%     \label{exp:mf2}
+%     A service mesh introduces additional request latency by introducing a network proxy in front of the service. This additional overhead, however, can have a large impact on average and tail end request latencies as observed. With the best performing mesh increasing the average request latency with $20.27\%$ whereas the worst performing configuration saw a staggering $3720.95\%$ uplift.
     
-    \item \textbf{Traefik mesh experiences bottlenecks after it reaches a certain throughput threshold}
-    \label{exp:mf3}
-    We observed that \textit{Traefik} cannot perform above a certain throughput level, and will throttle requests, resulting in a bimodal distribution of request latencies and a significant loss of performance for those requests.
+%     \item \textbf{Traefik mesh experiences bottlenecks after it reaches a certain throughput threshold}
+%     \label{exp:mf3}
+%     We observed that \textit{Traefik} cannot perform above a certain throughput level, and will throttle requests, resulting in a bimodal distribution of request latencies and a significant loss of performance for those requests.
     
-    \item \textbf{Istio is the most demanding in terms of CPU utilization}
-    \label{exp:mf4}
-    We observe that \textit{Istio} consumes significantly more CPU resources compared to other configurations. We also observe that this is due to its data plane proxy which does not scale as well as the proxies in other configurations.
+%     \item \textbf{Istio is the most demanding in terms of CPU utilization}
+%     \label{exp:mf4}
+%     We observe that \textit{Istio} consumes significantly more CPU resources compared to other configurations. We also observe that this is due to its data plane proxy which does not scale as well as the proxies in other configurations.
     
-    \item \textbf{Application payloads have little to no effect on the observed performance}
-    \label{exp:mf5}
-    We observed that increasing the application payload, has little to no effect on the performance of meshed configurations.
+%     \item \textbf{Application payloads have little to no effect on the observed performance}
+%     \label{exp:mf5}
+%     We observed that increasing the application payload, has little to no effect on the performance of meshed configurations.
     
-    \item \textbf{Application level protocols have little to no effect on the observed performance}
-    \label{exp:mf6}
-    We observed that different layer 7 protocols, HTTP vs gRPC, had little to no impact on the decrease in throughput observed.
+%     \item \textbf{Application level protocols have little to no effect on the observed performance}
+%     \label{exp:mf6}
+%     We observed that different layer 7 protocols, HTTP vs gRPC, had little to no impact on the decrease in throughput observed.
     
-    \item \textbf{Traefik was unable to handle gRPC workloads}
-    \label{exp:mf7}
-    We observed that \textit{Traefik} was unable to handle and execute gRPC workloads in our experiments even though it listed explicit support for gRPC.
+%     \item \textbf{Traefik was unable to handle gRPC workloads}
+%     \label{exp:mf7}
+%     We observed that \textit{Traefik} was unable to handle and execute gRPC workloads in our experiments even though it listed explicit support for gRPC.
     
-    \item \textbf{Cilium was the best all-round performing configuration, with a significant margin}
-    \label{exp:mf8}
-    We observed that the configuration using \textit{Cilium} outperformed any other configuration using a \gls{sm} with significant margins in all the experiments that were conducted.
-\end{enumerate}
+%     \item \textbf{Cilium was the best all-round performing configuration, with a significant margin}
+%     \label{exp:mf8}
+%     We observed that the configuration using \textit{Cilium} outperformed any other configuration using a \gls{sm} with significant margins in all the experiments that were conducted.
+% \end{enumerate}
 
+\begin{enumerate}[label=\textbf{MF\arabic*}, leftmargin=3\parindent]
+    \item \textbf{Using a \gls{sm} can lead to a significant decrease in sustained throughput.} 
+    \label{exp:mf1}
+    
+    \textit{Observed in:} \ref{exp:design:1} -  \cref{sec:experiments:results:per-experiment:01}
+    
+    \item \textbf{There is a significant variance in the amount of sustained throughput that \gls{sm} systems can handle.}
+    \label{exp:mf2}
+    
+    \textit{Observed in:} \ref{exp:design:1} -  \cref{sec:experiments:results:per-experiment:01}
+
+    \item \textbf{The network latency overhead caused by the proxy of Cilium is minimal.} \textit{as observed in:} \ref{exp:design:1}
+    \label{exp:mf3}
+    
+    \textit{Observed in:} \ref{exp:design:1} -  \cref{sec:experiments:results:per-experiment:01}
+    
+    \item \textbf{The latencies observed from Istio under load have a large spread, and especially suffer in their tail end.}
+    \label{exp:mf4}
+    
+    \textit{Observed in:} \ref{exp:design:1} -  \cref{sec:experiments:results:per-experiment:01}
+    
+    \item \textbf{Traefik mesh performs an order of magnitude worse than any other evaluated service mesh in terms of request latencies when the system is under full load.}
+    \label{exp:mf5}
+    
+    \textit{Observed in:} \ref{exp:design:1} -  \cref{sec:experiments:results:per-experiment:01}
+    
+    \item \textbf{Traefik experiences bottlenecking behaviour under a load of approximately 500 requests per second resulting in a bimodal distribution of request latencies.}
+    \label{exp:mf6}
+    
+    \textit{Observed in:} \ref{exp:design:2} -  \cref{sec:experiments:results:per-experiment:02}
+    
+    \item \textbf{There can be a significant difference in the amount of CPU utilization for different \gls{sm} systems under similar levels of load.}
+    \label{exp:mf7}
+    
+    \textit{Observed in:} \ref{exp:design:2} -  \cref{sec:experiments:results:per-experiment:02}
+    
+    \item \textbf{The memory footprint of data plane proxies is negligible and does not significantly increase under higher levels of throughput.}
+    \label{exp:mf8}
+    
+    \textit{Observed in:} \ref{exp:design:2} -  \cref{sec:experiments:results:per-experiment:02}
+    
+    \item \textbf{The size of the application payload does not have a significant effect on the performance of data plane proxies and resource utilization levels.}
+    \label{exp:mf9}
+    
+    \textit{Observed in:} \ref{exp:design:3} -  \cref{sec:experiments:results:per-experiment:03}
+    
+    \item \textbf{The configuration using Traefik was unable to process any gRPC based requests.}
+    \label{exp:mf10}
+    
+    \textit{Observed in:} \ref{exp:design:4} -  \cref{sec:experiments:results:per-experiment:04}
+    
+    \item \textbf{Both gRPC and HTTP-based workloads experience similar reductions in terms of sustained throughput.}
+    \label{exp:mf11}
+    
+    \textit{Observed in:} \ref{exp:design:4} -  \cref{sec:experiments:results:per-experiment:04}
+ 
+\end{enumerate}
 
 % Results per experimetn
 \input{5_experimental_evaluation/sections/experiments/exp_01}

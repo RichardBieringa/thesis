@@ -27,7 +27,7 @@
 
 The first experiment evaluates the \gls{sm} systems when they are fully satiated, i.e. they are at full capacity and handling the maximum amount of load that they can process. This amount of load, or throughput, is expressed in the number of requests per second the system can process.
 
-\subsection{Maximum Sustained Throughput Analysis}
+\subsubsection{Maximum Sustained Throughput Analysis}
 \label{sec:experiments:results:per-experiment:01:throughput}
 
 In \cref{fig:exp:01:maximum-throughput} we present a bar chart which depicts the average throughput a \gls{sm} system was able to process throughout the duration of the experiment. On the y-axis we present the different \gls{sm} configurations, whereas the x-axis represents the throughput in requests per second. Next to each bar we present the actual observed value and the percentage of throughput a system was able to process compared to the  best performing configuration, which in this case is the baseline.
@@ -48,7 +48,7 @@ Another observation we can make from these results is the amount of variance the
     There is a significant variance in the amount of sustained throughput that \gls{sm} systems can handle.
 \end{shaded*}
 
-\subsection{Latency Analysis}
+\subsubsection{Latency Analysis}
 \label{sec:experiments:results:per-experiment:01:latency}
 
 In our previous analysis we looked at the amount of requests a configuration can handle. In this part of the analysis we take a look at the durations of the requests themselves. We measure the latency of each request. These latencies represent the time it takes for a request to complete. This is measured from the moment the workload generator sends a request until it successfully receives a response from the target service.
@@ -74,7 +74,7 @@ To fully understand the impact that the values and distributions in this analysi
       \label{fig:exp:01:boxplots-latency:linear}
     \end{subfigure}
 }
-\caption[Box plots of observed latencies under maximum load]{Box plots of observed latencies per service mesh configuration.}
+\caption[Latency distributions of \gls{sm} systems under maximum load]{Latency distributions of \gls{sm} systems under maximum load.}
 \label{fig:exp:01:boxplots-latency}
 \end{figure}
 
@@ -138,7 +138,7 @@ From the results depicted in \cref{fig:exp:01:histograms-latency}, we can observ
     Traefik mesh performs an order of magnitude worse than any other evaluated service mesh in terms of request latencies when the system is under full load.
 \end{shaded*}
 
-\subsection{Resource Utilization Analysis}
+\subsubsection{Resource Utilization Analysis}
 \label{sec:experiments:results:per-experiment:01:throughput}
 
 

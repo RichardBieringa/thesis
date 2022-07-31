@@ -1,0 +1,23 @@
+\section{Threats to Validity}
+\label{sec:experiments:threats}
+
+In this section, we present identified potential threats to validity that we encountered during the experimental evaluation.
+
+\begin{enumerate}
+    \item \textbf{Lack of representative, real-world infrastructure}
+    
+    The first threat to validity is the lack of a real-world environment to evaluate our experiments in. In \cref{sec:experiments:design:environment} we presented our experimental environment and discussed the reasons for choosing a single node cluster. We later performed a micro benchmark to validate that the single node cluster was not a cause for any bottlenecks in our experimental set-up (\cref{sec:experiments:microbenchmarks:node-count}). However, this type of environment does not emulate a real-world environment as it does not reflect the environments of the target audience that uses \gls{k8s} and \gls{sm} systems. Such environments would include multi-node high-availability clusters and even multi-cluster environments.
+    
+
+    \item \textbf{Absence of real-world experiments}
+    
+    Another potential threat to validity is based on the lack of real-world experiments. In our implementation of \textit{Mesh Bench} we use two simplistic, synthetic target services (\cref{sec:system:target-service}). These target services accept workloads based on the two most common service-to-service communication protocols, HTTP and gRPC. However, the target services perform trivial, synthetic computations on incoming requests. Furthermore, they are isolated and do not constitute a full-sized service-oriented architecture in which they rely on, or utilize other services. Even though the synthetic experiments and workloads aim to minimize the variance in observed results, they do not emulate a real-world experiment such as a real-world application built using a microservices architecture.
+    
+    \item \textbf{Absence of Resource Utilization Results for Cilium}
+    
+    During the implementation of \textit{Mesh Bench}, we made several design decisions to capture the resource utilization at the granularity of \gls{k8s} related resources (\cref{sec:system:monitoring-system}). The implementation details seemed to fit our design and related objectives, and during early evaluations we validated the design. However, during the experimental analysis, we uncovered that the containers related to Cilium were reporting abnormally low resource utilization values. Upon further inspection, we found out that the reported values only captured the configuration of the related data plane proxies, and not the actual processing of data. Since it relies on in-kernel proxying programs powered by \gls{ebpf}, we were unable to capture it with our metric collection, and monitoring system.
+    
+    \item \textbf{Accuracy of reported tail latencies}
+    
+    Another potential threat to validity comes from the reported values of the workload generator. In the implementation of \textit{Mesh Bench}, we utilized fortio as workload generator as discussed in \cref{sec:system:workload-generator}. The workload generator is responsible for generating workloads and reporting on the observed latencies, status codes and errors that it observed for the underlying requests. The workload driver, however, aggregates the results during execution of an experiment. This prevents it from having to report detailed metrics of millions of requests per experiment. To properly aggregate the data, it aggregates the request metrics in predefined bins. These bins are based on the expected latency per request, which in our experimental environment was relatively stable, especially in constant throughput experiments. However, this aggregated approach comes at the cost of accuracy, especially at the outliers in which the actual latencies are further from the expected latency. To prevent this problem from impacting our analysis we performed experiments with a duration long enough to gather significant data and validated the results of the tail-end latencies with other attempts of the same 15-minute duration experiment.
+\end{enumerate}

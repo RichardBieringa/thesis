@@ -4,7 +4,7 @@
 Before conducting our designed experiments, we evaluate our experimental setup through several micro benchmarks. The goal of these benchmarks is to measure the impact of our functional benchmark components and experimental environment.
 
 
-\section{Measuring the impact of a multi-node setup}
+\subsection{Measuring the impact of a multi-node setup}
 \label{sec:experiments:microbenchmarks:node-count}
 
 The first micro benchmark that we have conducted compares two experimental environments. In \cref{sec:experiments:design:environment}, we introduced our experimental environment and discussed the cluster configuration that we have use for our experimental evaluation. We discussed that we designed the experiments to be run on a single node cluster to abolish any variance in network latencies. However, this also implies that the benchmark system is running on the same node and this can have an effect on the results of the experiments.
@@ -25,7 +25,7 @@ To evaluate the impact of such a cluster configuration we constructed a micro be
 The results of the micro benchmark can be seen in \cref{fig:microbench:node-count}. The environment using a single node reached an average throughput of 22851 requests per second over the duration of the 15-minute experiment. The environment using two nodes, however, only managed to reach 20520 requests per second. Although the benchmarking system in the two node environment has more system resources to work with, it was unable to reach the throughput levels of the single node environment. Therefore, we can conclude that the experimental environment using one node does not cause any system resource related bottlenecks and that our proposed design using one node is a valid approach for our experiments.
 
 
-\section{Measuring the impact of the impact of our target service}
+\subsection{Measuring the impact of the impact of our target service}
 \label{sec:experiments:microbenchmarks:target-svc}
 
 The second micro benchmark that we conduct tries to establish if the target services can be the cause of a bottleneck during our experimental evaluation. As discussed in our analysis of the \gls{sut} (see \cref{sec:system:sut}), we measure the data path towards our service to evaluate the overheads of a \gls{sm} system and its proxy architecture. However, to evaluate this, we need to emulate a software service that acts as a purely functional component in our benchmark. In our prototype implementation of \textit{Mesh Bench}, we use a simple HTTP and gRPC service (see \cref{sec:system:implementation}). 
