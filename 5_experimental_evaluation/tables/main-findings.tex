@@ -1,0 +1,79 @@
+% Please add the following required packages to your document preamble:
+% \usepackage{booktabs}
+\begin{table}[]
+\begin{tabularx}{\linewidth}{@{}lXll@{}}
+\toprule
+\multicolumn{4}{c}{\textbf{Main Findings}} \\
+\midrule
+
+MF1 \label{mf-1} &
+Using a \gls{sm} can lead to a significant decrease in sustained throughput. &
+\ref{exp:design:1} &
+\cref{sec:experiments:results:per-experiment:01} \\
+\midrule
+  
+MF2 &
+There is a significant variance in the amount of sustained throughput that \gls{sm} systems can handle. &
+\ref{exp:design:1} &
+\cref{sec:experiments:results:per-experiment:01} \\
+\midrule 
+  
+MF3 &
+The network latency overhead caused by the proxy of Cilium is minimal. &
+\ref{exp:design:1} &
+\cref{sec:experiments:results:per-experiment:01} \\
+\midrule  
+  
+MF4 &
+The latencies observed from Istio under load have a large spread, and especially suffer in their tail end. &
+\ref{exp:design:1} &
+\cref{sec:experiments:results:per-experiment:01} \\
+\midrule    
+  
+MF5 &
+Traefik mesh performs an order of magnitude worse than any other evaluated service mesh in terms of request latencies when the system is under full load. &
+\ref{exp:design:1} &
+\cref{sec:experiments:results:per-experiment:01} \\
+\midrule  
+  
+MF6 &
+Traefik experiences bottlenecking behaviour under a load of approximately 500 requests per second resulting in a bimodal distribution of request latencies. &
+\ref{exp:design:2} &
+\cref{sec:experiments:results:per-experiment:02} \\
+\midrule  
+  
+MF7 &
+There can be a significant difference in the amount of CPU utilization for different \gls{sm} systems under similar levels of load. &
+\ref{exp:design:2} &
+\cref{sec:experiments:results:per-experiment:02} \\
+\midrule  
+  
+MF8 &
+The memory footprint of data plane proxies is negligible and does not significantly increase under higher levels of throughput. &
+\ref{exp:design:2} &
+\cref{sec:experiments:results:per-experiment:02} \\
+\midrule  
+  
+MF9 &
+The size of the application payload does not have a significant effect on the performance of data plane proxies and resource utilization levels. &
+\ref{exp:design:3} &
+\cref{sec:experiments:results:per-experiment:03} \\
+\midrule  
+  
+MF10 &
+The configuration using Traefik was unable to process any gRPC based requests. &
+\ref{exp:design:4} &
+\cref{sec:experiments:results:per-experiment:04} \\
+\midrule  
+  
+MF11 &
+Both gRPC and HTTP-based workloads experience similar reductions in terms of sustained throughput. &
+\ref{exp:design:4} &
+\cref{sec:experiments:results:per-experiment:04} \\ 
+  
+\bottomrule
+\end{tabularx}
+
+\caption[Main findings of the experimental evaluation]{Main findings of the experimental evaluation.}
+\label{tab:experiment:main-fidings}
+\end{table}

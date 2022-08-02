@@ -25,12 +25,12 @@
 
 
 
-The first experiment evaluates the \gls{sm} systems when they are fully satiated, i.e. they are at full capacity and handling the maximum amount of load that they can process. This amount of load, or throughput, is expressed in the number of requests per second the system can process.
+The first experiment evaluates the \gls{sm} systems when they are fully satiated, i.e. they are at full capacity and handling the maximum amount of load that they can process. This amount of load, or throughput, is measured by the number of requests per second the system can process.
 
 \subsubsection{Maximum Sustained Throughput Analysis}
 \label{sec:experiments:results:per-experiment:01:throughput}
 
-In \cref{fig:exp:01:maximum-throughput} we present a bar chart which depicts the average throughput a \gls{sm} system was able to process throughout the duration of the experiment. On the y-axis we present the different \gls{sm} configurations, whereas the x-axis represents the throughput in requests per second. Next to each bar we present the actual observed value and the percentage of throughput a system was able to process compared to the  best performing configuration, which in this case is the baseline.
+In \cref{fig:exp:01:maximum-throughput} we present a bar chart which depicts the average, sustained throughput that a \gls{sm} system was able to process throughout the duration of the experiment. On the y-axis we present the different \gls{sm} configurations, whereas the x-axis represents the throughput in requests per second. Next to each bar we present the actual observed value and the percentage of throughput a system was able to process compared to the  best performing configuration, which in this case is the baseline.
 
 From these results, we can derive that all the \gls{sm} systems experience a loss of throughput compared to the baseline configuration. We can relate this observation to the fact that the \gls{sm} systems introduce additional components in the form of proxies in the critical data path of requests. Every request has to be processed by these proxies, which in turn leads to the decrease in maximum sustained throughput. However, even through the decrease in throughput is expected, the amount of this decrease is rather significant. Cilium is the best performing \gls{sm} configuration in this experiment in terms of throughput. However, it still experienced a massive $16.83\%$ reduction compared to the baseline configuration. This observation leads to our first main finding: 
 
@@ -81,11 +81,7 @@ To fully understand the impact that the values and distributions in this analysi
 
 In \cref{fig:exp:01:boxplots-latency} we present a pair of box and whiskers plots that depict the locality, spread and skewness of latencies per \gls{sm} configuration. The lines at the borders of the box represent the 25th and 75h percentiles of data. The line in the middle of the box depicts the median observed value and the whiskers of the box represent the minimum and maximum values. It is important to note that the outliers are omitted from these figures, as we cover these in greater detail later on. The plots depicted in the figure share the meaning of their axes, where the y-axis represents the \gls{sm} configuration and the x-axis represent the observed latencies in milliseconds. The first plot (\cref{fig:exp:01:boxplots-latency:log}), shows all the \gls{sm} configurations and displays the box plots on a logarithmic scale. The second plot (\cref{fig:exp:01:boxplots-latency:linear}), displays the data on a linear scale but excludes Traefik.
 
-In \cref{fig:exp:01:boxplots-latency:log} we present the observed latencies on a logarithmic scale. We do this because it shows that the observed latencies for Traefik surpass the other configurations by an order of magnitude. This leads us to a third main finding:
-
-
-
-In \cref{fig:exp:01:boxplots-latency:linear} we compare the \gls{sm} configurations on a linear scale and exclude Traefik. From these results, we can observe that the distribution of observed latencies for Cilium is very similar to that of the baseline configuration. This indicates that the network overhead caused by the in-kernel proxy of Cilium is kept to a minimum which leads us to the third main finding:
+In \cref{fig:exp:01:boxplots-latency:log} we present the observed latencies on a logarithmic scale. We do this because it shows that the observed latencies for Traefik surpass the other configurations by an order of magnitude. In \cref{fig:exp:01:boxplots-latency:linear} we compare the \gls{sm} configurations on a linear scale and exclude Traefik. From these results, we can observe that the distribution of observed latencies for Cilium is very similar to that of the baseline configuration. This indicates that the network overhead caused by the in-kernel proxy of Cilium is kept to a minimum which leads us to the third main finding:
 
 \begin{shaded*}
     \noindent
