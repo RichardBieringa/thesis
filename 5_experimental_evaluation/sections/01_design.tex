@@ -4,7 +4,7 @@
 % The goal of the experimental evaluation
 
 
-The goal of the experimental evaluation is to gain insights into the performance characteristics of \gls{sm} systems. We do this by designing and conducting experiments to extract and gauge relevant metrics for these systems. This section builds upon the knowledge gained in previous chapters and details all the relevant aspects of the experiments.
+The goal of the experimental evaluation is to gain insights into the performance characteristics of \gls{sm} systems. We do this by designing and conducting experiments to extract and gauge relevant metrics for these systems; and by analysing these results in detail at the end of each experiment. This section builds upon the knowledge gained in previous chapters and details all the relevant aspects of the experiments.
 
 
 
@@ -71,7 +71,7 @@ Below we present the list of metrics used throughout the experiments
     
     \begin{minipage}{\linewidth}
         \begin{lstlisting}[
-            caption={PromQL query for CPU metric},
+            caption={PromQL query for CPU metric.},
             label={lst:promql-cpu},
             language=SQL,
             morekeywords={sum, rate, by },
@@ -93,7 +93,7 @@ Below we present the list of metrics used throughout the experiments
     
     \begin{minipage}{\linewidth}
         \begin{lstlisting} [
-            caption={PromQL query for CPU metric},
+            caption={PromQL query for CPU metric.},
             label={lst:promql-memory},
             language=SQL,
             morekeywords={sum, rate, by },
@@ -185,7 +185,7 @@ In \cref{tab:experiment:design:exp-variables} we present the variables that we c
 \subsection{Experiments}
 \label{sec:experiments:design:overview}
 
-We now introduce the four experiments that were designed and used to evaluate the performance characteristics of \gls{sm} systems. For each of the experiments we introduce their primary goal, discuss how they are executed and reason why we chose this particular design. Additionally, \cref{tab:experiment:design:overview} presents an overview of all the experiments, what type of workloads they use, which  metrics they capture and which factors  are used to control the experiment.
+We now introduce the four experiments that were designed and used to evaluate the performance characteristics of \gls{sm} systems. For each of the experiments we introduce their primary goal, discuss how they are executed and reason why we chose this particular design. Additionally, \cref{tab:experiment:design:overview} presents an overview of all the experiments, what type of workload they use, which  metrics they capture and which factors  are used to control the experiment.
 
 \input{5_experimental_evaluation/tables/exp-overview}
 

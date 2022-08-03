@@ -7,10 +7,10 @@ In the final experiment we utilize a different type of application workload. In 
 
 
 
-\begin{figure}
+\begin{figure}[ht]
 \centering
 \makebox[\linewidth][c]{
-    \begin{minipage}{.6\textwidth}
+    \begin{minipage}{.65\textwidth}
       \centering
       \includegraphics[width=\linewidth]{5_experimental_evaluation/figures/exp-04-max-throughput.pdf}
       \caption[Average throughput of \gls{sm} systems under maximum load using the gRPC protocol]{Average throughput of \gls{sm} systems under maximum load using the gRPC protocol.\\}
@@ -18,7 +18,7 @@ In the final experiment we utilize a different type of application workload. In 
     \end{minipage}
     
     
-    \begin{minipage}{.6\textwidth}
+    \begin{minipage}{.65\textwidth}
       \centering
       \includegraphics[width=\linewidth]{5_experimental_evaluation/figures/exp-04-latency-compared.pdf} 
       \caption[Comparing the latency distributions of \gls{sm} systems under maximum load for both HTTP and gRPC workloads]{Comparing the latency distributions of \gls{sm} systems under maximum load for both HTTP and gRPC workloads.}
@@ -38,7 +38,7 @@ The very first thing to notice in \cref{fig:exp:04:maximum-throughput} is the ab
 
 \begin{shaded*}
     \noindent
-    \ref{exp:mf10}:
+    \textbf{MF10}:
     The configuration using Traefik was unable to process any gRPC based requests.
 \end{shaded*}
 
@@ -54,21 +54,21 @@ When we compare these results to the results from the first experiment we can ob
 
 \begin{shaded*}
     \noindent
-    \ref{exp:mf11}:
+    \textbf{MF11}:
     Both gRPC and HTTP-based workloads experience similar reductions in terms of sustained throughput.
 \end{shaded*}
 
 \subsubsection{Latency Analysis}
-\label{sec:experiments:results:per-experiment:01:latency}
+\label{sec:experiments:results:per-experiment:04:latency}
 
 
 In \cref{fig:exp:04:latencies-compared} we present the latency distributions of the evaluated configurations under maximum load for both the gRPC and HTTP-based workload experiments. On the y-axis we present the evaluated configurations, excluding Traefik. On the x-axis we present the latency in milliseconds. The colours of the bar indicate the type of workload used. The blue bars (gRPC) present the data from the fourth experiment, whereas the orange bars (HTTP) present the observed latency values from the first experiment.
 
 
-\begin{figure}[!t]
+\begin{figure}[ht]
 \centering
 \makebox[\linewidth][c]{
-    \includegraphics[width=1.2\linewidth]{5_experimental_evaluation/figures/exp-04-tail-latencies-all-compared.pdf} 
+    \includegraphics[width=1.3\linewidth]{5_experimental_evaluation/figures/exp-04-tail-latencies-all-compared.pdf} 
 }
 
    \caption[Tail end latencies of \gls{sm} systems experiencing maximum load per application protocol]{Tail end latencies of \gls{sm} systems experiencing maximum load per application protocol.}

@@ -1,21 +1,30 @@
 \section{Experiment Results}
 \label{sec:experiments:results}
 
-In this section, we present the results obtained from the experiments as defined in \cref{sec:experiments:design:overview}. We first present the main findings in \cref{sec:experiments:main-findings}. After this, we present and explain how to interpret the results per experiment and discuss their findings in greater detail.
+\input{5_experimental_evaluation/tables/main-findings}
 
 
-\subsection{Main Findings}
-\label{sec:experiments:main-findings}
-% Significant decrease in throughput
-% Additional avg latency, esp tail ends. p99+
-% Traefik experiences bottlenecks, bimodal distribution
-% Istio consumes most CPU resources
-% Applications Payloads seem to have little effect on performance
-% Application protocol seems to have little impact, although linkerd performs a bit worse on gRPC throughput
-% Traefik failed to handle gRPC worklaods
-% Cilium best allround performer
+In this section, we present the results obtained from the experiments as defined in \cref{sec:experiments:design:overview}. In \cref{tab:experiment:main-fidings} we present an overview of the main findings and their associated experiments. The remainder of this section presents the results of each experiment in detail and provide an extensive analysis on them.
 
-We now present the main findings of the conducted experiments.
+
+% We first present the main findings in \cref{sec:experiments:main-findings}. After this, we present and explain how to interpret the results per experiment and discuss their findings in greater detail.
+
+
+% \subsection{Main Findings}
+% \label{sec:experiments:main-findings}
+% % Significant decrease in throughput
+% % Additional avg latency, esp tail ends. p99+
+% % Traefik experiences bottlenecks, bimodal distribution
+% % Istio consumes most CPU resources
+% % Applications Payloads seem to have little effect on performance
+% % Application protocol seems to have little impact, although linkerd performs a bit worse on gRPC throughput
+% % Traefik failed to handle gRPC worklaods
+% % Cilium best allround performer
+
+% We now present the main findings of the conducted experiments as seen in \cref{tab:experiment:main-fidings}.
+
+
+
 
 % \begin{enumerate}[label=\textbf{MF\arabic*}, leftmargin=3\parindent]
 %     \item \textbf{There can be a significant drop in maximum throughput when using a service mesh}
@@ -52,65 +61,65 @@ We now present the main findings of the conducted experiments.
 % \end{enumerate}
 
 
-\todo{Table? See Appendix, but fix forward/backward ref in table}
+% \todo{Table? See Appendix, but fix forward/backward ref in table}
 
-\begin{enumerate}[label=\textbf{MF\arabic*}, leftmargin=3\parindent]
-    \item \textbf{Using a \gls{sm} can lead to a significant decrease in sustained throughput.} 
-    \label{exp:mf1}
+% \begin{enumerate}[label=\textbf{MF\arabic*}, leftmargin=3\parindent]
+%     \item \textbf{Using a \gls{sm} can lead to a significant decrease in sustained throughput.} 
+%     \label{exp:mf1}
     
-    \textit{Observed in:} \ref{exp:design:1} -  \cref{sec:experiments:results:per-experiment:01}
+%     \textit{Observed in:} \ref{exp:design:1} -  \cref{sec:experiments:results:per-experiment:01}
     
-    \item \textbf{There is a significant variance in the amount of sustained throughput that \gls{sm} systems can handle.}
-    \label{exp:mf2}
+%     \item \textbf{There is a significant variance in the amount of sustained throughput that \gls{sm} systems can handle.}
+%     \label{exp:mf2}
     
-    \textit{Observed in:} \ref{exp:design:1} -  \cref{sec:experiments:results:per-experiment:01}
+%     \textit{Observed in:} \ref{exp:design:1} -  \cref{sec:experiments:results:per-experiment:01}
 
-    \item \textbf{The network latency overhead caused by the proxy of Cilium is minimal.} \textit{as observed in:} \ref{exp:design:1}
-    \label{exp:mf3}
+%     \item \textbf{The network latency overhead caused by the proxy of Cilium is minimal.} \textit{as observed in:} \ref{exp:design:1}
+%     \label{exp:mf3}
     
-    \textit{Observed in:} \ref{exp:design:1} -  \cref{sec:experiments:results:per-experiment:01}
+%     \textit{Observed in:} \ref{exp:design:1} -  \cref{sec:experiments:results:per-experiment:01}
     
-    \item \textbf{The latencies observed from Istio under load have a large spread, and especially suffer in their tail end.}
-    \label{exp:mf4}
+%     \item \textbf{The latencies observed from Istio under load have a large spread, and especially suffer in their tail end.}
+%     \label{exp:mf4}
     
-    \textit{Observed in:} \ref{exp:design:1} -  \cref{sec:experiments:results:per-experiment:01}
+%     \textit{Observed in:} \ref{exp:design:1} -  \cref{sec:experiments:results:per-experiment:01}
     
-    \item \textbf{Traefik mesh performs an order of magnitude worse than any other evaluated service mesh in terms of request latencies when the system is under full load.}
-    \label{exp:mf5}
+%     \item \textbf{Traefik mesh performs an order of magnitude worse than any other evaluated service mesh in terms of request latencies when the system is under full load.}
+%     \label{exp:mf5}
     
-    \textit{Observed in:} \ref{exp:design:1} -  \cref{sec:experiments:results:per-experiment:01}
+%     \textit{Observed in:} \ref{exp:design:1} -  \cref{sec:experiments:results:per-experiment:01}
     
-    \item \textbf{Traefik experiences bottlenecking behaviour under a load of approximately 500 requests per second resulting in a bimodal distribution of request latencies.}
-    \label{exp:mf6}
+%     \item \textbf{Traefik experiences bottlenecking behaviour under a load of approximately 500 requests per second resulting in a bimodal distribution of request latencies.}
+%     \label{exp:mf6}
     
-    \textit{Observed in:} \ref{exp:design:2} -  \cref{sec:experiments:results:per-experiment:02}
+%     \textit{Observed in:} \ref{exp:design:2} -  \cref{sec:experiments:results:per-experiment:02}
     
-    \item \textbf{There can be a significant difference in the amount of CPU utilization for different \gls{sm} systems under similar levels of load.}
-    \label{exp:mf7}
+%     \item \textbf{There can be a significant difference in the amount of CPU utilization for different \gls{sm} systems under similar levels of load.}
+%     \label{exp:mf7}
     
-    \textit{Observed in:} \ref{exp:design:2} -  \cref{sec:experiments:results:per-experiment:02}
+%     \textit{Observed in:} \ref{exp:design:2} -  \cref{sec:experiments:results:per-experiment:02}
     
-    \item \textbf{The memory footprint of data plane proxies is negligible and does not significantly increase under higher levels of throughput.}
-    \label{exp:mf8}
+%     \item \textbf{The memory footprint of data plane proxies is negligible and does not significantly increase under higher levels of throughput.}
+%     \label{exp:mf8}
     
-    \textit{Observed in:} \ref{exp:design:2} -  \cref{sec:experiments:results:per-experiment:02}
+%     \textit{Observed in:} \ref{exp:design:2} -  \cref{sec:experiments:results:per-experiment:02}
     
-    \item \textbf{The size of the application payload does not have a significant effect on the performance of data plane proxies and resource utilization levels.}
-    \label{exp:mf9}
+%     \item \textbf{The size of the application payload does not have a significant effect on the performance of data plane proxies and resource utilization levels.}
+%     \label{exp:mf9}
     
-    \textit{Observed in:} \ref{exp:design:3} -  \cref{sec:experiments:results:per-experiment:03}
+%     \textit{Observed in:} \ref{exp:design:3} -  \cref{sec:experiments:results:per-experiment:03}
     
-    \item \textbf{The configuration using Traefik was unable to process any gRPC based requests.}
-    \label{exp:mf10}
+%     \item \textbf{The configuration using Traefik was unable to process any gRPC based requests.}
+%     \label{exp:mf10}
     
-    \textit{Observed in:} \ref{exp:design:4} -  \cref{sec:experiments:results:per-experiment:04}
+%     \textit{Observed in:} \ref{exp:design:4} -  \cref{sec:experiments:results:per-experiment:04}
     
-    \item \textbf{Both gRPC and HTTP-based workloads experience similar reductions in terms of sustained throughput.}
-    \label{exp:mf11}
+%     \item \textbf{Both gRPC and HTTP-based workloads experience similar reductions in terms of sustained throughput.}
+%     \label{exp:mf11}
     
-    \textit{Observed in:} \ref{exp:design:4} -  \cref{sec:experiments:results:per-experiment:04}
+%     \textit{Observed in:} \ref{exp:design:4} -  \cref{sec:experiments:results:per-experiment:04}
  
-\end{enumerate}
+% \end{enumerate}
 
 % Results per experimetn
 \input{5_experimental_evaluation/sections/experiments/exp_01}

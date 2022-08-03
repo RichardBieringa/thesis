@@ -7,7 +7,7 @@ In the previous experiment (\cref{sec:experiments:results:per-experiment:01}), w
 \subsubsection{Latency Analysis}
 \label{sec:experiments:results:per-experiment:02:latency}
 
-\begin{figure}[!t]
+\begin{figure}[ht]
     \centering
     
     \includegraphics[width=1\linewidth]{5_experimental_evaluation/figures/exp-02-latency-log.pdf}
@@ -46,7 +46,7 @@ Through the violin plots as depicted in \cref{fig:exp:02:traefik-bottleneck}, we
 
 \begin{shaded*}
     \noindent
-    \ref{exp:mf6}: 
+    \textbf{MF6}: 
     Traefik experiences bottlenecking behaviour under a load of approximately 500 requests per second resulting in a bimodal distribution of request latencies.
 \end{shaded*}
 
@@ -54,7 +54,7 @@ Through the violin plots as depicted in \cref{fig:exp:02:traefik-bottleneck}, we
 \subsubsection{Resource Utilization Analysis}
 \label{sec:experiments:results:per-experiment:02:resource}
 
-\begin{figure}
+\begin{figure}[ht]
 \centering
 \makebox[\linewidth][c]{
     \begin{subfigure}{.6\textwidth}
@@ -86,7 +86,7 @@ More importantly, however, we can observe how the systems scale when the load on
 
 \begin{shaded*}
     \noindent
-    \ref{exp:mf7}: 
+    \textbf{MF7}: 
     There can be a significant difference in the amount of CPU utilization for different \gls{sm} systems under similar levels of load.
 \end{shaded*}
 
@@ -94,6 +94,6 @@ The second plot (\cref{fig:exp:02:resource:mem}), shows the CPU utilization thro
 
 \begin{shaded*}
     \noindent
-    \ref{exp:mf8}: 
+    \textbf{MF8}: 
     The memory footprint of data plane proxies is negligible and does not significantly increase under higher levels of throughput.
 \end{shaded*}
