@@ -1,5 +1,5 @@
 
-\subsection{\ref{exp:design:4} - gRPC Maximum Throughput}
+\subsection{\textbf{EXP 4} - gRPC Maximum Throughput}
 \label{sec:experiments:results:per-experiment:04}
 % Goal: To evaluate how meshed configurations behave with alternative communication protocols.
 
@@ -7,7 +7,7 @@ In the final experiment we utilize a different type of application workload. In 
 
 
 
-\begin{figure}[ht]
+\begin{figure}[t]
 \centering
 \makebox[\linewidth][c]{
     \begin{minipage}{.65\textwidth}
@@ -65,13 +65,14 @@ When we compare these results to the results from the first experiment we can ob
 In \cref{fig:exp:04:latencies-compared} we present the latency distributions of the evaluated configurations under maximum load for both the gRPC and HTTP-based workload experiments. On the y-axis we present the evaluated configurations, excluding Traefik. On the x-axis we present the latency in milliseconds. The colours of the bar indicate the type of workload used. The blue bars (gRPC) present the data from the fourth experiment, whereas the orange bars (HTTP) present the observed latency values from the first experiment.
 
 
-\begin{figure}[ht]
+\begin{figure}[t]
 \centering
-\makebox[\linewidth][c]{
-    \includegraphics[width=1.3\linewidth]{5_experimental_evaluation/figures/exp-04-tail-latencies-all-compared.pdf} 
-}
 
-   \caption[Tail end latencies of \gls{sm} systems experiencing maximum load per application protocol]{Tail end latencies of \gls{sm} systems experiencing maximum load per application protocol.}
+    \makebox[\linewidth][c]{
+        \includegraphics[width=1.3\linewidth]{5_experimental_evaluation/figures/exp-04-tail-latencies-all-compared.pdf} 
+    }
+
+   \caption[Experiment 4 - Tail end latencies of \gls{sm} systems experiencing maximum load per application protocol.]{Tail end latencies of \gls{sm} systems experiencing maximum load per application protocol.}
     
    \label{fig:exp:04:tail-latencies}
 

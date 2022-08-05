@@ -1,4 +1,4 @@
-\subsection{\ref{exp:design:1} - HTTP Maximum Throughput}
+\subsection{\textbf{EXP 1} - HTTP Maximum Throughput}
 \label{sec:experiments:results:per-experiment:01}
 % Goal:
 % To find the maximum throughput each of the meshed configurations can achieve.
@@ -13,13 +13,13 @@ The first experiment evaluates the \gls{sm} systems when they are fully satiated
 In \cref{fig:exp:01:maximum-throughput} we present a bar chart which depicts the average, sustained throughput that a \gls{sm} system was able to process throughout the duration of the experiment. On the y-axis we present the different \gls{sm} configurations, whereas the x-axis represents the throughput in requests per second. Next to each bar we present the actual observed value and the percentage of throughput a system was able to process compared to the  best performing configuration, which in this case is the baseline.
 
 
-\begin{figure}
+\begin{figure}[t]
 \centering
 \makebox[\textwidth][c]{
     \begin{minipage}{.65\textwidth}
       \centering
       \includegraphics[width=\linewidth]{5_experimental_evaluation/figures/exp-01-max-throughput.pdf}
-      \caption[Average throughputs of \gls{sm} systems under maximum load.]{Average throughputs of \gls{sm} systems under maximum load.}
+      \caption[Experiment 1 - Average throughputs of \gls{sm} systems under maximum load.]{Average throughputs of \gls{sm} systems under maximum load.}
       \label{fig:exp:01:maximum-throughput}
     \end{minipage}
     
@@ -27,7 +27,7 @@ In \cref{fig:exp:01:maximum-throughput} we present a bar chart which depicts the
     \begin{minipage}{.65\textwidth}
       \centering
       \includegraphics[width=\linewidth]{5_experimental_evaluation/figures/exp-01-tail-latencies.pdf}
-      \caption[Tail end latencies of \gls{sm} systems under maximum load.]{Tail end latencies of \gls{sm} systems under maximum load.}
+      \caption[Experiment 1 - Tail end latencies of \gls{sm} systems under maximum load.]{Tail end latencies of \gls{sm} systems under maximum load.}
       \label{fig:exp:01:tail-end-latencies}
     \end{minipage}
 }
@@ -58,7 +58,7 @@ In our previous analysis we looked at the amount of requests a configuration can
 To fully understand the impact that the values and distributions in this analysis can have on real-world application performance, we have to refer to the manner in which applications are often constructed. When using a service-oriented architecture, and namely one using the granularity of microservices, you create an application of many interconnected services. Applications can consist of thousands of microservices \cite{design-example-microservices, netflix-microservices-cost} and a user can indirectly use hundreds of backing services. To evaluate latencies in such a model, we follow the practices as described in the works of Gil Tene \cite{Tene2015-measure-latency}. Because of this model, the tail end latencies are more common than one might expect due to the nature of probabilities. As an example, the ~99.995th percentile of latencies will be experienced in a procedure involving 200 microservices in more than 99\% of the time. 
 
 
-\begin{figure}
+\begin{figure}[t]
 \centering
 \makebox[\linewidth][c]{
     \begin{subfigure}{.65\textwidth}
@@ -76,7 +76,7 @@ To fully understand the impact that the values and distributions in this analysi
       \label{fig:exp:01:boxplots-latency:linear}
     \end{subfigure}
 }
-\caption[Latency distributions of \gls{sm} systems under maximum load]{Latency distributions of \gls{sm} systems under maximum load.}
+\caption[Experiment 1 - Latency distributions of \gls{sm} systems under maximum load.]{Latency distributions of \gls{sm} systems under maximum load.}
 \label{fig:exp:01:boxplots-latency}
 \end{figure}
 
@@ -104,7 +104,7 @@ From the chart in \cref{fig:exp:01:tail-end-latencies} we can observe that Istio
     The latencies observed from Istio under load have a large spread, and especially suffer in their tail end.
 \end{shaded*}
 
-\begin{figure}
+\begin{figure}[t]
 \centering
 \makebox[\linewidth][c]{
     \begin{subfigure}{.65\textwidth}
@@ -140,7 +140,7 @@ From the results depicted in \cref{fig:exp:01:histograms-latency}, we can observ
 \label{sec:experiments:results:per-experiment:01:resource}
 
 
-\begin{figure}
+\begin{figure}[t]
 \centering
 \makebox[\linewidth][c]{
     \begin{subfigure}{.65\textwidth}
@@ -158,7 +158,7 @@ From the results depicted in \cref{fig:exp:01:histograms-latency}, we can observ
       \label{fig:exp:01:resource:mem}
     \end{subfigure}
 }
-\caption[Resource utilization for \gls{sm} systems under load]{Resource utilization for \gls{sm} systems under load.}
+\caption[Experiment 1 - Resource utilization for \gls{sm} systems under load.]{Resource utilization for \gls{sm} systems under load.}
 \label{fig:exp:01:resource-utilization}
 \end{figure}
 

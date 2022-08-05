@@ -5,17 +5,29 @@ In this work, we present an experimental approach to analyse the performance of 
 
 Based on the results from our work and the current challenges present in the field, we suggest the following opportunities for future research:
 
-\todo{Fill in future work item descriptions}
-
 \begin{enumerate}
     \item \textbf{Experiments on real-world infrastructures}
+    
+    In the design of our experiments we used a single node cluster as this limited the variance in results from our experiments. A single node set-up excels in such achieving this as it does not rely on networking between nodes in a cluster which could introduce variance. However, such a set-up does not reflect a real-world environment of the target audience of \gls{k8s} and \gls{sm} systems. An opportunity for future research would include evaluating \gls{sm} systems in multi-node cluster configurations and even multi-cluster environments.
+    
+
 
     \item \textbf{Real-world experiments}
     
+    In our design and implementation of the experiments we used a synthetic workload and a single logical software service. This enabled us to accurately evaluate the performance of the data plane as it limited the number of components in our \gls{sut} and provided a focus on the critical data path of a network packet. However, a real-world environment would have more logical services and a longer chain of service-to-service communications. Benchmarking \gls{sm} systems in a real-world environment would be an opportunity for future research. 
+
+    
     \item \textbf{Enhance benchmark implementation to include resource utilization from \gls{ebpf} programs}
+    
+    During our experimental evaluation we measured the resource utilization levels of all containers in our \gls{k8s} cluster. This enabled our resource utilization analysis in which we compared the resource utilization of \gls{sm} data plane proxies under various levels of load. However, in our implementation of the benchmark we were unable to measure the impact of the \gls{ebpf}-based proxy. An opportunity for future research would be to modify the benchmark and implement a solution that can capture the resource utilization of \gls{ebpf} programs.
     
     \item \textbf{Evaluate the resiliency features of \gls{sm} systems}
     
+    One of the primary advantages of using a \gls{sm} system is the suite of resiliency features such a system can bring. From retrying and delaying network requests to advanced circuit-breaking patterns to dissuade from cascading failures. The design and implementation of our benchmark has a focus on performance and did not include experiments that evaluate the resiliency of \gls{sm} systems. An opportunity for future research would be to design and conduct experiments that evaluate the reliability features of \gls{sm} systems by utilizing fault injection or chaos engineering techniques.
+    
+    
     \item \textbf{Expand upon the experiment dimensions}
+    
+    In the design of our experiments we based the dimensions of the experiments on initial explorative findings. During this explorative phase, we used the \gls{sm} systems that we set out to evaluate. However, as shown in our analysis, we observed large discrepancies in performance related aspects between these systems. We designed the experiments to accommodate all the selected \gls{sm} systems and therefore set our experiment dimensions to values that were mostly reachable by all these systems. The result is that for some experiments, e.g. the constant throughput experiment, we used relatively small levels of constant throughput for the better performing systems. In addition to tweaking existing experiment dimensions, future research could include more dimensions to evaluate \gls{sm} systems in additional environments.
 
 \end{enumerate}

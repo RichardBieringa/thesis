@@ -1,4 +1,4 @@
-\subsection{\ref{exp:design:2} - HTTP Constant Throughput}
+\subsection{\textbf{EXP 2} - HTTP Constant Throughput}
 \label{sec:experiments:results:per-experiment:02}
 % Goal: To evaluate how \gls{sm} configurations behave under varying levels of load.
 
@@ -7,14 +7,17 @@ In the previous experiment (\cref{sec:experiments:results:per-experiment:01}), w
 \subsubsection{Latency Analysis}
 \label{sec:experiments:results:per-experiment:02:latency}
 
-\begin{figure}[ht]
+\begin{figure}[t]
     \centering
+
+    \makebox[\linewidth][c]{
+        \includegraphics[width=1.2\linewidth]{5_experimental_evaluation/figures/exp-02-latency-log.pdf}
+    }
     
-    \includegraphics[width=1\linewidth]{5_experimental_evaluation/figures/exp-02-latency-log.pdf}
-    
-    \caption[Distribution of observed latencies per \gls{sm} system under various levels of constant throughput]{Distribution of observed latencies per \gls{sm} system under various levels of constant throughput on a logarithmic scale.}
+    \caption[Experiment 2 - Distribution of observed latencies per \gls{sm} system under various levels of constant throughput.]{Distribution of observed latencies per \gls{sm} system under various levels of constant throughput on a logarithmic scale.}
     
     \label{fig:exp:02:latency-distributions}
+
 \end{figure}
 
 
@@ -31,12 +34,14 @@ Additionally, we analysed the tail end latencies of the evaluated configurations
 
 To provide a more extensive analysis into the observed behaviour of Traefik, we visualized the latency distributions of the configuration using Traefik in violin plot as depicted in \cref{fig:exp:02:traefik-bottleneck}. The y-axis of this plot represents the various levels of throughput, and the x-axis present the observed latency values in milliseconds. It is important to note that we did include the results of when we evaluated Traefik under a constant throughput of 1000 requests per second, even if it did not manage to actually sustain this level of throughput as previously discussed. 
 
-\begin{figure}[!t]
+\begin{figure}[t]
     \centering
     
-    \includegraphics[width=1\linewidth]{5_experimental_evaluation/figures/exp-02-bottleneck-traefik.pdf}
-
-    \caption[Latency distribution of Traefik under varying levels of constant throughput]{Latency distribution of Traefik under varying levels of constant throughput.}
+    \makebox[\linewidth][c]{
+        \includegraphics[width=1.2\linewidth]{5_experimental_evaluation/figures/exp-02-bottleneck-traefik.pdf}
+    }
+    
+    \caption[Experiment 2 - Latency distribution of Traefik under varying levels of constant throughput.]{Latency distribution of Traefik under varying levels of constant throughput.}
     
     \label{fig:exp:02:traefik-bottleneck}
 \end{figure}
@@ -54,10 +59,11 @@ Through the violin plots as depicted in \cref{fig:exp:02:traefik-bottleneck}, we
 \subsubsection{Resource Utilization Analysis}
 \label{sec:experiments:results:per-experiment:02:resource}
 
-\begin{figure}[ht]
+
+\begin{figure}[t]
 \centering
 \makebox[\linewidth][c]{
-    \begin{subfigure}{.6\textwidth}
+    \begin{subfigure}{.65\textwidth}
       \centering
       \includegraphics[width=\textwidth]{5_experimental_evaluation/figures/exp-02-cpu-utilization.pdf}
       \caption{CPU Utilization}
@@ -65,14 +71,15 @@ Through the violin plots as depicted in \cref{fig:exp:02:traefik-bottleneck}, we
     \end{subfigure}
     
     
-    \begin{subfigure}{.6\textwidth}
+    \begin{subfigure}{.65\textwidth}
       \centering
       \includegraphics[width=\textwidth]{5_experimental_evaluation/figures/exp-02-memory-utilization.pdf}
       \caption{Memory Utilization}
       \label{fig:exp:02:resource:mem}
     \end{subfigure}
 }
-\caption[Resource utilization for \gls{sm} systems under load]{Resource utilization for \gls{sm} systems experiencing various levels of constant throughput. The level of throughput is increased at a 15-minute interval, and changes from  1, 100, 500, and 1000 requests per second respectively.}
+
+\caption[Experiment 2 - Resource utilization for \gls{sm} systems under load.]{Resource utilization for \gls{sm} systems experiencing various levels of constant throughput. The level of throughput is increased at a 15-minute interval, and changes from  1, 100, 500, and 1000 requests per second respectively.}
 \label{fig:exp:02:resource-utilization}
 \end{figure}
 

@@ -1,13 +1,15 @@
-\subsection{\ref{exp:design:3} - HTTP Payload}
+\subsection{\textbf{EXP 3} - HTTP Payload}
 \label{sec:experiments:results:per-experiment:03}
 
 In the third experiment we introduced variable application payloads. The goal of this experiment is to analyse the \gls{sm} systems when they have to process various amounts of data as application payloads. During this experiment, we generate a constant throughput of 100 requests per second, however, the application payload of each of the HTTP responses vary between 0, 1000, and 10000 bytes in size. 
 
 
-\begin{figure}[ht]
+\begin{figure}[t]
     \centering
     
-    \includegraphics[width=\textwidth]{5_experimental_evaluation/figures/exp-03-latencies-all.pdf}
+    \makebox[\linewidth][c]{
+        \includegraphics[width=1.2\textwidth]{5_experimental_evaluation/figures/exp-03-latencies-all.pdf}
+    }
 
    \caption[Distribution of observed latencies per \gls{sm} system with varying application payload sizes]{Distribution of observed latencies per \gls{sm} system with varying application payload sizes.}
     
@@ -19,10 +21,10 @@ In \cref{fig:exp:result:03:latency} we present the observed latency distribution
 From the distributions as presented in \cref{fig:exp:result:03:latency} we can observe that the observed latencies are slightly higher of the requests that returned a larger application payload. However, the difference is very minimal, and the selected payload sizes did not seem to impact the overall observed performance. Furthermore, the application payload size also did not seem to affect the tail end latencies, as can be seen in the comparison presented in the Appendix in which we compare the 99th, 99.9th and 99.00th percentile of latencies observed (\cref{fig:exp:02:tail-latencies}).
 
 
-\begin{figure}[ht]
+\begin{figure}[t]
 \centering
 \makebox[\linewidth][c]{
-    \begin{subfigure}{.6\textwidth}
+    \begin{subfigure}{.65\textwidth}
       \centering
       \includegraphics[width=\textwidth]{5_experimental_evaluation/figures/exp-03-cpu-utilization.pdf}
       \caption{CPU Utilization}
@@ -30,14 +32,14 @@ From the distributions as presented in \cref{fig:exp:result:03:latency} we can o
     \end{subfigure}
     
     
-    \begin{subfigure}{.6\textwidth}
+    \begin{subfigure}{.65\textwidth}
       \centering
       \includegraphics[width=\textwidth]{5_experimental_evaluation/figures/exp-03-memory-utilization.pdf}
       \caption{Memory Utilization}
       \label{fig:exp:03:resource:mem}
     \end{subfigure}
 }
-\caption[Resource utilization for \gls{sm} systems experiencing varying application payload sizes]{Resource utilization for \gls{sm} systems experiencing varying application payload sizes.}
+\caption[Experiment 3 - Resource utilization for \gls{sm} systems experiencing varying application payload sizes]{Resource utilization for \gls{sm} systems experiencing varying application payload sizes.}
 \label{fig:exp:03:resource-utilization}
 \end{figure}
 

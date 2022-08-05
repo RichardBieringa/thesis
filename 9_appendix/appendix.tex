@@ -1,28 +1,16 @@
 \appendix
-\todo{Print glossary entries when finalizing document.}
-% Uncomment for sorted glossary definitions
+% % Uncomment for sorted glossary definitions
 % \printglossaries
-
-
-% \includepdf[landscape, pagecommand={}\label{appendix:cncf-landscape}]{9_appendix/figures/cncf-landscape.pdf}
-
-
-\chapter{Experiment Overview}
-\input{5_experimental_evaluation/tables/exp-01_http_max_throughput}
-\input{5_experimental_evaluation/tables/exp-02_http_constant_throughput}
-\input{5_experimental_evaluation/tables/exp-03_http_payload}
-\input{5_experimental_evaluation/tables/exp-04_grpc_max_throughput}
-
-
-\input{5_experimental_evaluation/tables/exp-overview}
 
 \chapter{Additional Experimental Results}
 \begin{figure}[p]
     \centering
     
-    \includegraphics[width=\linewidth]{5_experimental_evaluation/figures/exp-01-distributions-all.pdf}
+    \makebox[\linewidth][c]{
+        \includegraphics[width=1.2\linewidth]{5_experimental_evaluation/figures/exp-01-distributions-all.pdf}
+    }
 
-    \caption[Histogram of latencies under maximum load]{Latencies}
+    \caption[Experiment 1 - Histogram of latencies under maximum load.]{Histogram of latencies under maximum load}
     \label{fig:exp:01:hist-latency-traefik}
 \end{figure}
 
@@ -30,9 +18,11 @@
 \begin{figure}[p]
     \centering
     
-    \includegraphics[width=1\linewidth]{5_experimental_evaluation/figures/exp-02-tail-latencies-all.pdf}
+    \makebox[\linewidth][c]{
+        \includegraphics[width=1.3\linewidth]{5_experimental_evaluation/figures/exp-02-tail-latencies-all.pdf}
+    }
 
-    \caption[Tail end latencies of \gls{sm} systems under varying levels of constant throughput]{Tail end latencies of \gls{sm} systems under varying levels of constant throughput.}
+    \caption[Experiment 2 - Tail end latencies of \gls{sm} systems under varying levels of constant throughput.]{Tail end latencies of \gls{sm} systems under varying levels of constant throughput.}
     
     \label{fig:exp:02:tail-latencies}
 \end{figure}
@@ -42,9 +32,11 @@
 \begin{figure}[p]
     \centering
     
-    \includegraphics[width=1\linewidth]{5_experimental_evaluation/figures/exp-03-tail-latencies-all.pdf}
+    \makebox[\linewidth][c]{
+        \includegraphics[width=1.3\linewidth]{5_experimental_evaluation/figures/exp-03-tail-latencies-all.pdf}
+    }
 
-    \caption[Tail end latencies of \gls{sm} systems when experiencing varying application payload sizes]{Tail end latencies of \gls{sm} systems when experiencing varying application payload sizes.}
+    \caption[Experiment 3 - Tail end latencies of \gls{sm} systems when experiencing varying application payload sizes.]{Tail end latencies of \gls{sm} systems when experiencing varying application payload sizes.}
     
     \label{fig:exp:03:tail-latencies}
 \end{figure}
