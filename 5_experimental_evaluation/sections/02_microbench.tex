@@ -9,7 +9,7 @@ Before conducting our designed experiments, we evaluate our experimental setup t
 
 The first micro benchmark that we have conducted compares two experimental environments. In \cref{sec:experiments:design:environment}, we introduced our experimental environment and discussed the cluster configuration that we have use for our experimental evaluation. We discussed that we designed the experiments to be run on a single node cluster to abolish any variance in network latencies. However, this also implies that the benchmark system is running on the same node and this can have an effect on the results of the experiments.
 
-To evaluate the impact of such a cluster configuration we constructed a micro benchmark. In this micro benchmark, we perform an experiment similar to the design of \ref{exp:design:1}, in which we try to find the maximum throughput of our experimental environment. In this experiment, however, we only perform it on an unmeshed (baseline) configuration to simplify and limit any variance a \gls{sm} system can impose and run it for a total duration of 15 minutes. We compare two experimental environments, in which we change the cluster configuration. The first environment has a single node cluster which runs the benchmark system and the target services. The second environment has a two node cluster, one of these nodes runs the benchmark system whereas the other node runs the target service.
+To evaluate the impact of such a cluster configuration we constructed a micro benchmark. In this micro benchmark, we perform an experiment similar to the design of our first experiment, in which we try to find the maximum throughput of our experimental environment. In this experiment, however, we only perform it on an unmeshed (baseline) configuration to simplify and limit any variance a \gls{sm} system can impose and run it for a total duration of 15 minutes. We compare two experimental environments, in which we change the cluster configuration. The first environment has a single node cluster which runs the benchmark system and the target services. The second environment has a two node cluster, one of these nodes runs the benchmark system whereas the other node runs the target service.
 
 
 \begin{figure}[!t]
@@ -17,7 +17,7 @@ To evaluate the impact of such a cluster configuration we constructed a micro be
     
     \includegraphics[width=0.8\linewidth]{5_experimental_evaluation/figures/microbench-node-count.pdf}
 
-    \caption[Micro benchmark - Comparing the average maximum throughput of two cluster configurations]{Comparing the average maximum throughput of two cluster configurations.}
+    \caption[Micro benchmark - Comparing the average maximum throughput of two cluster configurations.]{Comparing the average maximum throughput of two cluster configurations by using an HTTP-based load test in an environment without a service mesh.}
     
     \label{fig:microbench:node-count}
 \end{figure}
@@ -37,7 +37,7 @@ To determine if the target service implementation can be the cause of a bottlene
     
     \includegraphics[width=0.8\linewidth]{5_experimental_evaluation/figures/microbench-target-service.pdf}
 
-    \caption[Micro benchmark - Measuring the maximum throughput levels of the target service]{Measuring the maximum throughput levels of the target service.}
+    \caption[Micro benchmark - Measuring the maximum sustained level of throughput for the target service.]{Measuring the maximum sustained level of throughput for the target service by performing HTTP-based load tests in an environment without a service mesh.}
     
     \label{fig:microbench:target-svc}
 \end{figure}

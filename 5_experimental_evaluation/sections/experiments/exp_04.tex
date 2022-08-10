@@ -43,14 +43,14 @@ The very first thing to notice in \cref{fig:exp:04:maximum-throughput} is the ab
 \end{shaded*}
 
 % Comparison of HTTP vs gRPC (reduction of throughput)
-% Cilium $16.83\%$ $13.42\%$
-% Linkerd $54.94\%$ $63.05\%$ 
-% Istio $80.09\%$ $78.44\%$
+% Cilium $16.83\%$ $13.42\%$ -> 3.41 delta
+% Linkerd $54.94\%$ $63.05\%$ -> 8.11 delta
+% Istio $80.09\%$ $78.44\%$ -> 1.65 delta
 % Traefik $97.39\%$  - 
 
 Another observation we can make is regarding the levels of throughput a \gls{sm} system can process compared to the baseline configuration. Similarly to the first experiment, in which we evaluated the maximum sustained throughput whilst using HTTP-based requests and responses (\cref{sec:experiments:results:per-experiment:01}), we observe that there is a significant reduction of throughput for each of the evaluated \gls{sm} systems. The best performing \gls{sm} system is once again, Cilium, experiencing a $13.42\%$ reduction in throughput compared to the baseline configuration. Linkerd is the second best performing system, which experiences a $63.05\%$ reduction. The greatest reduction of throughput, however, is reserved for the Istio which experiences a massive $78.44\%$ reduction in throughput compared to the baseline.
 
-When we compare these results to the results from the first experiment we can observe a similar trend. We observe the same ranking whilst evaluating this metric. Additionally, the relative differences when comparing the reductions per protocol are minimal. Most of the evaluated systems experience similar reductions for both application level protocols. The largest difference observed is for Linkerd, which encountered a $54.94\%$ reduction for the HTTP workloads whilst it encountered a $63.05\%$ reduction for the gRPC based workloads. This brings us to our eleventh main finding:
+When we compare these results to the results from the first experiment we can observe a similar trend. We observe the same ranking whilst evaluating this metric. Additionally, the relative differences when comparing the reductions per protocol are minimal. Most of the evaluated systems experience similar reductions for both application level protocols. The largest difference observed is for Linkerd, which encountered a $54.94\%$ reduction for the HTTP workloads whilst it encountered a $63.05\%$ reduction for the gRPC based workloads. On average, there was a $4.39\%$ difference between the levels of reduction experienced for the types of workloads used. This brings us to our eleventh main finding:
 
 \begin{shaded*}
     \noindent

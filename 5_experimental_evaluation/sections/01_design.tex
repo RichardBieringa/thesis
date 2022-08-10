@@ -121,7 +121,7 @@ Below we present the list of metrics used throughout the experiments
 
 \end{enumerate}
 
-In the experiments we do not evaluate metrics related to the resiliency of the system. In our requirements analysis we established a requirement to capture this characteristic based on established best practices. However, is not included in the current experimental design. The reason for this is twofold. First of, we uncovered that the \gls{sm} systems handle timeouts and errors in requests differently \footnote{\url{https://linkerd.io/2.11/features/retries-and-timeouts/}} and that it involves balancing resiliency capabilities and system load. This means that we cannot compare the systems based on their default settings. Second, to create a fair experiment we have to configure these systems to have identical fault tolerance behaviours, which not all systems support. However, this is an interesting opportunity for future research.
+In the experiments we do not evaluate metrics related to the resiliency of the system. In our requirements analysis we established a requirement to capture this characteristic based on established best practices. However, is not included in the current experimental design. The reason for this is twofold. First of, we uncovered that the \gls{sm} systems handle timeouts and errors in requests differently\footnote{\url{https://linkerd.io/2.11/features/retries-and-timeouts/}} and that it involves balancing resiliency capabilities and system load. This means that we cannot compare the systems based on their default settings. Second, to create a fair experiment we have to configure these systems to have identical fault tolerance behaviours, which not all systems support. However, this is an interesting opportunity for future research.
 
 
 \subsection{Workloads}
@@ -185,7 +185,7 @@ In \cref{tab:experiment:design:exp-variables} we present the variables that we c
 \subsection{Experiments}
 \label{sec:experiments:design:overview}
 
-We now introduce the four experiments that were designed and used to evaluate the performance characteristics of \gls{sm} systems. For each of the experiments we introduce their primary goal, discuss how they are executed and reason why we chose this particular design. Additionally, \cref{tab:experiment:design:overview} presents an overview of all the experiments, what type of workload they use, which  metrics they capture and which factors  are used to control the experiment.
+We now introduce the four experiments that were designed and used to evaluate the performance characteristics of \gls{sm} systems. \cref{tab:experiment:design:01,,tab:experiment:design:02,,tab:experiment:design:03,,tab:experiment:design:04} introduce the four individual experiments. For each of the experiments we introduce their primary goal, discuss how they are executed and reason why we chose this particular design. Additionally, \cref{tab:experiment:design:overview} presents an overview of all the experiments, what type of workload they use, which  metrics they capture and which factors  are used to control the experiment.
 
 
 \input{5_experimental_evaluation/tables/exp-01_http_max_throughput}

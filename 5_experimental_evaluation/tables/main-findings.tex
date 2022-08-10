@@ -1,6 +1,6 @@
 % Please add the following required packages to your document preamble:
 % \usepackage{booktabs}
-\begin{table}[t]
+\begin{table}[!htbp]
 \begin{tabularx}{\linewidth}{@{}lXll@{}}
 \toprule
 \multicolumn{4}{c}{\textbf{Main Findings}} \\
@@ -13,19 +13,19 @@ Using a \gls{sm} can lead to a significant decrease in sustained throughput. &
 \midrule
   
 \textbf{MF2} &
-There is a significant variance in the amount of sustained throughput that \gls{sm} systems can handle. &
+There is significant variance in the amount of sustained throughput that \gls{sm} systems can handle. &
 \textbf{EXP 1} &
 \cref{sec:experiments:results:per-experiment:01} \\
 \midrule 
   
 \textbf{MF3} &
-The network latency overhead caused by the proxy of Cilium is minimal. &
+The network latency overhead caused by the proxy of Cilium is lowest among all evaluated service mesh systems. &
 \textbf{EXP 1} &
 \cref{sec:experiments:results:per-experiment:01} \\
 \midrule  
   
 \textbf{MF4} &
-The latencies observed from Istio under load have a large spread, and especially suffer in their tail end. &
+The latencies observed from Istio under load have a large spread, and are worse at the tail end. &
 \textbf{EXP 1} &
 \cref{sec:experiments:results:per-experiment:01} \\
 \midrule    
@@ -55,7 +55,7 @@ The memory footprint of data plane proxies is negligible and does not significan
 \midrule  
   
 \textbf{MF9} &
-The size of the application payload does not have a significant effect on the performance of data plane proxies and resource utilization levels. &
+The size of the application payload does not have a significant effect on the performance of data-plane proxies on resource utilization levels. &
 \textbf{EXP 3} &
 \cref{sec:experiments:results:per-experiment:03} \\
 \midrule  

@@ -47,7 +47,7 @@ Another observation we can make from these results is the amount of variance the
 \begin{shaded*}
     \noindent
     \textbf{MF2}: 
-    There is a significant variance in the amount of sustained throughput that \gls{sm} systems can handle.
+    There is significant variance in the amount of sustained throughput that \gls{sm} systems can handle.
 \end{shaded*}
 
 \subsubsection{Latency Analysis}
@@ -55,8 +55,7 @@ Another observation we can make from these results is the amount of variance the
 
 In our previous analysis we looked at the amount of requests a configuration can handle. In this part of the analysis we take a look at the durations of the requests themselves. We measure the latency of each request. These latencies represent the time it takes for a request to complete. This is measured from the moment the workload generator sends a request until it successfully receives a response from the target service.
 
-To fully understand the impact that the values and distributions in this analysis can have on real-world application performance, we have to refer to the manner in which applications are often constructed. When using a service-oriented architecture, and namely one using the granularity of microservices, you create an application of many interconnected services. Applications can consist of thousands of microservices \cite{design-example-microservices, netflix-microservices-cost} and a user can indirectly use hundreds of backing services. To evaluate latencies in such a model, we follow the practices as described in the works of Gil Tene \cite{Tene2015-measure-latency}. Because of this model, the tail end latencies are more common than one might expect due to the nature of probabilities. As an example, the ~99.995th percentile of latencies will be experienced in a procedure involving 200 microservices in more than 99\% of the time. 
-
+To fully understand the impact that the values and distributions in this analysis can have on real-world application performance, we have to refer to the manner in which applications are often constructed. When using a service-oriented architecture, and namely one using the granularity of microservices, you create an application of many interconnected services. Applications can consist of thousands of microservices \cite{design-example-microservices, netflix-microservices-cost} and a user can indirectly use hundreds of backing services. To evaluate latencies in such a model, we follow the practices as described in the works of Gil Tene \cite{Tene2015-measure-latency}. Because of this model, the tail end latencies are more common than one might expect due to the nature of probabilities. As an example, the likelihood of experiencing the 99.995th percentile of latencies is greater than 99\% when a procedure involves 200 microservices.
 
 \begin{figure}[t]
 \centering
@@ -88,7 +87,7 @@ In \cref{fig:exp:01:boxplots-latency:log} we present the observed latencies on a
 \begin{shaded*}
     \noindent
     \textbf{MF3}: 
-    The network latency overhead caused by the proxy of Cilium is minimal.
+    The network latency overhead caused by the proxy of Cilium is lowest among all evaluated service mesh systems.
 \end{shaded*}
 
 Another observation we can make is that Linkerd has a slightly higher median and spread, but is still performing relatively well as it does not deviate too much from the baseline configuration. Istio, on the other hand, appears to suffer significantly more. Not only is the median affected, the spread of observed latencies is significantly greater. We can relate this behaviour to the type of proxy used in their data planes and their design decisions (see \cref{sec:survey:results} \cref{tab:result-proxy}). Whereas Istio uses \textit{Envoy}, a complex and feature rich general purpose proxy, Linkerd uses its own lightweight proxy \cite{linkerd-no-envoy}.
@@ -101,7 +100,7 @@ From the chart in \cref{fig:exp:01:tail-end-latencies} we can observe that Istio
 \begin{shaded*}
     \noindent
     \textbf{MF4}: 
-    The latencies observed from Istio under load have a large spread, and especially suffer in their tail end.
+    The latencies observed from Istio under load have a large spread, and are worse at the tail end.
 \end{shaded*}
 
 \begin{figure}[t]
